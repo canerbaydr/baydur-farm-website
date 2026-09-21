@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Baydur Farm</title>
+  <desc id="desc">Baydur Farm yaprak logosu</desc>
+  <rect width="512" height="512" rx="112" fill="#123328"/>
+  <path d="M389 91C214 91 119 166 119 302c0 78 58 127 133 127 132 0 177-155 137-338Z" fill="none" stroke="#bdd98a" stroke-width="30" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M136 392c39-82 113-145 211-203" fill="none" stroke="#bdd98a" stroke-width="30" stroke-linecap="round"/>
+</svg>
