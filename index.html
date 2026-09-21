@@ -150,6 +150,7 @@
     .mix-result-card { background:#fff; border:1px solid #d7e1d1; border-radius:12px; padding:15px; }
     .mix-result-card strong { display:block; margin-bottom:5px; font-size:12px; text-transform:uppercase; letter-spacing:.04em; color:#396148; }
     .mix-result-card span { font-size:14px; color:#53695c; }
+    .mix-reason-card { grid-column:1 / -1; background:#f8fbf3; }
     .mix-health-note { font-size:12px; color:#65766a; border-top:1px solid #d4dfcf; padding-top:13px; margin-top:15px; }
     .mix-result-actions { display:flex; gap:9px; flex-wrap:wrap; margin-top:17px; }
     @media(max-width:900px) { .mix-shell { grid-template-columns:1fr; } }
@@ -254,6 +255,7 @@
               <div class="mix-result-card"><strong>Tamamlayıcılar</strong><span id="mixExtras"></span></div>
               <div class="mix-result-card"><strong>Sos profili</strong><span id="mixDressing"></span></div>
               <div class="mix-result-card"><strong>Lezzet profili</strong><span id="mixProfile"></span></div>
+              <div class="mix-result-card mix-reason-card"><strong>Neden bu karışım?</strong><span id="mixReason"></span></div>
             </div>
             <p class="mix-health-note" id="mixHealthNote">Bu araç genel yemek önerisi üretir; tıbbi tanı veya tedavi önerisi vermez. Sağlık durumunuza özel beslenme için sağlık profesyoneline danışın.</p>
             <div class="mix-result-actions"><button class="button button-primary" type="button" id="mixToQuote">Bu karışım için teklif iste ↗</button><button class="button button-secondary" type="button" id="mixAgain">Başka öneri oluştur</button></div>
@@ -318,22 +320,64 @@
       return words.some(word => text.includes(word));
     }
 
-    function excludedIngredients(text) {
-      const ingredients = ['roka','maydanoz','dereotu','tere','salatalık','havuç','ceviz','avokado','nohut'];
-      const negatives = ['sevmiyorum','istemiyorum','olmasın','olmasin','koyma','çıkar','cikar','az olsun'];
-      return ingredients.filter(item => {
-        const p = text.indexOf(item);
-        if (p < 0) return false;
-        const around = text.slice(Math.max(0, p - 24), p + item.length + 28);
-        return negatives.some(n => around.includes(n));
+    function ingredientPreferences(text) {
+      const ingredients = ['roka','maydanoz','dereotu','tere','salatalık','havuç','ceviz','avokado','nohut','nane','fesleğen','reyhan','ıspanak','mizuna','kişniş','mısır','nar','bal'];
+      const excluded = [];
+      const limited = [];
+      const wanted = [];
+
+      ingredients.forEach(item => {
+        let p = text.indexOf(item);
+        if (p < 0) return;
+        const around = text.slice(Math.max(0, p - 34), p + item.length + 38);
+
+        const limitWords = ['az olsun','az koy','biraz olsun','çok olmasın','cok olmasin','fazla olmasın','fazla olmasin','çok istemiyorum','cok istemiyorum'];
+        const excludeWords = ['sevmiyorum','istemiyorum','istemem','olmasın','olmasin','koyma','çıkar','cikar','yemiyorum','asla'];
+        const wantWords = ['seviyorum','istiyorum','bol olsun','çok olsun','cok olsun','ekle','bol koy'];
+
+        if (limitWords.some(w => around.includes(w))) limited.push(item);
+        else if (excludeWords.some(w => around.includes(w))) excluded.push(item);
+        else if (wantWords.some(w => around.includes(w))) wanted.push(item);
       });
+
+      return { excluded, limited, wanted };
     }
 
-    function pick(list, text, offset = 0) {
-      let hash = offset;
-      for (let i = 0; i < text.length; i++) hash = (hash * 31 + text.charCodeAt(i)) >>> 0;
-      return list[hash % list.length];
+    function scoreTaste(text, words) {
+      let score = 0;
+      words.forEach(word => {
+        let from = 0;
+        while (true) {
+          const p = text.indexOf(word, from);
+          if (p < 0) break;
+          const before = text.slice(Math.max(0, p - 18), p);
+          const after = text.slice(p + word.length, p + word.length + 24);
+          const around = before + word + after;
+
+          const neg = ['olmasın','olmasin','istemiyorum','istemem','sevmiyorum','olmasın','olmasin','acısız','acisiz','ekşisiz','eksisiz'];
+          if (neg.some(n => around.includes(n))) score -= 3;
+          else if (/(çok|cok|bol|fazla)\s*$/.test(before)) score += 4;
+          else if (/(az|biraz|hafif)\s*$/.test(before)) score += 1;
+          else score += 2;
+
+          from = p + word.length;
+        }
+      });
+      return Math.max(-4, Math.min(6, score));
     }
+
+    function tasteLevel(score, positive, neutral, negative) {
+      if (score >= 4) return positive + ' belirgin';
+      if (score >= 2) return positive;
+      if (score <= -2) return negative;
+      return neutral;
+    }
+
+    function containsIngredient(label, item) {
+      return label.toLocaleLowerCase('tr-TR').includes(item);
+    }
+
+    let mixVariation = 0;
 
     function generateMix() {
       const raw = mixPrompt.value.trim();
@@ -343,60 +387,166 @@
         mixPrompt.setCustomValidity('');
         return;
       }
-      const text = raw.toLocaleLowerCase('tr-TR');
-      const excluded = excludedIngredients(text);
-      const light = hasAny(text, ['hafif','light','az kalorili','ferah']);
-      const filling = hasAny(text, ['tok','doyurucu','doysun','protein']);
-      const lowSour = hasAny(text, ['az ekşi','az eksi','ekşi olmasın','eksi olmasin','ekşisiz']);
-      const sour = !lowSour && hasAny(text, ['ekşi','eksi','limonlu']);
-      const noSpice = hasAny(text, ['acısız','acisiz','acı olmasın','aci olmasin']);
-      const healthContext = hasAny(text, ['karaciğer','karaciger','diyabet','şeker','seker','tansiyon','böbrek','bobek','kolesterol','hastalık','hastalik','sağlık','saglik']);
 
-      let greens = ['Kıvırcık marul', 'taze yapraklı yeşillikler'];
-      if (!excluded.includes('roka') && !noSpice && !lowSour) greens.push('az miktarda roka');
-      if (!excluded.includes('tere') && !noSpice) greens.push('tere');
-      if (!excluded.includes('maydanoz')) greens.push('maydanoz');
-      greens = greens.slice(0, light ? 3 : 4);
+      const text = raw.toLocaleLowerCase('tr-TR');
+      const pref = ingredientPreferences(text);
+      const healthContext = hasAny(text, ['karaciğer','karaciger','diyabet','şeker','seker','tansiyon','böbrek','bobrek','kolesterol','hastalık','hastalik','sağlık','saglik','alerji','alerjim']);
+
+      const taste = {
+        sweet: scoreTaste(text, ['tatlı','tatli','şekerli','sekerli','meyvemsi']),
+        sour: scoreTaste(text, ['ekşi','eksi','limonlu','asidik']),
+        spicy: scoreTaste(text, ['acı','aci','baharatlı','baharatli']),
+        fresh: scoreTaste(text, ['ferah','taze','fresh','serin']),
+        light: scoreTaste(text, ['hafif','light','az kalorili']),
+        filling: scoreTaste(text, ['tok','doyurucu','proteinli','doysun']),
+        crunchy: scoreTaste(text, ['çıtır','citir','gevrek','kıtır','kitir']),
+        herbal: scoreTaste(text, ['aromatik','otlu','fesleğenli','naneli'])
+      };
+
+      // Explicit "acısız" and "ekşisiz/az ekşi" language needs stronger intent.
+      if (hasAny(text, ['acısız','acisiz','acı olmasın','aci olmasin'])) taste.spicy = -4;
+      if (hasAny(text, ['ekşisiz','eksisiz','ekşi olmasın','eksi olmasin'])) taste.sour = -4;
+      if (hasAny(text, ['az ekşi','az eksi'])) taste.sour = -2;
+
+      const allowed = item => !pref.excluded.includes(item);
+      const addUnique = (arr, value) => {
+        if (!arr.includes(value) && !pref.excluded.some(e => containsIngredient(value, e))) arr.push(value);
+      };
+
+      let greens = [];
+      if (taste.sweet >= 2) {
+        ['Butterhead marul','Lollo Bionda','Kıvırcık marul'].forEach(x => addUnique(greens,x));
+      } else if (taste.filling >= 2) {
+        ['Romaine marul','Kıvırcık marul','Oak Leaf'].forEach(x => addUnique(greens,x));
+      } else if (taste.crunchy >= 2) {
+        ['Romaine marul','Oak Leaf','Kıvırcık marul'].forEach(x => addUnique(greens,x));
+      } else {
+        ['Kıvırcık marul','Lollo Bionda','taze yapraklı yeşillikler'].forEach(x => addUnique(greens,x));
+      }
+
+      if (taste.fresh >= 2 && allowed('nane')) addUnique(greens,'nane');
+      if (taste.herbal >= 2 && allowed('fesleğen')) addUnique(greens,'fesleğen');
+      if (taste.spicy >= 2 && allowed('roka')) addUnique(greens,'roka');
+      else if (taste.spicy > -2 && taste.sweet < 2 && allowed('roka')) addUnique(greens,'az miktarda roka');
+
+      pref.wanted.forEach(item => {
+        const labels = {
+          roka:'roka', maydanoz:'maydanoz', dereotu:'dereotu', tere:'tere', nane:'nane',
+          fesleğen:'fesleğen', reyhan:'reyhan', ıspanak:'ıspanak', mizuna:'mizuna', kişniş:'kişniş'
+        };
+        if (labels[item]) addUnique(greens, labels[item]);
+      });
+
+      greens = greens.filter(x => !pref.excluded.some(e => containsIngredient(x,e)));
+      if (taste.light >= 2) greens = greens.slice(0,3);
+      else greens = greens.slice(0,4);
 
       let extras = [];
-      if (!excluded.includes('salatalık')) extras.push('salatalık');
-      if (!excluded.includes('havuç')) extras.push('ince havuç');
-      if (filling) {
-        if (!excluded.includes('nohut')) extras.push('haşlanmış nohut');
-        if (!excluded.includes('ceviz')) extras.push('ceviz');
-      } else if (!excluded.includes('avokado') && !light) {
-        extras.push('az avokado');
+      if (taste.sweet >= 2) {
+        if (allowed('havuç')) addUnique(extras,'ince havuç');
+        if (allowed('mısır')) addUnique(extras,'tatlı mısır');
+        if (allowed('nar')) addUnique(extras,'nar taneleri');
       }
+      if (taste.fresh >= 2 && allowed('salatalık')) addUnique(extras,'salatalık');
+      if (taste.crunchy >= 2) {
+        if (allowed('salatalık')) addUnique(extras,'salatalık');
+        if (allowed('havuç')) addUnique(extras,'ince havuç');
+        if (allowed('ceviz')) addUnique(extras,'ceviz');
+      }
+      if (taste.filling >= 2) {
+        if (allowed('nohut')) addUnique(extras,'haşlanmış nohut');
+        if (allowed('avokado')) addUnique(extras,'avokado');
+        if (allowed('ceviz')) addUnique(extras,'ceviz');
+      }
+      if (taste.light >= 2) {
+        if (allowed('salatalık')) addUnique(extras,'salatalık');
+        if (allowed('havuç')) addUnique(extras,'ince havuç');
+      }
+      if (!extras.length) {
+        if (allowed('salatalık')) addUnique(extras,'salatalık');
+        if (allowed('havuç')) addUnique(extras,'ince havuç');
+        if (allowed('avokado') && taste.light < 2) addUnique(extras,'az avokado');
+      }
+
+      const extraLabels = {
+        salatalık:'salatalık', havuç:'ince havuç', ceviz:'ceviz', avokado:'avokado',
+        nohut:'haşlanmış nohut', mısır:'tatlı mısır', nar:'nar taneleri'
+      };
+      pref.wanted.forEach(item => {
+        if (extraLabels[item]) addUnique(extras,extraLabels[item]);
+      });
+      extras = extras.filter(x => !pref.excluded.some(e => containsIngredient(x,e))).slice(0,4);
       if (!extras.length) extras = ['mevsime uygun çıtır sebzeler'];
 
-      let dressing = 'zeytinyağı + dengeli limon';
-      if (lowSour) dressing = 'zeytinyağı + çok az limon';
-      else if (sour) dressing = 'zeytinyağı + belirgin limon';
-      if (noSpice) dressing += ', acı eklemeden';
+      let dressing;
+      if (taste.sweet >= 4) {
+        dressing = taste.sour <= -2
+          ? 'zeytinyağı + portakal dokunuşu + çok az bal'
+          : 'zeytinyağı + portakal + çok az bal + hafif limon';
+      } else if (taste.sour >= 4) {
+        dressing = 'zeytinyağı + belirgin limon + nar ekşisi dokunuşu';
+      } else if (taste.sour <= -2) {
+        dressing = 'zeytinyağı + aromatik otlar, limon çok az';
+      } else if (taste.fresh >= 2) {
+        dressing = 'zeytinyağı + limon + taze nane dokunuşu';
+      } else {
+        dressing = 'zeytinyağı + dengeli limon';
+      }
+      if (taste.spicy >= 3) dressing += ' + hafif acı dokunuş';
+      if (taste.spicy <= -2) dressing += ', acı eklemeden';
+      if (pref.excluded.includes('bal')) dressing = dressing.replace(/\s*\+ çok az bal/g,'').replace(/\s*\+ bal/g,'');
 
-      const names = light
-        ? ['Baydur Ferah Mix','Baydur Hafif Mix','Baydur Fresh Bowl']
-        : filling
-          ? ['Baydur Doyurucu Mix','Baydur Balance Bowl','Baydur Full Mix']
-          : ['Baydur Dengeli Mix','Baydur Green Mix','Baydur Günlük Mix'];
+      const namePools = taste.sweet >= 2
+        ? ['Baydur Tatlı Bahçe','Baydur Golden Leaf','Baydur Sweet Garden']
+        : taste.filling >= 2
+          ? ['Baydur Full Green','Baydur Doyurucu Mix','Baydur Power Bowl']
+          : taste.fresh >= 2
+            ? ['Baydur Ferah Bahçe','Baydur Fresh Leaf','Baydur Breeze Mix']
+            : taste.sour >= 3
+              ? ['Baydur Citrus Mix','Baydur Canlı Yaprak','Baydur Zest Bowl']
+              : taste.crunchy >= 2
+                ? ['Baydur Crisp Garden','Baydur Çıtır Mix','Baydur Crunch Bowl']
+                : ['Baydur Dengeli Mix','Baydur Green Mix','Baydur Günlük Bahçe'];
 
-      const profile = [
-        lowSour ? 'düşük ekşilik' : sour ? 'canlı ve ekşi' : 'dengeli asidite',
-        light ? 'hafif' : filling ? 'daha doyurucu' : 'orta gövdeli',
-        noSpice ? 'acısız' : 'ferah'
-      ].join(' · ');
+      const profileParts = [];
+      if (taste.sweet >= 2) profileParts.push(tasteLevel(taste.sweet,'tatlı','hafif tatlı','tatlılık düşük'));
+      if (taste.sour !== 0) profileParts.push(tasteLevel(taste.sour,'ekşilik','dengeli ekşilik','ekşilik düşük'));
+      if (taste.spicy !== 0) profileParts.push(tasteLevel(taste.spicy,'acı','hafif acı','acısız'));
+      if (taste.fresh >= 2) profileParts.push('ferah');
+      if (taste.light >= 2) profileParts.push('hafif');
+      if (taste.filling >= 2) profileParts.push('doyurucu');
+      if (taste.crunchy >= 2) profileParts.push('çıtır');
+      if (!profileParts.length) profileParts.push('dengeli','ferah');
 
       const summaryParts = [];
-      if (excluded.length) summaryParts.push('İstemediğiniz malzemeleri çıkardım: ' + excluded.join(', ') + '.');
-      if (healthContext) summaryParts.push('Sağlıkla ilgili bir hassasiyet belirttiğiniz için öneriyi tedavi iddiasına çevirmeden sade ve sebze ağırlıklı tuttum.');
-      if (!summaryParts.length) summaryParts.push('Yazdığınız lezzet tercihlerini temel alarak dengeli bir salata profili oluşturdum.');
+      if (taste.sweet >= 4) summaryParts.push('Tatlı karakteri belirgin bir salata istediğinizi anladım.');
+      else if (taste.sweet >= 2) summaryParts.push('Tatlı tarafı öne çıkan bir profil oluşturdum.');
+      if (taste.sour <= -2) summaryParts.push('Ekşiliği özellikle geri çektim.');
+      else if (taste.sour >= 3) summaryParts.push('Asiditeyi daha canlı tuttum.');
+      if (taste.filling >= 2) summaryParts.push('Daha uzun süre tok tutacak tamamlayıcılar ekledim.');
+      if (taste.light >= 2) summaryParts.push('Karışımı hafif tuttum.');
+      if (pref.excluded.length) summaryParts.push('İstemediğiniz malzemeleri çıkardım: ' + pref.excluded.join(', ') + '.');
+      if (pref.limited.length) summaryParts.push('Az istediğiniz malzemeleri baskın kullanmadım: ' + pref.limited.join(', ') + '.');
+      if (!summaryParts.length) summaryParts.push('Yazdığınız damak tercihlerini yorumlayıp dengeli bir karışım oluşturdum.');
 
-      document.getElementById('mixName').textContent = pick(names, text, 7);
+      const reasonParts = [];
+      if (taste.sweet >= 2) reasonParts.push('Yumuşak ve hafif tatlı karakterli marulları öne aldım');
+      if (taste.sour <= -2) reasonParts.push('sosu düşük asiditeli tuttum');
+      if (taste.sour >= 3) reasonParts.push('limon ve asiditeyi belirginleştirdim');
+      if (taste.fresh >= 2) reasonParts.push('ferahlık için taze ve serin aromalar seçtim');
+      if (taste.filling >= 2) reasonParts.push('doyuruculuk için nohut, avokado veya ceviz gibi tamamlayıcıları kullandım');
+      if (taste.crunchy >= 2) reasonParts.push('çıtır doku için Romaine ve gevrek tamamlayıcıları artırdım');
+      if (taste.spicy <= -2) reasonParts.push('roka/acı karakterini geri planda tuttum');
+      if (pref.wanted.length) reasonParts.push('özellikle istediğiniz malzemeleri mümkün olduğunca öne çıkardım');
+      if (!reasonParts.length) reasonParts.push('ana yeşillik, doku ve sosu birbirini bastırmayacak şekilde dengeledim');
+
+      document.getElementById('mixName').textContent = pick(namePools, text, 7 + mixVariation * 13);
       document.getElementById('mixSummary').textContent = summaryParts.join(' ');
-      document.getElementById('mixGreens').textContent = greens.filter(x => !excluded.some(e => x.toLocaleLowerCase('tr-TR').includes(e))).join(' + ');
+      document.getElementById('mixGreens').textContent = greens.join(' + ');
       document.getElementById('mixExtras').textContent = extras.join(' + ');
       document.getElementById('mixDressing').textContent = dressing;
-      document.getElementById('mixProfile').textContent = profile;
+      document.getElementById('mixProfile').textContent = profileParts.join(' · ');
+      document.getElementById('mixReason').textContent = reasonParts.join('; ') + '.';
       document.getElementById('mixHealthNote').style.display = healthContext ? 'block' : 'none';
 
       lastMixText =
@@ -404,17 +554,23 @@
         'Yeşillik tabanı: ' + document.getElementById('mixGreens').textContent + '; ' +
         'Tamamlayıcılar: ' + document.getElementById('mixExtras').textContent + '; ' +
         'Sos: ' + document.getElementById('mixDressing').textContent + '; ' +
-        'Profil: ' + document.getElementById('mixProfile').textContent + '.';
+        'Profil: ' + document.getElementById('mixProfile').textContent + '; ' +
+        'Neden: ' + document.getElementById('mixReason').textContent;
 
       mixResult.classList.add('show');
       mixResult.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
 
-    mixGenerate.addEventListener('click', generateMix);
-    document.getElementById('mixAgain').addEventListener('click', () => {
-      mixPrompt.focus();
-      mixPrompt.select();
+    mixGenerate.addEventListener('click', () => {
+      mixVariation = 0;
+      generateMix();
     });
+
+    document.getElementById('mixAgain').addEventListener('click', () => {
+      mixVariation++;
+      generateMix();
+    });
+
     document.getElementById('mixToQuote').addEventListener('click', () => {
       const product = document.getElementById('product');
       const message = document.getElementById('message');
