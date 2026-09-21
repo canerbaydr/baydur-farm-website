@@ -10,39 +10,40 @@ header{height:70px;background:#fff;border-bottom:1px solid #eef0ea;display:flex;
 footer{background:#0c241c;color:#b9c9be;padding:24px 0;font-size:12px}.foot{display:flex;justify-content:space-between;gap:20px}
 @media(max-width:1100px){.grid{grid-template-columns:repeat(4,1fr)}}@media(max-width:800px){nav a:not(.topcta){display:none}.grid{grid-template-columns:repeat(2,1fr)}.hero:after{opacity:.3;width:70%}.catalog-head{align-items:stretch;flex-direction:column}.search{width:100%}.bottom{align-items:flex-start;flex-direction:column}}@media(max-width:520px){.wrap{width:min(100% - 28px,1240px)}.grid{grid-template-columns:1fr 1fr;gap:10px}.photo{height:115px}.content{padding:11px}.content h3{font-size:17px}.hero{min-height:330px}.hero:after{width:100%;opacity:.18}.facts{gap:12px}.head{gap:10px}.topcta{padding:10px 14px}.foot{flex-direction:column}}
 
-.hero:after{background-image:linear-gradient(90deg,#eef3e7 0%,rgba(238,243,231,.08) 34%,rgba(0,0,0,.02)),url('https://raw.githubusercontent.com/canerbaydr/baydur-farm-website/main/assets/marul/marul-sprite-hq.webp');background-size:100% 100%,auto 134.7%;background-position:center,center top;background-repeat:no-repeat}
-.photo{height:auto;aspect-ratio:266/180;background-image:url('https://raw.githubusercontent.com/canerbaydr/baydur-farm-website/main/assets/marul/marul-sprite-hq.webp');background-size:600% auto;background-repeat:no-repeat;background-position-y:100%}
-.photo.p1{background-position-x:0%}.photo.p2{background-position-x:20%}.photo.p3{background-position-x:40%}.photo.p4{background-position-x:60%}.photo.p5{background-position-x:80%}.photo.p6{background-position-x:100%}
-.card:hover .photo{filter:saturate(1.06) contrast(1.02)}
+.hero:after{background-image:linear-gradient(90deg,#eef3e7 0%,rgba(238,243,231,.08) 34%,rgba(0,0,0,.02)),url('/assets/marul/kivircik.jpg');background-size:cover;background-position:center}
+.photo{height:auto;aspect-ratio:3/2;background:#edf2e8}
+.photo img{width:100%;height:100%;object-fit:cover}
+.image-note{font-size:12px;color:var(--muted);margin:18px 0 0}
 
 </style></head><body><header><div class="wrap head"><a class="brand" href="/"><span class="mark">🌿</span>BAYDUR FARM</a><nav><a href="/">Ana Sayfa</a><a href="/salata-yapraklari.html">Marul Çeşitleri</a><a href="/yesillikler.html">Yeşillikler</a><a href="/#salata-tasarla">Salatanı Tasarla</a><a href="/#iletisim">İletişim</a><a class="topcta" href="/#iletisim">Teklif Al ↗</a></nav></div></header><main>
 <div class="wrap crumbs"><a href="/">Ana Sayfa</a> &nbsp;›&nbsp; Ürünler &nbsp;›&nbsp; Marul Çeşitleri</div>
 <section class="hero"><div class="wrap heroin"><div class="eyebrow">TAZE · TOPRAKSIZ TARIM · BAYDUR FARM</div><h1>Marul<br>Çeşitleri</h1><p>Kıvırcık, Romaine, Butterhead, Lollo Rosso, Lollo Bionda ve Oak Leaf dahil farklı doku ve sunum karakterine sahip marul çeşitlerini keşfedin.</p><div class="facts"><span class="fact"><i>⌁</i>Taze ürün</span><span class="fact"><i>◌</i>Kontrollü üretim</span><span class="fact"><i>♧</i>Restoran tedariki</span></div></div></section>
 <section class="catalog"><div class="wrap"><div class="catalog-head"><div><h2>Ürünlerimiz</h2><p>İlgilendiğiniz ürünü seçin ve doğrudan talep oluşturun.</p></div><input class="search" id="search" placeholder="Ürün ara..." aria-label="Ürün ara"></div><div class="grid" id="grid">
   <article class="card" data-search="kıvırcık">
-    <div class="photo p1" role="img" aria-label="Kıvırcık marul"></div>
+    <div class="photo"><img src="/assets/marul/kivircik.jpg" alt="Kıvırcık marul" width="1536" height="1024" loading="lazy" decoding="async"></div>
     <div class="content"><h3>Kıvırcık</h3><p>Kıtır dokulu ve hacimli klasik salata yaprağı.</p><span class="badge">Marul Çeşidi</span><button class="request" type="button" data-product="Kıvırcık" data-cat="salata">Talep Oluştur →</button></div>
   </article>
   <article class="card" data-search="romaine">
-    <div class="photo p2" role="img" aria-label="Romaine marul"></div>
+    <div class="photo"><img src="/assets/marul/romaine.jpg" alt="Romaine marul" width="1536" height="1024" loading="lazy" decoding="async"></div>
     <div class="content"><h3>Romaine</h3><p>Diri uzun yapraklı; Caesar tipi salatalar için.</p><span class="badge">Marul Çeşidi</span><button class="request" type="button" data-product="Romaine" data-cat="salata">Talep Oluştur →</button></div>
   </article>
   <article class="card" data-search="butterhead">
-    <div class="photo p3" role="img" aria-label="Butterhead marul"></div>
+    <div class="photo"><img src="/assets/marul/butterhead.jpg" alt="Butterhead marul" width="1536" height="1024" loading="lazy" decoding="async"></div>
     <div class="content"><h3>Butterhead</h3><p>Yumuşak ve narin dokulu premium çeşit.</p><span class="badge">Marul Çeşidi</span><button class="request" type="button" data-product="Butterhead" data-cat="salata">Talep Oluştur →</button></div>
   </article>
   <article class="card" data-search="lollo rosso">
-    <div class="photo p4" role="img" aria-label="Lollo Rosso marul"></div>
+    <div class="photo"><img src="/assets/marul/lollo-rosso.jpg" alt="Lollo Rosso marul" width="1536" height="1024" loading="lazy" decoding="async"></div>
     <div class="content"><h3>Lollo Rosso</h3><p>Kırmızı kıvrımlı yapraklarıyla renkli sunum.</p><span class="badge">Marul Çeşidi</span><button class="request" type="button" data-product="Lollo Rosso" data-cat="salata">Talep Oluştur →</button></div>
   </article>
   <article class="card" data-search="lollo bionda">
-    <div class="photo p5" role="img" aria-label="Lollo Bionda marul"></div>
+    <div class="photo"><img src="/assets/marul/lollo-bionda.jpg" alt="Lollo Bionda marul" width="1536" height="1024" loading="lazy" decoding="async"></div>
     <div class="content"><h3>Lollo Bionda</h3><p>Açık yeşil kıvrımlı yapısıyla hafif karışımlar için.</p><span class="badge">Marul Çeşidi</span><button class="request" type="button" data-product="Lollo Bionda" data-cat="salata">Talep Oluştur →</button></div>
   </article>
   <article class="card" data-search="oak leaf">
-    <div class="photo p6" role="img" aria-label="Oak Leaf marul"></div>
+    <div class="photo"><img src="/assets/marul/oak-leaf.jpg" alt="Oak Leaf marul" width="1536" height="1024" loading="lazy" decoding="async"></div>
     <div class="content"><h3>Oak Leaf</h3><p>Meşe yaprağı formunda narin ve dekoratif.</p><span class="badge">Marul Çeşidi</span><button class="request" type="button" data-product="Oak Leaf" data-cat="salata">Talep Oluştur →</button></div>
   </article></div>
+<p class="image-note">Ürün görselleri temsilidir.</p>
 <div class="bottom"><div><h3>Toplu alım veya özel talepleriniz için bize ulaşın.</h3><p>Restoranlar ve işletmeler için ürün, miktar ve teslimat planını birlikte belirleyelim.</p></div><a href="/#iletisim">Teklif Talebi Oluştur →</a></div></div></section>
 </main><footer><div class="wrap foot"><strong>BAYDUR FARM</strong><span>© 2026 Baydur Farm · İzmir Menemen</span></div></footer><script>
 document.querySelectorAll('.request').forEach(b=>b.addEventListener('click',()=>{location.href='/?request='+encodeURIComponent(b.dataset.product)+'&category='+encodeURIComponent(b.dataset.cat)+'#iletisim'}));
