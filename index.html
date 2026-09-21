@@ -414,14 +414,35 @@
       };
 
       let greens = [];
+      const variant = mixVariation % 3;
       if (taste.sweet >= 2) {
-        ['Butterhead marul','Lollo Bionda','Kıvırcık marul'].forEach(x => addUnique(greens,x));
+        const sweetBases = [
+          ['Butterhead marul','Lollo Bionda','Kıvırcık marul'],
+          ['Butterhead marul','Oak Leaf','Lollo Bionda'],
+          ['Kıvırcık marul','Butterhead marul','Oak Leaf']
+        ];
+        sweetBases[variant].forEach(x => addUnique(greens,x));
       } else if (taste.filling >= 2) {
-        ['Romaine marul','Kıvırcık marul','Oak Leaf'].forEach(x => addUnique(greens,x));
+        const fillingBases = [
+          ['Romaine marul','Kıvırcık marul','Oak Leaf'],
+          ['Romaine marul','Lollo Bionda','Kıvırcık marul'],
+          ['Oak Leaf','Romaine marul','Butterhead marul']
+        ];
+        fillingBases[variant].forEach(x => addUnique(greens,x));
       } else if (taste.crunchy >= 2) {
-        ['Romaine marul','Oak Leaf','Kıvırcık marul'].forEach(x => addUnique(greens,x));
+        const crispBases = [
+          ['Romaine marul','Oak Leaf','Kıvırcık marul'],
+          ['Romaine marul','Lollo Bionda','Oak Leaf'],
+          ['Kıvırcık marul','Romaine marul','Butterhead marul']
+        ];
+        crispBases[variant].forEach(x => addUnique(greens,x));
       } else {
-        ['Kıvırcık marul','Lollo Bionda','taze yapraklı yeşillikler'].forEach(x => addUnique(greens,x));
+        const balancedBases = [
+          ['Kıvırcık marul','Lollo Bionda','taze yapraklı yeşillikler'],
+          ['Oak Leaf','Kıvırcık marul','Lollo Bionda'],
+          ['Butterhead marul','Oak Leaf','Kıvırcık marul']
+        ];
+        balancedBases[variant].forEach(x => addUnique(greens,x));
       }
 
       if (taste.fresh >= 2 && allowed('nane')) addUnique(greens,'nane');
@@ -443,9 +464,12 @@
 
       let extras = [];
       if (taste.sweet >= 2) {
-        if (allowed('havuç')) addUnique(extras,'ince havuç');
-        if (allowed('mısır')) addUnique(extras,'tatlı mısır');
-        if (allowed('nar')) addUnique(extras,'nar taneleri');
+        const sweetExtras = variant === 0
+          ? [['havuç','ince havuç'],['mısır','tatlı mısır'],['nar','nar taneleri']]
+          : variant === 1
+            ? [['nar','nar taneleri'],['salatalık','salatalık'],['havuç','ince havuç']]
+            : [['mısır','tatlı mısır'],['havuç','ince havuç'],['ceviz','az ceviz']];
+        sweetExtras.forEach(([key,label]) => { if (allowed(key)) addUnique(extras,label); });
       }
       if (taste.fresh >= 2 && allowed('salatalık')) addUnique(extras,'salatalık');
       if (taste.crunchy >= 2) {
