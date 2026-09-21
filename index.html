@@ -183,6 +183,24 @@
   <meta property="og:description" content="İzmir Menemen’de topraksız tarımla marul ve yeşillik üretimi. Restoranlara tedarik, Türkiye geneline teslimat.">
   <meta property="og:url" content="https://baydurfarm.com/">
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://baydurfarm.com/#organization","name":"Baydur Farm","alternateName":["BaydurFarm"],"url":"https://baydurfarm.com/","logo":{"@type":"ImageObject","url":"https://baydurfarm.com/logo.svg","width":512,"height":512},"description":"İzmir Menemen’de topraksız tarımla marul ve yeşillik üretimi; restoranlara tedarik ve Türkiye geneline teslimat.","address":{"@type":"PostalAddress","addressLocality":"Menemen","addressRegion":"İzmir","addressCountry":"TR"},"areaServed":{"@type":"Country","name":"Türkiye"}},{"@type":"WebSite","@id":"https://baydurfarm.com/#website","url":"https://baydurfarm.com/","name":"Baydur Farm","inLanguage":"tr-TR","publisher":{"@id":"https://baydurfarm.com/#organization"}},{"@type":"WebPage","@id":"https://baydurfarm.com/#webpage","url":"https://baydurfarm.com/","name":"Baydur Farm | İzmir Menemen Topraksız Tarım, Marul ve Yeşillik","description":"Baydur Farm, İzmir Menemen’de topraksız tarımla marul ve yeşillik üretir; restoranlara tedarik ve Türkiye geneline teslimat sunar.","isPartOf":{"@id":"https://baydurfarm.com/#website"},"about":{"@id":"https://baydurfarm.com/#organization"},"inLanguage":"tr-TR"}]}</script>
+
+  <style>
+    .discount-popup-backdrop{position:fixed;inset:0;background:rgba(12,36,28,.28);backdrop-filter:blur(2px);z-index:9998;opacity:0;visibility:hidden;transition:opacity .25s ease,visibility .25s ease}
+    .discount-popup{position:fixed;left:50%;top:50%;transform:translate(-50%,-46%) scale(.96);width:min(340px,calc(100vw - 34px));min-height:330px;background:#fffef9;border:1px solid #dbe4d9;border-radius:24px;z-index:9999;box-shadow:0 24px 70px rgba(12,36,28,.24);padding:30px 28px 26px;text-align:center;opacity:0;visibility:hidden;transition:opacity .25s ease,transform .25s ease,visibility .25s ease}
+    .discount-popup.is-open,.discount-popup-backdrop.is-open{opacity:1;visibility:visible}
+    .discount-popup.is-open{transform:translate(-50%,-50%) scale(1)}
+    .discount-close{position:absolute;right:14px;top:12px;width:34px;height:34px;border:0;border-radius:50%;background:#eef3e7;color:#123328;font-size:20px;cursor:pointer}
+    .discount-icon{width:56px;height:56px;margin:4px auto 17px;border-radius:50%;display:grid;place-items:center;background:#e9f1d8;color:#123328;font-size:25px}
+    .discount-kicker{font-size:11px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:#5d775f;margin-bottom:8px}
+    .discount-popup h2{font-family:Georgia,serif;font-size:32px;line-height:1.05;margin:0 0 10px;color:#123328}
+    .discount-popup p{font-size:14px;line-height:1.55;color:#607368;margin:0 auto 18px;max-width:260px}
+    .discount-code{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#f1f5e8;border:1px dashed #9fb987;border-radius:14px;padding:10px 11px 10px 16px;margin:0 0 14px}
+    .discount-code strong{font-size:19px;letter-spacing:.08em;color:#123328}
+    .discount-copy{border:0;border-radius:10px;background:#123328;color:white;padding:9px 12px;font-size:11px;font-weight:800;cursor:pointer}
+    .discount-use{display:block;width:100%;border:0;border-radius:999px;background:#bdd98a;color:#0c241c;padding:14px 18px;font-weight:800;cursor:pointer;text-decoration:none}
+    .discount-note{font-size:10px!important;margin:10px 0 0!important;color:#7b8b80!important}
+    @media(max-width:500px){.discount-popup{min-height:310px;padding:26px 22px 22px}.discount-popup h2{font-size:29px}}
+  </style>
 </head>
 <body>
   <header class="site-header">
@@ -429,6 +447,82 @@
       intro.setAttribute('role', 'status');
       history.replaceState({}, '', window.location.pathname + '#iletisim');
     }
+  </script>
+
+  <div class="discount-popup-backdrop" id="discountBackdrop" aria-hidden="true"></div>
+  <aside class="discount-popup" id="discountPopup" role="dialog" aria-modal="true" aria-labelledby="discountTitle" aria-describedby="discountDesc">
+    <button class="discount-close" id="discountClose" type="button" aria-label="İndirim penceresini kapat">×</button>
+    <div class="discount-icon" aria-hidden="true">%</div>
+    <div class="discount-kicker">Baydur Farm'a hoş geldiniz</div>
+    <h2 id="discountTitle">İlk siparişinize<br>%10 indirim</h2>
+    <p id="discountDesc">Teklif talebinizde aşağıdaki kodu kullanın.</p>
+    <div class="discount-code"><strong>BAYDUR10</strong><button class="discount-copy" id="discountCopy" type="button">Kopyala</button></div>
+    <button class="discount-use" id="discountUse" type="button">Kodu kullan →</button>
+    <p class="discount-note">İlk sipariş için geçerlidir. Teklif aşamasında teyit edilir.</p>
+  </aside>
+
+  <script>
+  (() => {
+    const KEY='baydur_discount_seen_v1';
+    const DAYS=30;
+    const popup=document.getElementById('discountPopup');
+    const backdrop=document.getElementById('discountBackdrop');
+    const close=document.getElementById('discountClose');
+    const copy=document.getElementById('discountCopy');
+    const use=document.getElementById('discountUse');
+    if(!popup||!backdrop) return;
+
+    const now=Date.now();
+    const last=Number(localStorage.getItem(KEY)||0);
+    const shouldShow=!last || (now-last)>(DAYS*24*60*60*1000);
+
+    function openPopup(){
+      popup.classList.add('is-open');
+      backdrop.classList.add('is-open');
+      popup.setAttribute('aria-hidden','false');
+      setTimeout(()=>close && close.focus(),150);
+    }
+    function dismiss(){
+      popup.classList.remove('is-open');
+      backdrop.classList.remove('is-open');
+      popup.setAttribute('aria-hidden','true');
+      localStorage.setItem(KEY,String(Date.now()));
+    }
+    if(shouldShow) setTimeout(openPopup,650);
+
+    close?.addEventListener('click',dismiss);
+    backdrop.addEventListener('click',dismiss);
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'&&popup.classList.contains('is-open')) dismiss();});
+
+    copy?.addEventListener('click',async()=>{
+      try{
+        await navigator.clipboard.writeText('BAYDUR10');
+        copy.textContent='Kopyalandı ✓';
+      }catch(e){
+        copy.textContent='BAYDUR10';
+      }
+    });
+
+    use?.addEventListener('click',()=>{
+      try{navigator.clipboard.writeText('BAYDUR10');}catch(e){}
+      localStorage.setItem('baydur_discount_code','BAYDUR10');
+      dismiss();
+      const message=document.getElementById('message');
+      if(message){
+        const note='İndirim kodu: BAYDUR10';
+        if(!message.value.includes('BAYDUR10')) message.value=(message.value.trim()?message.value.trim()+'\n\n':'')+note;
+        document.getElementById('iletisim')?.scrollIntoView({behavior:'smooth'});
+        setTimeout(()=>message.focus(),450);
+      }else{
+        window.location.href='/?discount=BAYDUR10#iletisim';
+      }
+    });
+
+    if(new URLSearchParams(location.search).get('discount')==='BAYDUR10'){
+      const message=document.getElementById('message');
+      if(message && !message.value.includes('BAYDUR10')) message.value=(message.value.trim()?message.value.trim()+'\n\n':'')+'İndirim kodu: BAYDUR10';
+    }
+  })();
   </script>
 </body>
 </html>
