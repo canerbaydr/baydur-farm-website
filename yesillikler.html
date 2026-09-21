@@ -1,5 +1,5 @@
 <!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#123328"><meta name="description" content="Baydur Farm yeşillik çeşitleri: roka, tere, fesleğen, maydanoz, dereotu, nane, kişniş, baby ıspanak, baby pazı, mizuna, hardal yaprağı ve su teresi."><title>Yeşillikler | Baydur Farm</title><link rel="icon" type="image/svg+xml" href="/logo.svg"><style>
-:root{--green:#123328;--green2:#1e5b3d;--leaf:#bdd98a;--ink:#183226;--muted:#65776c;--line:#dde6da;--paper:#fffef9;--soft:#f6f7f1}
+:root{--green:#123328;--green2:#1e5b3d;--leaf:#bdd98a;--ink:#183226;--muted:#65776c;--line:#dde6da;--paper:#fffef9;--soft:#f6f7f1;--greens-sprite:url("data:image/webp;base64,__GREENS0____GREENS1____GREENS2__")}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:#fff}a{text-decoration:none;color:inherit}.wrap{width:min(1240px,calc(100% - 48px));margin:auto}
 header{height:70px;background:#fff;border-bottom:1px solid #eef0ea;display:flex;align-items:center;position:sticky;top:0;z-index:20}.head{display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:.02em}.mark{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:#e9f0dd;color:var(--green);font-size:20px}nav{display:flex;gap:25px;align-items:center;font-size:13px;font-weight:700}.topcta{background:var(--green);color:#fff;padding:12px 20px;border-radius:999px}
 .crumbs{font-size:12px;color:#6c7c71;padding:15px 0}
@@ -9,58 +9,26 @@ header{height:70px;background:#fff;border-bottom:1px solid #eef0ea;display:flex;
 .bottom{margin:20px 0 0;border:1px solid var(--line);border-radius:18px;padding:23px;display:flex;align-items:center;justify-content:space-between;gap:20px;background:#fbfcf7}.bottom h3{font-family:Georgia,serif;font-size:25px;font-weight:400;margin:0}.bottom p{font-size:13px;color:var(--muted);margin:4px 0 0}.bottom a{background:var(--green);color:#fff;padding:12px 22px;border-radius:999px;font-size:12px;font-weight:800;white-space:nowrap}
 footer{background:#0c241c;color:#b9c9be;padding:24px 0;font-size:12px}.foot{display:flex;justify-content:space-between;gap:20px}
 @media(max-width:1100px){.grid{grid-template-columns:repeat(4,1fr)}}@media(max-width:800px){nav a:not(.topcta){display:none}.grid{grid-template-columns:repeat(2,1fr)}.hero:after{opacity:.3;width:70%}.catalog-head{align-items:stretch;flex-direction:column}.search{width:100%}.bottom{align-items:flex-start;flex-direction:column}}@media(max-width:520px){.wrap{width:min(100% - 28px,1240px)}.grid{grid-template-columns:1fr 1fr;gap:10px}.photo{height:115px}.content{padding:11px}.content h3{font-size:17px}.hero{min-height:330px}.hero:after{width:100%;opacity:.18}.facts{gap:12px}.head{gap:10px}.topcta{padding:10px 14px}.foot{flex-direction:column}}
+
+.hero:after{background-image:linear-gradient(90deg,#eef3e7 0%,rgba(238,243,231,.08) 34%,rgba(0,0,0,.02)),var(--greens-sprite);background-size:100% 100%,auto 145.1%;background-position:center,right top;background-repeat:no-repeat}
+.photo{background-image:var(--greens-sprite);background-size:500% auto;background-repeat:no-repeat}
+.photo.g1{background-position:0% 81.6%}.photo.g2{background-position:25% 81.6%}.photo.g3{background-position:50% 81.6%}.photo.g4{background-position:75% 81.6%}.photo.g5{background-position:100% 81.6%}
+.photo.g6{background-position:0% 100%}.photo.g7{background-position:25% 100%}.photo.g8{background-position:50% 100%}.photo.g9{background-position:75% 100%}.photo.g10{background-position:100% 100%}
+.card:hover .photo{filter:saturate(1.08) contrast(1.02)}
 </style></head><body><header><div class="wrap head"><a class="brand" href="/"><span class="mark">🌿</span>BAYDUR FARM</a><nav><a href="/">Ana Sayfa</a><a href="/salata-yapraklari.html">Salata Yaprakları</a><a href="/yesillikler.html">Yeşillikler</a><a href="/#salata-tasarla">Salatanı Tasarla</a><a href="/#iletisim">İletişim</a><a class="topcta" href="/#iletisim">Teklif Al ↗</a></nav></div></header><main>
 <div class="wrap crumbs"><a href="/">Ana Sayfa</a> &nbsp;›&nbsp; Ürünler &nbsp;›&nbsp; Yeşillikler</div>
-<section class="hero" style="--hero-img:url('https://loremflickr.com/1200/700/fresh-herbs,greens?lock=99')"><div class="wrap heroin"><div class="eyebrow">TAZE · TOPRAKSIZ TARIM · BAYDUR FARM</div><h1>Yeşillikler</h1><p>Tazelik, aroma ve çeşitlilik bir arada. Restoran ve profesyonel mutfaklar için yapraklı yeşillik seçeneklerimizi inceleyin.</p><div class="facts"><span class="fact"><i>⌁</i>Taze ürün</span><span class="fact"><i>◌</i>Kontrollü üretim</span><span class="fact"><i>♧</i>Restoran tedariki</span></div></div></section>
+<section class="hero"><div class="wrap heroin"><div class="eyebrow">TAZE · TOPRAKSIZ TARIM · BAYDUR FARM</div><h1>Yeşillikler</h1><p>Tazelik, aroma ve çeşitlilik bir arada. Restoran ve profesyonel mutfaklar için yapraklı yeşillik seçeneklerimizi inceleyin.</p><div class="facts"><span class="fact"><i>⌁</i>Taze ürün</span><span class="fact"><i>◌</i>Kontrollü üretim</span><span class="fact"><i>♧</i>Restoran tedariki</span></div></div></section>
 <section class="catalog"><div class="wrap"><div class="catalog-head"><div><h2>Ürünlerimiz</h2><p>İlgilendiğiniz ürünü seçin ve doğrudan talep oluşturun.</p></div><input class="search" id="search" placeholder="Ürün ara..." aria-label="Ürün ara"></div><div class="grid" id="grid">
-  <article class="card" data-search="roka">
-    <div class="photo"><img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Arugula.jpg?width=720" alt="Roka" onerror="this.style.display='none'"></div>
-    <div class="content"><h3>Roka</h3><p>Keskin aromasıyla salataların vazgeçilmezi.</p><span class="badge">Aromatik</span><button class="request" type="button" data-product="Roka" data-cat="yesillikler">Talep Oluştur →</button></div>
-  </article>
-  <article class="card" data-search="tere">
-    <div class="photo"><img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Garden_cress.jpg?width=720" alt="Tere" onerror="this.style.display='none'"></div>
-    <div class="content"><h3>Tere</h3><p>Canlı ve ferah aromalı yapraklı yeşillik.</p><span class="badge">Aromatik</span><button class="request" type="button" data-product="Tere" data-cat="yesillikler">Talep Oluştur →</button></div>
-  </article>
-  <article class="card" data-search="fesleğen">
-    <div class="photo"><img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Leaves_of_basil.jpg?width=720" alt="Fesleğen" onerror="this.style.display='none'"></div>
-    <div class="content"><h3>Fesleğen</h3><p>Yoğun aromasıyla sos ve tabaklarda özel kullanım.</p><span class="badge">Aromatik</span><button class="request" type="button" data-product="Fesleğen" data-cat="yesillikler">Talep Oluştur →</button></div>
-  </article>
-  <article class="card" data-search="maydanoz">
-    <div class="photo"><img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Parsley_leaves.jpg?width=720" alt="Maydanoz" onerror="this.style.display='none'"></div>
-    <div class="content"><h3>Maydanoz</h3><p>Profesyonel mutfakların temel taze yeşilliği.</p><span class="badge">Aromatik</span><button class="request" type="button" data-product="Maydanoz" data-cat="yesillikler">Talep Oluştur →</button></div>
-  </article>
-  <article class="card" data-search="dereotu">
-    <div class="photo"><img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Fresh_Dill_Leaves.JPG?width=720" alt="Dereotu" onerror="this.style.display='none'"></div>
-    <div class="content"><h3>Dereotu</h3><p>Hafif ve karakteristik aromalı.</p><span class="badge">Aromatik</span><button class="request" type="button" data-product="Dereotu" data-cat="yesillikler">Talep Oluştur →</button></div>
-  </article>
-  <article class="card" data-search="nane">
-    <div class="photo"><img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Fresh_Mint_leaves.jpg?width=720" alt="Nane" onerror="this.style.display='none'"></div>
-    <div class="content"><h3>Nane</h3><p>Ferahlatıcı aromasıyla salata ve içeceklerde.</p><span class="badge">Aromatik</span><button class="request" type="button" data-product="Nane" data-cat="yesillikler">Talep Oluştur →</button></div>
-  </article>
-  <article class="card" data-search="kişniş">
-    <div class="photo"><img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Coriander_leaves.jpg?width=720" alt="Kişniş" onerror="this.style.display='none'"></div>
-    <div class="content"><h3>Kişniş</h3><p>Farklı mutfaklar ve özel reçeteler için.</p><span class="badge">Aromatik</span><button class="request" type="button" data-product="Kişniş" data-cat="yesillikler">Talep Oluştur →</button></div>
-  </article>
-  <article class="card" data-search="baby ıspanak">
-    <div class="photo"><img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Fresh_Spinach_leaves.jpg?width=720" alt="Baby Ispanak" onerror="this.style.display='none'"></div>
-    <div class="content"><h3>Baby Ispanak</h3><p>Yumuşak yapraklı, salatalara uygun.</p><span class="badge">Baby Leaf</span><button class="request" type="button" data-product="Baby Ispanak" data-cat="yesillikler">Talep Oluştur →</button></div>
-  </article>
-  <article class="card" data-search="baby pazı">
-    <div class="photo"><img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/SwissChard.jpg?width=720" alt="Baby Pazı" onerror="this.style.display='none'"></div>
-    <div class="content"><h3>Baby Pazı</h3><p>Renkli yapraklarıyla görsel karakter sağlar.</p><span class="badge">Baby Leaf</span><button class="request" type="button" data-product="Baby Pazı" data-cat="yesillikler">Talep Oluştur →</button></div>
-  </article>
-  <article class="card" data-search="mizuna">
-    <div class="photo"><img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Mizuna_001.jpg?width=720" alt="Mizuna" onerror="this.style.display='none'"></div>
-    <div class="content"><h3>Mizuna</h3><p>İnce yapraklı, hafif hardalımsı premium ürün.</p><span class="badge">Özel Ürün</span><button class="request" type="button" data-product="Mizuna" data-cat="yesillikler">Talep Oluştur →</button></div>
-  </article>
-  <article class="card" data-search="hardal yaprağı">
-    <div class="photo"><img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Mustard_greens.jpg?width=720" alt="Hardal Yaprağı" onerror="this.style.display='none'"></div>
-    <div class="content"><h3>Hardal Yaprağı</h3><p>Keskin ve baharatlı lezzet profili.</p><span class="badge">Özel Ürün</span><button class="request" type="button" data-product="Hardal Yaprağı" data-cat="yesillikler">Talep Oluştur →</button></div>
-  </article>
-  <article class="card" data-search="su teresi">
-    <div class="photo"><img loading="lazy" src="https://commons.wikimedia.org/wiki/Special:FilePath/Watercress_leaves_%286243644958%29.jpg?width=720" alt="Su Teresi" onerror="this.style.display='none'"></div>
-    <div class="content"><h3>Su Teresi</h3><p>Canlı, hafif biberimsi aromalı.</p><span class="badge">Özel Ürün</span><button class="request" type="button" data-product="Su Teresi" data-cat="yesillikler">Talep Oluştur →</button></div>
-  </article></div>
+  <article class="card" data-search="roka"><div class="photo g1" role="img" aria-label="Taze roka"></div><div class="content"><h3>Roka</h3><p>Keskin aromasıyla salataların vazgeçilmezi.</p><span class="badge">Aromatik</span><button class="request" type="button" data-product="Roka" data-cat="yesillikler">Talep Oluştur →</button></div></article>
+  <article class="card" data-search="tere"><div class="photo g2" role="img" aria-label="Taze tere"></div><div class="content"><h3>Tere</h3><p>Canlı ve ferah aromalı yapraklı yeşillik.</p><span class="badge">Aromatik</span><button class="request" type="button" data-product="Tere" data-cat="yesillikler">Talep Oluştur →</button></div></article>
+  <article class="card" data-search="maydanoz"><div class="photo g3" role="img" aria-label="Taze maydanoz"></div><div class="content"><h3>Maydanoz</h3><p>Profesyonel mutfakların temel taze yeşilliği.</p><span class="badge">Aromatik</span><button class="request" type="button" data-product="Maydanoz" data-cat="yesillikler">Talep Oluştur →</button></div></article>
+  <article class="card" data-search="dereotu"><div class="photo g4" role="img" aria-label="Taze dereotu"></div><div class="content"><h3>Dereotu</h3><p>Hafif ve karakteristik aromalı.</p><span class="badge">Aromatik</span><button class="request" type="button" data-product="Dereotu" data-cat="yesillikler">Talep Oluştur →</button></div></article>
+  <article class="card" data-search="fesleğen"><div class="photo g5" role="img" aria-label="Taze fesleğen"></div><div class="content"><h3>Fesleğen</h3><p>Yoğun aromasıyla sos ve tabaklarda özel kullanım.</p><span class="badge">Aromatik</span><button class="request" type="button" data-product="Fesleğen" data-cat="yesillikler">Talep Oluştur →</button></div></article>
+  <article class="card" data-search="nane"><div class="photo g6" role="img" aria-label="Taze nane"></div><div class="content"><h3>Nane</h3><p>Ferahlatıcı aromasıyla salata ve içeceklerde.</p><span class="badge">Aromatik</span><button class="request" type="button" data-product="Nane" data-cat="yesillikler">Talep Oluştur →</button></div></article>
+  <article class="card" data-search="reyhan"><div class="photo g7" role="img" aria-label="Mor reyhan"></div><div class="content"><h3>Reyhan</h3><p>Mor yaprakları ve belirgin aromasıyla özel sunumlar için.</p><span class="badge">Aromatik</span><button class="request" type="button" data-product="Reyhan" data-cat="yesillikler">Talep Oluştur →</button></div></article>
+  <article class="card" data-search="baby ıspanak ıspanak"><div class="photo g8" role="img" aria-label="Taze baby ıspanak"></div><div class="content"><h3>Baby Ispanak</h3><p>Yumuşak yapraklı, salata karışımlarına uygun.</p><span class="badge">Baby Leaf</span><button class="request" type="button" data-product="Baby Ispanak" data-cat="yesillikler">Talep Oluştur →</button></div></article>
+  <article class="card" data-search="mizuna"><div class="photo g9" role="img" aria-label="Taze mizuna"></div><div class="content"><h3>Mizuna</h3><p>İnce yapraklı, hafif hardalımsı premium ürün.</p><span class="badge">Özel Ürün</span><button class="request" type="button" data-product="Mizuna" data-cat="yesillikler">Talep Oluştur →</button></div></article>
+  <article class="card" data-search="kişniş"><div class="photo g10" role="img" aria-label="Taze kişniş"></div><div class="content"><h3>Kişniş</h3><p>Farklı mutfaklar ve özel reçeteler için.</p><span class="badge">Aromatik</span><button class="request" type="button" data-product="Kişniş" data-cat="yesillikler">Talep Oluştur →</button></div></article></div>
 <div class="bottom"><div><h3>Toplu alım veya özel talepleriniz için bize ulaşın.</h3><p>Restoranlar ve işletmeler için ürün, miktar ve teslimat planını birlikte belirleyelim.</p></div><a href="/#iletisim">Teklif Talebi Oluştur →</a></div></div></section>
 </main><footer><div class="wrap foot"><strong>BAYDUR FARM</strong><span>© 2026 Baydur Farm · İzmir Menemen</span></div></footer><script>
 document.querySelectorAll('.request').forEach(b=>b.addEventListener('click',()=>{location.href='/?request='+encodeURIComponent(b.dataset.product)+'&category='+encodeURIComponent(b.dataset.cat)+'#iletisim'}));
