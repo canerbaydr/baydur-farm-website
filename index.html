@@ -175,7 +175,7 @@
     </div></section>
     <section class="process section-space" id="nasil-calisir" aria-labelledby="process-title"><div class="container"><div class="eyebrow">Birlikte çalışalım</div><h2 id="process-title">Tedarik süreci,<br>üç basit adım.</h2><div class="steps"><div class="step"><div class="step-num">01 / İHTİYAÇ</div><h3>Bize yazın</h3><p>Restoranınızı, aradığınız ürünleri ve yaklaşık haftalık miktarı paylaşın.</p></div><div class="step"><div class="step-num">02 / PLANLAMA</div><h3>Birlikte belirleyelim</h3><p>Güncel ürünleri ve size uygun tedarik koşullarını konuşalım.</p></div><div class="step"><div class="step-num">03 / TEKLİF</div><h3>Teklifinizi alın</h3><p>Ürün, miktar ve teslimat beklentinize göre teklif sunalım.</p></div></div></div></section>
     <section class="contact section-space" id="iletisim" aria-labelledby="contact-title"><div class="container contact-grid"><div class="contact-copy"><div class="eyebrow">İletişim</div><h2 id="contact-title">Mutfağınızın yeni<br>tedarikçisiyle tanışın.</h2><p>İhtiyacınızı anlatın, marul ve yeşillik tedariği için sizinle görüşelim.</p></div>
-      <form class="contact-form" id="quoteForm" action="https://formsubmit.co/canerrbaydur@gmail.com" method="POST"><h3>Teklif talebinizi hazırlayın</h3><p class="form-intro" id="formIntro">Formu gönderdiğinizde talebiniz doğrudan Baydur Farm'a iletilir. E-posta uygulamanız açılmaz.</p><input type="hidden" name="_subject" value="Baydur Farm - Siteden yeni teklif talebi"><input type="hidden" name="_template" value="table"><input type="hidden" name="_next" value="https://baydurfarm.com/?sent=1#iletisim"><input type="text" name="_honey" tabindex="-1" autocomplete="off" style="display:none"><div class="field-grid"><div class="field"><label for="business">Restoran / işletme adı *</label><input id="business" name="business" required autocomplete="organization" placeholder="İşletme adınız"></div><div class="field"><label for="person">Yetkili adı *</label><input id="person" name="person" required autocomplete="name" placeholder="Adınız soyadınız"></div></div><div class="field-grid"><div class="field"><label for="email">E-posta adresiniz *</label><input id="email" name="email" type="email" required autocomplete="email" placeholder="ornek@firma.com"></div><div class="field"><label for="product">İlgilendiğiniz ürün *</label><select id="product" name="product" required><option value="">Ürün seçin</option><option>Taze marul</option><option>Yeşillikler</option><option>Restoran tedariki</option></select></div></div><div class="field-grid"><div class="field"><label for="quantity">Tahmini haftalık ihtiyaç</label><input id="quantity" name="quantity" placeholder="Örn. 50 adet / hafta"></div><div class="field"><label for="city">Teslimat şehri</label><input id="city" name="city" autocomplete="address-level1" placeholder="Şehir"></div></div><div class="field"><label for="message">Ek notunuz</label><textarea id="message" name="message" placeholder="Ürün, miktar veya teslimat beklentinizi yazın"></textarea></div><div class="form-actions"><button class="button button-primary" type="submit">Teklif talebini gönder ↗</button><button class="button button-secondary" type="button" id="whatsappButton">WhatsApp'tan yaz ↗</button></div><p class="form-note">Gönderdiğiniz bilgiler yalnızca teklif talebinize dönüş yapmak için kullanılır.</p></form>
+      <form class="contact-form" id="quoteForm" action="https://formsubmit.co/canerrbaydur@gmail.com" method="POST"><h3>Teklif talebinizi hazırlayın</h3><p class="form-intro" id="formIntro">Tüm alanlar zorunludur. Konum izni verirseniz şehir ve ilçe otomatik doldurulur.</p><input type="hidden" name="_subject" value="Baydur Farm - Siteden yeni teklif talebi"><input type="hidden" name="_template" value="table"><input type="hidden" name="_next" value="https://baydurfarm.com/?sent=1#iletisim"><input type="text" name="_honey" tabindex="-1" autocomplete="off" style="display:none"><div class="field-grid"><div class="field"><label for="business">Restoran / işletme adı *</label><input id="business" name="business" required autocomplete="organization" placeholder="İşletme adınız"></div><div class="field"><label for="person">Yetkili adı *</label><input id="person" name="person" required autocomplete="name" placeholder="Adınız soyadınız"></div></div><div class="field-grid"><div class="field"><label for="email">E-posta adresiniz *</label><input id="email" name="email" type="email" required autocomplete="email" placeholder="ornek@firma.com"></div><div class="field"><label for="product">İlgilendiğiniz ürün *</label><select id="product" name="product" required><option value="">Ürün seçin</option><option>Taze marul</option><option>Yeşillikler</option><option>Restoran tedariki</option></select></div></div><div class="field"><label for="quantity">Tahmini haftalık ihtiyaç *</label><input id="quantity" name="quantity" required placeholder="Örn. 50 adet / hafta"></div><div class="field-grid"><div class="field"><label for="city">Teslimat ili *</label><input id="city" name="city" required autocomplete="address-level1" placeholder="İl"></div><div class="field"><label for="district">Teslimat ilçesi *</label><input id="district" name="district" required autocomplete="address-level2" placeholder="İlçe"></div></div><div class="field"><button class="button button-secondary" type="button" id="locationButton">Konumumu otomatik bul</button><p class="form-note" id="locationStatus" role="status">Konum izni verirseniz il ve ilçe otomatik doldurulur. İzin vermezseniz kendiniz yazabilirsiniz.</p></div><div class="field"><label for="address">Açık teslimat adresi *</label><textarea id="address" name="address" required minlength="10" autocomplete="street-address" placeholder="Mahalle, cadde/sokak, bina no ve gerekli teslimat detayları"></textarea></div><div class="field"><label for="message">Ek notunuz *</label><textarea id="message" name="message" required minlength="3" placeholder="Ürün, miktar veya teslimat beklentinizi yazın"></textarea></div><div class="form-actions"><button class="button button-primary" type="submit">Teklif talebini gönder ↗</button><button class="button button-secondary" type="button" id="whatsappButton">WhatsApp'tan yaz ↗</button></div><p class="form-note">Zorunlu alanlar doldurulmadan form gönderilemez.</p></form>
     </div></section>
   </main>
   <footer><div class="container footer-inner"><a class="brand" href="#ust">BAYDUR FARM</a><span>© <span id="year"></span> Baydur Farm. Topraksız tarım ve restoran tedariki.</span><a href="#iletisim" aria-label="İletişim formuna git">************@gmail.com ↗</a></div></footer>
@@ -199,6 +199,60 @@
       document.getElementById('product').value = link.dataset.product;
     }));
     const form = document.getElementById('quoteForm');
+    const cityInput = document.getElementById('city');
+    const districtInput = document.getElementById('district');
+    const locationButton = document.getElementById('locationButton');
+    const locationStatus = document.getElementById('locationStatus');
+
+    async function fillLocationFromPosition(position) {
+      const { latitude, longitude } = position.coords;
+      locationStatus.textContent = 'Konum bulundu, il ve ilçe belirleniyor…';
+      try {
+        const url = 'https://nominatim.openstreetmap.org/reverse?format=jsonv2&addressdetails=1&accept-language=tr&zoom=10&lat='
+          + encodeURIComponent(latitude) + '&lon=' + encodeURIComponent(longitude);
+        const response = await fetch(url, { headers: { 'Accept': 'application/json' } });
+        if (!response.ok) throw new Error('Konum bilgisi alınamadı');
+        const result = await response.json();
+        const a = result.address || {};
+        const city = a.province || a.state || a.city || '';
+        const district = a.town || a.county || a.city_district || a.district || a.municipality || '';
+        if (city) cityInput.value = city;
+        if (district) districtInput.value = district;
+        if (city && district) {
+          locationStatus.textContent = 'Konum otomatik dolduruldu: ' + city + ' / ' + district;
+        } else {
+          locationStatus.textContent = 'Konum bulundu ancak il/ilçe tam belirlenemedi. Eksik alanı lütfen kendiniz doldurun.';
+        }
+      } catch (error) {
+        locationStatus.textContent = 'İl ve ilçe otomatik alınamadı. Lütfen alanları kendiniz doldurun.';
+      }
+    }
+
+    function requestLocation() {
+      if (!navigator.geolocation) {
+        locationStatus.textContent = 'Tarayıcınız otomatik konumu desteklemiyor. İl ve ilçeyi kendiniz yazın.';
+        return;
+      }
+      locationStatus.textContent = 'Konum izni bekleniyor…';
+      navigator.geolocation.getCurrentPosition(
+        fillLocationFromPosition,
+        () => { locationStatus.textContent = 'Konum izni verilmedi. İl ve ilçeyi kendiniz yazmadan form gönderilemez.'; },
+        { enableHighAccuracy: false, timeout: 10000, maximumAge: 300000 }
+      );
+    }
+
+    locationButton.addEventListener('click', requestLocation);
+
+    let autoLocationTried = false;
+    const locationObserver = new IntersectionObserver(entries => {
+      if (!autoLocationTried && entries.some(entry => entry.isIntersecting)) {
+        autoLocationTried = true;
+        requestLocation();
+        locationObserver.disconnect();
+      }
+    }, { threshold: 0.25 });
+    locationObserver.observe(form);
+
     document.getElementById('whatsappButton').addEventListener('click', () => {
       if (!form.reportValidity()) return;
       const data = new FormData(form);
@@ -209,13 +263,15 @@
         'Yetkili: ' + data.get('person'),
         'E-posta: ' + data.get('email'),
         'Ürün: ' + data.get('product'),
-        'Haftalık ihtiyaç: ' + (data.get('quantity') || 'Belirtilmedi'),
-        'Teslimat şehri: ' + (data.get('city') || 'Belirtilmedi'),
-        'Not: ' + (data.get('message') || 'Yok')
+        'Haftalık ihtiyaç: ' + data.get('quantity'),
+        'Teslimat ili: ' + data.get('city'),
+        'Teslimat ilçesi: ' + data.get('district'),
+        'Açık adres: ' + data.get('address'),
+        'Not: ' + data.get('message')
       ];
       window.open('https://wa.me/905436383228?text=' + encodeURIComponent(lines.join('\n')), '_blank', 'noopener,noreferrer');
     });
-    if (new URLSearchParams(window.location.search).get('sent') === '1') {
+        if (new URLSearchParams(window.location.search).get('sent') === '1') {
       const intro = document.getElementById('formIntro');
       intro.textContent = 'Talebiniz başarıyla gönderildi. En kısa sürede sizinle iletişime geçeceğiz.';
       intro.setAttribute('role', 'status');
