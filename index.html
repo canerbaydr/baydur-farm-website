@@ -207,33 +207,162 @@
     .discount-note{font-size:10px!important;margin:10px 0 0!important;color:#7b8b80!important}
     @media(max-width:500px){.discount-popup{min-height:310px;padding:26px 22px 22px}.discount-popup h2{font-size:29px}}
   </style>
+
+  <style id="luxury-home-v2">
+    :root{--gold:#c9ad62;--gold-soft:#e6d393}
+    .container{width:min(1440px,calc(100% - 64px))}
+    .site-header{border-top:1px solid #27392f;box-shadow:0 5px 24px rgba(12,36,28,.035)}
+    .header-inner{height:82px}
+    .header-brand-group{display:flex;align-items:center;gap:24px}
+    .brand{font-size:20px}
+    .brand-descriptor{padding-left:24px;border-left:1px solid #d9cfb7;color:#a28343;font-size:9px;font-weight:800;line-height:1.45;letter-spacing:.18em}
+    .nav{gap:27px;font-family:Georgia,'Times New Roman',serif;font-size:13px}
+    .nav-cta{font-family:Arial,Helvetica,sans-serif;border:1px solid var(--gold);box-shadow:0 6px 18px rgba(18,51,40,.08)}
+    .luxury-hero{position:relative;background:#0d3127}
+    .luxury-hero .hero-grid{grid-template-columns:42% 58%;min-height:675px}
+    .luxury-hero .hero-copy{padding:76px 54px 105px max(64px,calc((100vw - 1440px)/2));position:relative;z-index:2;background:
+      radial-gradient(circle at 80% 15%,rgba(189,217,138,.08),transparent 35%),
+      linear-gradient(115deg,#0b3026 0%,#123b2e 100%)}
+    .luxury-hero .hero-copy:after{content:"";position:absolute;right:-100px;top:0;width:170px;height:100%;background:linear-gradient(90deg,#123b2e 0%,rgba(18,59,46,.78) 35%,transparent 100%);z-index:-1;pointer-events:none}
+    .luxury-hero .eyebrow{color:var(--gold-soft);letter-spacing:.22em}
+    .luxury-hero h1{font-size:clamp(4.6rem,6.1vw,7.4rem);line-height:.84;letter-spacing:-.058em;margin:29px 0 31px;max-width:760px}
+    .luxury-hero h1 em{color:#c6e487}
+    .luxury-hero .hero-lead{font-size:16px;line-height:1.65;max-width:585px;color:#d7e1db;margin-bottom:31px}
+    .luxury-hero .button{padding:15px 28px}
+    .luxury-hero .button-primary{background:linear-gradient(135deg,#e2c96e,#d2b555);border:1px solid #f0df98;color:#173428;box-shadow:0 10px 28px rgba(0,0,0,.12)}
+    .luxury-hero .button-primary:hover{background:linear-gradient(135deg,#ead681,#d9bd62)}
+    .luxury-hero .button-outline{border-color:rgba(255,255,255,.52);background:rgba(5,25,19,.14);backdrop-filter:blur(6px)}
+    .luxury-hero .hero-art{min-height:675px;background:#b5c993}
+    .luxury-hero .hero-art::before{inset:-2%;background-position:center 44%;animation:heroKenBurns 8s ease-in-out infinite alternate}
+    .luxury-hero .hero-art::after{background:
+      linear-gradient(90deg,rgba(11,48,38,.3),transparent 24%),
+      linear-gradient(180deg,rgba(7,24,19,.02) 50%,rgba(7,24,19,.18) 100%)}
+    .hero-signature{position:absolute;z-index:3;right:8%;top:70px;color:#234637;font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:25px;line-height:1.12;transform:rotate(-5deg);text-align:center;text-shadow:0 1px 9px rgba(255,255,255,.65)}
+    .hero-seal{position:absolute;z-index:3;right:8%;bottom:135px;width:128px;height:128px;border-radius:50%;background:rgba(7,36,28,.92);border:1px solid var(--gold);box-shadow:0 8px 25px rgba(0,0,0,.2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:var(--gold-soft);text-align:center;letter-spacing:.11em}
+    .hero-seal strong{font-size:27px;line-height:1;color:#d9c275}
+    .hero-seal span{font-size:8px;font-weight:800}
+    .hero-location{position:absolute;z-index:3;right:3%;bottom:28px;border-left:1px solid rgba(69,81,63,.45);padding-left:15px;color:#40594d;font-size:9px;font-weight:800;line-height:1.5;letter-spacing:.13em}
+    .hero-trust{position:absolute;left:0;bottom:0;width:42%;z-index:4;background:rgba(8,40,31,.76);border-top:1px solid rgba(255,255,255,.11);backdrop-filter:blur(9px)}
+    .hero-trust .container{width:auto;margin:0;padding-left:max(64px,calc((100vw - 1440px)/2));padding-right:28px}
+    .hero-trust-inner{min-height:82px;display:grid;grid-template-columns:repeat(4,1fr);align-items:center;gap:10px}
+    .trust-item{display:flex;align-items:center;gap:10px;color:#dce6de;font-size:9px;font-weight:800;line-height:1.35;letter-spacing:.1em}
+    .trust-icon{flex:none;width:34px;height:34px;border:1px solid rgba(217,194,117,.7);border-radius:50%;display:grid;place-items:center;color:#ddc775;font-size:16px}
+    .luxury-products{background:#f8f4ea;padding:44px 0 58px;border-bottom:1px solid #e7dfce}
+    .luxury-product-layout{display:grid;grid-template-columns:275px 1fr;gap:34px;align-items:stretch}
+    .luxury-product-heading{padding:10px 0}
+    .luxury-product-heading .eyebrow{color:#9b7b3f}
+    .luxury-product-heading h2{font-size:clamp(2.5rem,3.4vw,4rem);line-height:1.02;margin:20px 0 14px}
+    .luxury-product-heading h2 em{font-style:normal;color:#a68b49}
+    .luxury-product-heading p{color:#68746c;font-size:13px;max-width:240px}
+    .luxury-cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px}
+    .luxury-card{position:relative;min-height:270px;border:1px solid #dfdacd;border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 8px 22px rgba(45,55,44,.045);transition:transform .25s ease,box-shadow .25s ease}
+    .luxury-card:hover{transform:translateY(-5px);box-shadow:0 16px 34px rgba(45,55,44,.11)}
+    .luxury-card-photo{height:158px;background-size:cover;background-position:center}
+    .luxury-card-body{position:relative;padding:16px 18px 17px}
+    .luxury-card-body h3{font-family:Georgia,'Times New Roman',serif;font-size:22px;font-weight:400;margin:0 28px 5px 0}
+    .luxury-card-body p{margin:0;color:#66746c;font-size:11px}
+    .luxury-card-body>span{position:absolute;right:17px;top:18px;color:#335445}
+    .luxury-chef{min-height:270px;color:#fff}
+    .luxury-chef .luxury-card-photo{position:absolute;inset:0;height:100%;filter:saturate(.9)}
+    .luxury-card-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(14,39,30,.88) 0%,rgba(14,39,30,.65) 50%,rgba(14,39,30,.13) 100%)}
+    .luxury-chef-copy{position:absolute;z-index:2;left:20px;top:22px;max-width:160px}
+    .luxury-chef-copy small{font-size:8px;letter-spacing:.15em;color:#e5d49d;font-weight:800}
+    .luxury-chef-copy h3{font-family:Georgia,'Times New Roman',serif;font-size:30px;font-weight:400;line-height:.95;margin:12px 0 10px}
+    .luxury-chef-copy p{font-size:11px;line-height:1.5;color:#e6ece8}
+    .luxury-chef-copy span{display:inline-block;margin-top:10px;color:#ecd98f;font-size:9px;font-weight:800;letter-spacing:.12em}
+    @media(max-width:1200px){
+      .brand-descriptor{display:none}
+      .luxury-hero .hero-grid{grid-template-columns:48% 52%}
+      .hero-trust{width:48%}
+      .luxury-product-layout{grid-template-columns:1fr}
+      .luxury-product-heading{display:flex;align-items:end;justify-content:space-between;gap:30px}
+      .luxury-product-heading p{max-width:360px}
+    }
+    @media(max-width:900px){
+      .container{width:min(100% - 38px,1440px)}
+      .luxury-hero .hero-grid{grid-template-columns:1fr}
+      .luxury-hero .hero-copy{padding:68px 28px 64px}
+      .luxury-hero .hero-copy:after{display:none}
+      .luxury-hero h1{font-size:clamp(4rem,12vw,6rem)}
+      .luxury-hero .hero-art{min-height:520px}
+      .hero-trust{position:relative;width:100%}
+      .hero-trust .container{padding:0 28px}
+      .hero-trust-inner{min-height:88px}
+      .luxury-cards{grid-template-columns:repeat(2,1fr)}
+      .hero-signature{font-size:22px}
+    }
+    @media(max-width:700px){
+      .header-inner{height:70px}
+      .luxury-hero .hero-copy{padding:56px 18px 48px}
+      .luxury-hero h1{font-size:3.65rem;margin:24px 0 25px}
+      .luxury-hero .hero-lead{font-size:14px}
+      .luxury-hero .hero-art{min-height:410px}
+      .hero-signature{right:6%;top:38px;font-size:18px}
+      .hero-seal{width:96px;height:96px;right:7%;bottom:72px}
+      .hero-seal span{font-size:6.5px}
+      .hero-seal strong{font-size:21px}
+      .hero-location{font-size:7px}
+      .hero-trust-inner{grid-template-columns:repeat(2,1fr);padding:15px 0}
+      .luxury-product-heading{display:block}
+      .luxury-product-heading p{margin-top:8px}
+      .luxury-cards{grid-template-columns:1fr 1fr;gap:10px}
+      .luxury-card{min-height:235px}
+      .luxury-card-photo{height:132px}
+      .luxury-card-body{padding:13px}
+      .luxury-card-body h3{font-size:18px}
+      .luxury-chef{min-height:235px}
+      .luxury-chef-copy{left:15px;top:17px}
+      .luxury-chef-copy h3{font-size:25px}
+    }
+    @media(max-width:460px){
+      .container{width:min(100% - 28px,1440px)}
+      .luxury-cards{grid-template-columns:1fr}
+      .luxury-card-photo{height:180px}
+      .luxury-chef{min-height:260px}
+      .hero-trust .container{padding:0 18px}
+    }
+  </style>
+
 </head>
 <body>
   <header class="site-header">
     <div class="container header-inner">
-      <a class="brand" href="#ust" aria-label="Baydur Farm ana sayfa"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M19 3C10 3 5 7 5 14c0 4 3 7 7 7 7 0 9-8 7-18Z"/><path d="M6 19c2-4 6-7 11-10"/></svg></span> BAYDUR FARM</a>
+      <div class="header-brand-group"><a class="brand" href="#ust" aria-label="Baydur Farm ana sayfa"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M19 3C10 3 5 7 5 14c0 4 3 7 7 7 7 0 9-8 7-18Z"/><path d="M6 19c2-4 6-7 11-10"/></svg></span> BAYDUR FARM</a><span class="brand-descriptor">TOPRAKSIZ TARIMDAN<br>PROFESYONEL MUTFAKLARA</span></div>
       <button class="menu-button" id="menuButton" aria-label="Menüyü aç" aria-controls="nav" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 7h18M3 12h18M3 17h18"/></svg></button>
       <nav class="nav" id="nav" aria-label="Ana menü"><a href="#urunler">Ürünler</a><a href="/microyesillikler.html">Microyeşillikler</a><a href="/saglik.html">Sağlık</a><a href="#salata-tasarla">Salatanı tasarla</a><a href="#hakkimizda">Üretimimiz</a><a href="#nasil-calisir">Nasıl çalışır?</a><a href="#iletisim" class="nav-cta">Tedarik teklifi alın <span aria-hidden="true">↗</span></a></nav>
     </div>
   </header>
   <main id="ust">
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-grid"><div class="hero-copy">
-        <div class="eyebrow">Baydur Farm · Topraksız tarımdan profesyonel mutfaklara</div>
-        <h1 id="hero-title">Tazelik,<br><em>mutfağınızda</em><br>başlar.</h1>
-        <p class="hero-lead">Baydur Farm, İzmir Menemen’de topraksız tarımla marul ve taze yeşillik üretir. Baydur Farm İzmir ve Menemen bölgesinden restoranlara düzenli marul, yeşillik ve tedarik çözümleri sunar; Türkiye geneline teslimat planlanabilir.</p>
-        <div class="hero-actions"><a class="button button-primary" href="#iletisim">Tedarik teklifi isteyin <span aria-hidden="true">↗</span></a><a class="button button-outline" href="#urunler">Ürünleri keşfedin <span aria-hidden="true">↓</span></a></div>
-        <div class="hero-note"><span class="line"></span> İzmir Menemen’de üretim · Türkiye geneline teslimat</div>
-      </div><div class="hero-art" role="img" aria-label="Topraksız tarım sisteminde yetişen taze Baydur Farm marulları"><div class="photo-label"><span></span>Topraksız tarım</div></div></div>
+    <section class="hero luxury-hero" aria-labelledby="hero-title">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">İzmir Menemen’den Türkiye’ye</div>
+          <h1 id="hero-title">Tazelik,<br><em>mutfağınızda</em><br>başlar.</h1>
+          <p class="hero-lead">Baydur Farm, İzmir Menemen’de topraksız tarımla marul ve taze yeşillik üretir. Profesyonel mutfaklar için düzenli tedarik çözümleri sunar; Türkiye geneline teslimat planlanabilir.</p>
+          <div class="hero-actions"><a class="button button-primary" href="#iletisim">Tedarik teklifi isteyin <span aria-hidden="true">→</span></a><a class="button button-outline" href="#urunler">Ürünleri keşfedin <span aria-hidden="true">↓</span></a></div>
+        </div>
+        <div class="hero-art" role="img" aria-label="Topraksız tarım sisteminde yetişen taze Baydur Farm marulları">
+          <div class="hero-signature">Daha iyi<br>bir yarın için<br>daha temiz gıda.</div>
+          <div class="hero-seal"><span>DOĞADAN İLHAM</span><strong>♧</strong><span>MUTFAKLARA TAZELİK</span></div>
+          <div class="hero-location">İZMİR<br>MENEMEN’DE<br>ÜRETİM<br>TÜRKİYE GENELİNE<br>TESLİMAT</div>
+        </div>
+      </div>
+      <div class="hero-trust"><div class="container hero-trust-inner">
+        <div class="trust-item"><span class="trust-icon">⌁</span><span>TOPRAKSIZ<br>TARIM</span></div>
+        <div class="trust-item"><span class="trust-icon">♧</span><span>KONTROLLÜ<br>ÜRETİM</span></div>
+        <div class="trust-item"><span class="trust-icon">▣</span><span>TÜRKİYE GENELİ<br>TESLİMAT</span></div>
+        <div class="trust-item"><span class="trust-icon">♜</span><span>RESTORANLAR İÇİN<br>TEDARİK</span></div>
+      </div></div>
     </section>
-    <div class="intro-strip"><div class="container"><p>İyi bir tabak, özenle seçilmiş malzemeyle başlar.</p><div class="strip-tags"><span>Topraksız tarım</span><span>Restoran tedariki</span><span>Yeşillik çeşitleri</span></div></div></div>
-    <section class="products section-space" id="urunler" aria-labelledby="products-title"><div class="container">
-      <div class="section-head"><div><div class="eyebrow">Ürünlerimiz</div><h2 id="products-title">Mutfağınız için<br>taze seçenekler.</h2></div><p>Mevcut çeşitler ve sipariş miktarları için bizimle iletişime geçin. İhtiyacınıza göre teklif hazırlayalım.</p></div>
-      <div class="product-grid">
-        <article class="product-card"><div class="product-photo category-photo-1" role="img" aria-label="Farklı taze marul çeşitleri"></div><div class="product-card-body"><div class="product-top"><span class="number">01 / MARUL ÇEŞİTLERİ</span></div><h3>Marul Çeşitleri</h3><p>Kıvırcık, Romaine, Butterhead, Lollo Rosso, Lollo Bionda ve Oak Leaf çeşitleri.</p><a class="product-link" href="/salata-yapraklari.html">Çeşitleri inceleyin <span aria-hidden="true">↗</span></a></div></article>
-        <article class="product-card"><div class="product-photo category-photo-2" role="img" aria-label="Taze aromatik yeşillikler"></div><div class="product-card-body"><div class="product-top"><span class="number">02 / YEŞİLLİKLER</span></div><h3>Yeşillikler</h3><p>Roka, tere, fesleğen, maydanoz, dereotu, nane, reyhan ve diğer yapraklı ürünler.</p><a class="product-link" href="/yesillikler.html">Yeşillikleri inceleyin <span aria-hidden="true">↗</span></a></div></article>
-        <article class="product-card"><div class="product-photo category-photo-3" role="img" aria-label="Taze microyeşillikler"></div><div class="product-card-body"><div class="product-top"><span class="number">03 / MICROYEŞİLLİKLER</span></div><h3>Microyeşillikler</h3><p>Bezelye, turp, brokoli, ayçiçeği, hardal, mor lahana ve roka microgreen çeşitleri.</p><a class="product-link" href="/microyesillikler.html">Microyeşillikleri inceleyin <span aria-hidden="true">↗</span></a></div></article>
-        <article class="product-card"><div class="product-photo category-photo-4" role="img" aria-label="Restoran tedariği için hazırlanmış taze Baydur Farm ürünleri"></div><div class="product-card-body"><div class="product-top"><span class="number">04 / TEDARİK</span></div><h3>Restoran tedariki</h3><p>Düzenli alım, ürün ihtiyacı ve teslimat koşulları için işletmenize özel görüşelim.</p><a class="product-link" href="#iletisim" data-product="Restoran tedariki">Teklif isteyin <span aria-hidden="true">↗</span></a></div></article>
+    <section class="products luxury-products" id="urunler" aria-labelledby="products-title"><div class="container">
+      <div class="luxury-product-layout">
+        <div class="luxury-product-heading"><div class="eyebrow">Ürünlerimiz</div><h2 id="products-title">Doğadan sofralara,<br><em>üstün kalite.</em></h2><p>Profesyonel mutfaklar için özenle yetiştirilen taze ürün gruplarımız.</p></div>
+        <div class="luxury-cards">
+          <a class="luxury-card" href="/salata-yapraklari.html"><div class="luxury-card-photo category-photo-1"></div><div class="luxury-card-body"><h3>Marul Çeşitleri</h3><p>Kıvırcık, Romaine, Lollo ve daha fazlası</p><span>→</span></div></a>
+          <a class="luxury-card" href="/yesillikler.html"><div class="luxury-card-photo category-photo-2"></div><div class="luxury-card-body"><h3>Yeşillikler</h3><p>Roka, baby leaf ve taze otlar</p><span>→</span></div></a>
+          <a class="luxury-card" href="/microyesillikler.html"><div class="luxury-card-photo category-photo-3"></div><div class="luxury-card-body"><h3>Microyeşillikler</h3><p>Küçük yapraklar, büyük karakter</p><span>→</span></div></a>
+          <a class="luxury-card luxury-chef" href="#iletisim"><div class="luxury-card-photo category-photo-4"></div><div class="luxury-card-overlay"></div><div class="luxury-chef-copy"><small>PROFESYONEL MUTFAKLAR</small><h3>Şeflerin<br>Tercihi</h3><p>Güvenilir ve düzenli tedarik ortağınız.</p><span>TEKLİF AL →</span></div></a>
+        </div>
       </div>
     </div></section>
     <section class="mix-lab section-space" id="salata-tasarla" aria-labelledby="mix-title"><div class="container">
