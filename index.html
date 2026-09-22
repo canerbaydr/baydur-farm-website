@@ -176,6 +176,18 @@
     .mix-calorie-row span { color:#5c665e; }
     .mix-calorie-row b { color:#243e31; white-space:nowrap; }
     .mix-calorie-note { margin:11px 0 0; color:#7a7667; font-size:10px; line-height:1.45; }
+    .mix-nutrition { grid-column:1 / -1; margin-top:2px; padding:20px; border-radius:15px; background:#f4f8ef; border:1px solid #cbdabf; }
+    .mix-nutrition-head { display:flex; justify-content:space-between; gap:18px; align-items:start; margin-bottom:15px; }
+    .mix-nutrition-head h4 { margin:0; font-family:Georgia,serif; font-weight:400; font-size:25px; color:var(--forest); }
+    .mix-nutrition-head p { margin:4px 0 0; max-width:500px; color:#65766a; font-size:11px; }
+    .mix-nutrient-groups { display:grid; grid-template-columns:repeat(2,1fr); gap:11px; }
+    .mix-nutrient-group { padding:14px; border-radius:12px; background:#fff; border:1px solid #dce5d7; }
+    .mix-nutrient-group strong { display:block; margin-bottom:9px; color:#396148; font-size:10px; text-transform:uppercase; letter-spacing:.08em; }
+    .mix-nutrient-tags { display:flex; flex-wrap:wrap; gap:6px; }
+    .mix-nutrient-tag { display:inline-flex; align-items:center; padding:6px 9px; border-radius:999px; background:#eef4e7; color:#355842; font-size:11px; font-weight:700; }
+    .mix-nutrient-sources { margin:13px 0 0; color:#647367; font-size:11px; line-height:1.5; }
+    .mix-nutrition-note { margin:10px 0 0; color:#788076; font-size:10px; line-height:1.45; }
+    @media(max-width:700px){.mix-nutrient-groups{grid-template-columns:1fr}.mix-nutrition-head{display:block}}
     .mix-tune { margin-top:17px; padding-top:15px; border-top:1px solid #d4dfcf; }
     .mix-tune-label { display:block; margin-bottom:9px; color:#65766a; font-size:10px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; }
     .mix-tune-buttons { display:flex; flex-wrap:wrap; gap:7px; }
@@ -455,6 +467,17 @@
                 <div class="mix-calorie-grand-total"><span>Toplam</span><strong id="mixCaloriesTotal">~0 kcal / porsiyon</strong></div>
                 <p class="mix-calorie-note">Değerler tek porsiyon için yaklaşık gramaj ve standart besin referanslarıyla hesaplanır. Gerçek kalori; ürün çeşidi, porsiyon, sos miktarı ve hazırlama yöntemine göre değişebilir.</p>
               </div>
+              <div class="mix-nutrition" id="mixNutrition">
+                <div class="mix-nutrition-head"><div><h4>Karışımın besin profili</h4><p>Seçilen malzemelerin doğal besin bileşimine göre öne çıkan öğeler.</p></div></div>
+                <div class="mix-nutrient-groups">
+                  <div class="mix-nutrient-group"><strong>Vitaminler</strong><div class="mix-nutrient-tags" id="mixVitamins"></div></div>
+                  <div class="mix-nutrient-group"><strong>Mineraller</strong><div class="mix-nutrient-tags" id="mixMinerals"></div></div>
+                  <div class="mix-nutrient-group"><strong>Antioksidan & bitkisel bileşikler</strong><div class="mix-nutrient-tags" id="mixAntioxidants"></div></div>
+                  <div class="mix-nutrient-group"><strong>Diğer önemli öğeler</strong><div class="mix-nutrient-tags" id="mixOtherNutrients"></div></div>
+                </div>
+                <p class="mix-nutrient-sources" id="mixNutrientSources"></p>
+                <p class="mix-nutrition-note">Bu bölüm genel besin bileşimini gösterir; laboratuvar analizi veya tıbbi değerlendirme değildir. Miktarlar ürün çeşidi, yetiştirme koşulu ve porsiyona göre değişebilir.</p>
+              </div>
             </div>
             <p class="mix-health-note" id="mixHealthNote">Bu araç genel yemek önerisi üretir; tıbbi tanı veya tedavi önerisi vermez. Sağlık durumunuza özel beslenme için sağlık profesyoneline danışın.</p>
             <div class="mix-tune">
@@ -659,6 +682,89 @@
       if (text.includes('taze nane')) add('Taze nane', 3, 44);
       if (text.includes('acı dokunuş')) add('Acı biber dokunuşu', 2, 40);
       return rows;
+    }
+
+    const nutrientProfiles = [
+      {keys:['butterhead','romaine','lollo bionda','oak leaf','kıvırcık marul','kivircik marul','taze yapraklı yeşillikler'], vitamins:['K vitamini','Folat (B9)','Provitamin A (beta-karoten)','C vitamini'], minerals:['Potasyum','Manganez'], antioxidants:['Lutein + zeaksantin','Beta-karoten','Polifenoller'], other:['Lif']},
+      {keys:['roka'], vitamins:['K vitamini','C vitamini','Folat (B9)','Provitamin A (beta-karoten)'], minerals:['Kalsiyum','Potasyum'], antioxidants:['Glukozinolatlar','Karotenoidler','Polifenoller'], other:['Lif']},
+      {keys:['maydanoz','dereotu','nane','fesleğen','reyhan','kişniş','kisnis'], vitamins:['K vitamini','C vitamini','Provitamin A (beta-karoten)','Folat (B9)'], minerals:['Potasyum','Manganez','Demir'], antioxidants:['Flavonoidler','Polifenoller','Karotenoidler'], other:['Lif']},
+      {keys:['ıspanak','ispanak','mizuna','tere'], vitamins:['K vitamini','Folat (B9)','Provitamin A (beta-karoten)','C vitamini'], minerals:['Magnezyum','Potasyum','Demir','Manganez'], antioxidants:['Lutein + zeaksantin','Beta-karoten','Polifenoller'], other:['Lif']},
+      {keys:['salatalık','salatalik'], vitamins:['K vitamini'], minerals:['Potasyum'], antioxidants:['Flavonoidler'], other:['Su içeriği','Lif']},
+      {keys:['havuç','havuc'], vitamins:['Provitamin A (beta-karoten)','K vitamini'], minerals:['Potasyum'], antioxidants:['Beta-karoten','Karotenoidler'], other:['Lif']},
+      {keys:['mısır','misir'], vitamins:['Folat (B9)','B1 vitamini'], minerals:['Magnezyum','Fosfor'], antioxidants:['Lutein + zeaksantin'], other:['Lif','Kompleks karbonhidrat']},
+      {keys:['nar taneleri','nar'], vitamins:['C vitamini','K vitamini','Folat (B9)'], minerals:['Potasyum'], antioxidants:['Polifenoller','Antosiyaninler'], other:['Lif']},
+      {keys:['ceviz'], vitamins:['B6 vitamini'], minerals:['Bakır','Manganez','Magnezyum'], antioxidants:['Polifenoller'], other:['ALA omega-3','Lif','Bitkisel protein']},
+      {keys:['nohut'], vitamins:['Folat (B9)','B6 vitamini'], minerals:['Demir','Magnezyum','Potasyum','Manganez','Çinko'], antioxidants:['Polifenoller'], other:['Lif','Bitkisel protein','Kompleks karbonhidrat']},
+      {keys:['avokado'], vitamins:['K vitamini','E vitamini','Folat (B9)','B6 vitamini'], minerals:['Potasyum','Bakır','Magnezyum'], antioxidants:['Lutein + zeaksantin','Karotenoidler'], other:['Tekli doymamış yağ','Lif']},
+      {keys:['brokoli micro'], vitamins:['C vitamini','K vitamini','Folat (B9)','Provitamin A (beta-karoten)'], minerals:['Potasyum'], antioxidants:['Glukozinolatlar','Sulforafan öncüleri','Karotenoidler'], other:['Lif']},
+      {keys:['turp micro','hardal micro'], vitamins:['C vitamini','K vitamini','Folat (B9)'], minerals:['Potasyum'], antioxidants:['Glukozinolatlar','Antosiyaninler','Polifenoller'], other:['Lif']},
+      {keys:['mor lahana micro'], vitamins:['C vitamini','K vitamini','Provitamin A (beta-karoten)'], minerals:['Potasyum'], antioxidants:['Antosiyaninler','Glukozinolatlar','Polifenoller'], other:['Lif']},
+      {keys:['ayçiçeği micro','aycicegi micro'], vitamins:['E vitamini','Folat (B9)'], minerals:['Magnezyum','Çinko','Bakır'], antioxidants:['Polifenoller'], other:['Bitkisel protein','Lif']},
+      {keys:['bezelye micro'], vitamins:['C vitamini','K vitamini','Provitamin A (beta-karoten)'], minerals:['Potasyum','Manganez'], antioxidants:['Karotenoidler','Polifenoller'], other:['Lif','Bitkisel protein']},
+      {keys:['roka micro'], vitamins:['C vitamini','K vitamini','Folat (B9)'], minerals:['Kalsiyum','Potasyum'], antioxidants:['Glukozinolatlar','Karotenoidler'], other:['Lif']},
+      {keys:['zeytinyağı','zeytinyagi'], vitamins:['E vitamini','K vitamini'], minerals:[], antioxidants:['Polifenoller'], other:['Tekli doymamış yağ']},
+      {keys:['limon'], vitamins:['C vitamini'], minerals:['Potasyum'], antioxidants:['Flavanonlar','Polifenoller'], other:[]},
+      {keys:['portakal'], vitamins:['C vitamini','Folat (B9)'], minerals:['Potasyum'], antioxidants:['Flavanonlar','Karotenoidler'], other:[]},
+      {keys:['nar ekşisi','nar eksisi'], vitamins:[], minerals:[], antioxidants:['Polifenoller','Antosiyaninler'], other:[]},
+      {keys:['bal'], vitamins:[], minerals:[], antioxidants:['Polifenoller'], other:['Doğal şekerler']},
+      {keys:['acı biber','aci biber'], vitamins:['C vitamini'], minerals:[], antioxidants:['Kapsaisinoidler','Karotenoidler'], other:[]}
+    ];
+
+    function addNutrientScores(scoreMap, items) {
+      items.forEach(item => scoreMap.set(item, (scoreMap.get(item) || 0) + 1));
+    }
+
+    function topNutrients(scoreMap, limit) {
+      return [...scoreMap.entries()]
+        .sort((a,b) => b[1] - a[1] || a[0].localeCompare(b[0], 'tr'))
+        .slice(0, limit)
+        .map(([name]) => name);
+    }
+
+    function renderNutrientTags(id, items) {
+      const node = document.getElementById(id);
+      if (!node) return;
+      node.innerHTML = (items.length ? items : ['Belirgin öğe yok']).map(item =>
+        '<span class="mix-nutrient-tag">' + item + '</span>'
+      ).join('');
+    }
+
+    function buildNutrientProfile(greens, extras, microgreens, dressing) {
+      const ingredients = [...greens, ...extras, ...microgreens];
+      const dressingParts = [];
+      const dressingText = dressing.toLocaleLowerCase('tr-TR');
+      ['zeytinyağı','limon','portakal','bal','nar ekşisi','acı biber'].forEach(item => {
+        if (dressingText.includes(item)) dressingParts.push(item);
+      });
+      const all = [...ingredients, ...dressingParts];
+
+      const vitaminScores = new Map();
+      const mineralScores = new Map();
+      const antioxidantScores = new Map();
+      const otherScores = new Map();
+      const matchedSources = [];
+
+      all.forEach(label => {
+        const normalized = label.toLocaleLowerCase('tr-TR');
+        const profile = nutrientProfiles.find(item => item.keys.some(key => normalized.includes(key)));
+        if (!profile) return;
+        matchedSources.push(label);
+        addNutrientScores(vitaminScores, profile.vitamins);
+        addNutrientScores(mineralScores, profile.minerals);
+        addNutrientScores(antioxidantScores, profile.antioxidants);
+        addNutrientScores(otherScores, profile.other);
+      });
+
+      renderNutrientTags('mixVitamins', topNutrients(vitaminScores, 7));
+      renderNutrientTags('mixMinerals', topNutrients(mineralScores, 7));
+      renderNutrientTags('mixAntioxidants', topNutrients(antioxidantScores, 7));
+      renderNutrientTags('mixOtherNutrients', topNutrients(otherScores, 7));
+
+      const sources = [...new Set(matchedSources)];
+      const sourceNode = document.getElementById('mixNutrientSources');
+      if (sourceNode) sourceNode.textContent = sources.length
+        ? 'Başlıca kaynak malzemeler: ' + sources.join(', ') + '.'
+        : 'Besin profili seçilen malzemelere göre oluşturulur.';
     }
 
     function buildCalorieEstimate(greens, extras, microgreens, dressing, pref) {
@@ -916,6 +1022,7 @@
       document.getElementById('mixReason').textContent = reasonParts.join('; ') + '.';
       document.getElementById('mixHealthNote').style.display = healthContext ? 'block' : 'none';
       const estimatedCalories = buildCalorieEstimate(greens, extras, microgreens, dressing, pref);
+      buildNutrientProfile(greens, extras, microgreens, dressing);
 
       lastMixText =
         document.getElementById('mixName').textContent + ' — ' +
