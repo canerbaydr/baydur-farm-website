@@ -48,7 +48,7 @@ footer{background:#0c241c;color:#b9c9be;padding:24px 0;font-size:12px}.foot{disp
   <article class="card" data-search="kişniş"><div class="photo"><img src="/assets/kisnis.jpg" alt="Taze kişniş" width="1536" height="1024" loading="lazy" decoding="async"></div><div class="content"><h3>Kişniş</h3><p>Farklı mutfaklar ve özel reçeteler için.</p><span class="badge">Aromatik</span><button class="request" type="button" data-product="Kişniş" data-cat="yesillikler">Talep Oluştur →</button></div></article></div>
 <p class="image-note">Ürün görselleri temsilidir.</p>
 <div class="bottom"><div><h3>Toplu alım veya özel talepleriniz için bize ulaşın.</h3><p>Restoranlar ve işletmeler için ürün, miktar ve teslimat planını birlikte belirleyelim.</p></div><a href="/#iletisim">Teklif Talebi Oluştur →</a></div></div></section>
-</main><footer><div class="wrap foot"><strong>BAYDUR FARM</strong><span>© 2026 Baydur Farm · İzmir Menemen</span></div></footer><script>
+</main><footer><div class="wrap foot"><strong>BAYDUR FARM</strong><span>© 2026 Baydur Farm · İzmir</span></div></footer><script>
 document.querySelectorAll('.request').forEach(b=>b.addEventListener('click',()=>{location.href='/?request='+encodeURIComponent(b.dataset.product)+'&category='+encodeURIComponent(b.dataset.cat)+'#iletisim'}));
 const s=document.getElementById('search');s.addEventListener('input',()=>{const q=s.value.toLocaleLowerCase('tr-TR').trim();document.querySelectorAll('.card').forEach(c=>c.style.display=!q||c.dataset.search.includes(q)?'flex':'none')});
 </script>
