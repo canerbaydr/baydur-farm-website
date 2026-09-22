@@ -168,9 +168,6 @@
     .mix-calorie-head strong { color:#6f5a27; font-size:12px; letter-spacing:.04em; text-transform:uppercase; }
     .mix-calorie-total { font-family:Georgia,serif; color:var(--forest); font-size:24px; white-space:nowrap; }
     .mix-calorie-list { display:grid; gap:7px; }
-    .mix-calorie-grand-total { display:flex; align-items:center; justify-content:space-between; gap:16px; margin-top:12px; padding:13px 14px; border-radius:11px; background:var(--forest); color:#fff; font-weight:800; }
-    .mix-calorie-grand-total span:first-child { font-size:11px; letter-spacing:.1em; text-transform:uppercase; }
-    .mix-calorie-grand-total strong { font-family:Georgia,serif; font-size:22px; font-weight:400; color:#fff; }
     .mix-calorie-row { display:flex; justify-content:space-between; gap:16px; padding:7px 0; border-top:1px dashed #e4dcc7; font-size:12px; }
     .mix-calorie-row:first-child { border-top:0; }
     .mix-calorie-row span { color:#5c665e; }
@@ -462,9 +459,8 @@
               <div class="mix-result-card"><strong>Lezzet profili</strong><span id="mixProfile"></span></div>
               <div class="mix-result-card mix-reason-card"><strong>Neden bu karışım?</strong><span id="mixReason"></span></div>
               <div class="mix-calorie-card">
-                <div class="mix-calorie-head"><strong>Tahmini kalori hesabı</strong></div>
+                <div class="mix-calorie-head"><strong>Tahmini kalori hesabı</strong><span class="mix-calorie-total" id="mixCaloriesTotal">~0 kcal / porsiyon</span></div>
                 <div class="mix-calorie-list" id="mixCaloriesList"></div>
-                <div class="mix-calorie-grand-total"><span>Toplam</span><strong id="mixCaloriesTotal">~0 kcal / porsiyon</strong></div>
                 <p class="mix-calorie-note">Değerler tek porsiyon için yaklaşık gramaj ve standart besin referanslarıyla hesaplanır. Gerçek kalori; ürün çeşidi, porsiyon, sos miktarı ve hazırlama yöntemine göre değişebilir.</p>
               </div>
               <div class="mix-nutrition" id="mixNutrition">
