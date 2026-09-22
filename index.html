@@ -163,6 +163,16 @@
     .mix-result-card span { font-size:14px; color:#53695c; }
     .mix-reason-card { grid-column:1 / -1; background:#f8fbf3; }
     .mix-health-note { font-size:12px; color:#65766a; border-top:1px solid #d4dfcf; padding-top:13px; margin-top:15px; }
+    .mix-calorie-card { grid-column:1 / -1; padding:18px; border-radius:14px; background:#fffdf7; border:1px solid #e3d7b9; }
+    .mix-calorie-head { display:flex; align-items:end; justify-content:space-between; gap:14px; margin-bottom:12px; }
+    .mix-calorie-head strong { color:#6f5a27; font-size:12px; letter-spacing:.04em; text-transform:uppercase; }
+    .mix-calorie-total { font-family:Georgia,serif; color:var(--forest); font-size:24px; white-space:nowrap; }
+    .mix-calorie-list { display:grid; gap:7px; }
+    .mix-calorie-row { display:flex; justify-content:space-between; gap:16px; padding:7px 0; border-top:1px dashed #e4dcc7; font-size:12px; }
+    .mix-calorie-row:first-child { border-top:0; }
+    .mix-calorie-row span { color:#5c665e; }
+    .mix-calorie-row b { color:#243e31; white-space:nowrap; }
+    .mix-calorie-note { margin:11px 0 0; color:#7a7667; font-size:10px; line-height:1.45; }
     .mix-tune { margin-top:17px; padding-top:15px; border-top:1px solid #d4dfcf; }
     .mix-tune-label { display:block; margin-bottom:9px; color:#65766a; font-size:10px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; }
     .mix-tune-buttons { display:flex; flex-wrap:wrap; gap:7px; }
@@ -436,6 +446,11 @@
               <div class="mix-result-card"><strong>Sos profili</strong><span id="mixDressing"></span></div>
               <div class="mix-result-card"><strong>Lezzet profili</strong><span id="mixProfile"></span></div>
               <div class="mix-result-card mix-reason-card"><strong>Neden bu karışım?</strong><span id="mixReason"></span></div>
+              <div class="mix-calorie-card">
+                <div class="mix-calorie-head"><strong>Tahmini kalori hesabı</strong><span class="mix-calorie-total" id="mixCaloriesTotal">~0 kcal</span></div>
+                <div class="mix-calorie-list" id="mixCaloriesList"></div>
+                <p class="mix-calorie-note">Değerler tek porsiyon için yaklaşık gramaj ve standart besin referanslarıyla hesaplanır. Gerçek kalori; ürün çeşidi, porsiyon, sos miktarı ve hazırlama yöntemine göre değişebilir.</p>
+              </div>
             </div>
             <p class="mix-health-note" id="mixHealthNote">Bu araç genel yemek önerisi üretir; tıbbi tanı veya tedavi önerisi vermez. Sağlık durumunuza özel beslenme için sağlık profesyoneline danışın.</p>
             <div class="mix-tune">
@@ -591,6 +606,83 @@
         hash = Math.imul(hash, 16777619);
       }
       return items[(hash >>> 0) % items.length];
+    }
+
+    const calorieReference = [
+      {keys:['butterhead'], kcal100:13, grams:30},
+      {keys:['romaine'], kcal100:17, grams:30},
+      {keys:['lollo bionda','oak leaf','kıvırcık marul','kivircik marul','taze yapraklı yeşillikler'], kcal100:15, grams:30},
+      {keys:['az miktarda roka'], kcal100:25, grams:8},
+      {keys:['roka'], kcal100:25, grams:15},
+      {keys:['maydanoz'], kcal100:36, grams:6},
+      {keys:['dereotu'], kcal100:43, grams:5},
+      {keys:['tere'], kcal100:32, grams:15},
+      {keys:['nane'], kcal100:44, grams:5},
+      {keys:['fesleğen','reyhan'], kcal100:23, grams:6},
+      {keys:['ıspanak','ispanak'], kcal100:23, grams:20},
+      {keys:['mizuna'], kcal100:27, grams:20},
+      {keys:['kişniş','kisnis'], kcal100:23, grams:6},
+      {keys:['salatalık','salatalik'], kcal100:15, grams:50},
+      {keys:['ince havuç','ince havuc'], kcal100:41, grams:30},
+      {keys:['tatlı mısır','tatli misir'], kcal100:86, grams:30},
+      {keys:['nar taneleri'], kcal100:83, grams:30},
+      {keys:['ceviz'], kcal100:654, grams:15},
+      {keys:['haşlanmış nohut','haslanmis nohut'], kcal100:164, grams:60},
+      {keys:['az avokado'], kcal100:160, grams:25},
+      {keys:['avokado'], kcal100:160, grams:50},
+      {keys:['mevsime uygun çıtır sebzeler','mevsime uygun citir sebzeler'], kcal100:25, grams:50},
+      {keys:['microyeşilliği','microyesilligi','microyeşillik','microyesillik'], kcal100:35, grams:10}
+    ];
+
+    function calorieInfo(label) {
+      const normalized = label.toLocaleLowerCase('tr-TR');
+      const found = calorieReference.find(item => item.keys.some(key => normalized.includes(key)));
+      if (found) return {label, kcal100:found.kcal100, grams:found.grams};
+      if (normalized.includes('marul')) return {label, kcal100:15, grams:30};
+      return {label, kcal100:25, grams:20};
+    }
+
+    function dressingCalorieRows(dressing) {
+      const text = dressing.toLocaleLowerCase('tr-TR');
+      const rows = [];
+      const add = (label, grams, kcal100) => rows.push({label, grams, kcal100});
+      if (text.includes('zeytinyağı')) add('Zeytinyağı', 10, 884);
+      if (text.includes('portakal')) add('Portakal', 20, 47);
+      if (text.includes('bal')) add('Bal', 5, 304);
+      if (text.includes('limon')) add('Limon', 15, 29);
+      if (text.includes('nar ekşisi')) add('Nar ekşisi', 5, 250);
+      if (text.includes('aromatik otlar')) add('Aromatik otlar', 3, 30);
+      if (text.includes('taze nane')) add('Taze nane', 3, 44);
+      if (text.includes('acı dokunuş')) add('Acı biber dokunuşu', 2, 40);
+      return rows;
+    }
+
+    function buildCalorieEstimate(greens, extras, microgreens, dressing, pref) {
+      const rows = [];
+      const addIngredient = label => {
+        const info = calorieInfo(label);
+        let grams = info.grams;
+        const normalized = label.toLocaleLowerCase('tr-TR');
+        if (pref?.limited?.some(item => normalized.includes(item))) grams = Math.max(3, Math.round(grams * 0.55));
+        const kcal = Math.max(0, Math.round(info.kcal100 * grams / 100));
+        rows.push({label, grams, kcal});
+      };
+
+      greens.forEach(addIngredient);
+      extras.forEach(addIngredient);
+      microgreens.forEach(addIngredient);
+      dressingCalorieRows(dressing).forEach(item => {
+        rows.push({label:item.label, grams:item.grams, kcal:Math.max(0, Math.round(item.kcal100 * item.grams / 100))});
+      });
+
+      const total = rows.reduce((sum, item) => sum + item.kcal, 0);
+      const list = document.getElementById('mixCaloriesList');
+      const totalNode = document.getElementById('mixCaloriesTotal');
+      if (list) list.innerHTML = rows.map(item =>
+        '<div class="mix-calorie-row"><span>' + item.label + ' · ' + item.grams + ' g</span><b>~' + item.kcal + ' kcal</b></div>'
+      ).join('');
+      if (totalNode) totalNode.textContent = '~' + total + ' kcal / porsiyon';
+      return total;
     }
 
     let mixVariation = 0;
@@ -819,6 +911,7 @@
       document.getElementById('mixProfile').textContent = profileParts.join(' · ');
       document.getElementById('mixReason').textContent = reasonParts.join('; ') + '.';
       document.getElementById('mixHealthNote').style.display = healthContext ? 'block' : 'none';
+      const estimatedCalories = buildCalorieEstimate(greens, extras, microgreens, dressing, pref);
 
       lastMixText =
         document.getElementById('mixName').textContent + ' — ' +
@@ -827,6 +920,7 @@
         'Microyeşillik: ' + document.getElementById('mixMicrogreens').textContent + '; ' +
         'Sos: ' + document.getElementById('mixDressing').textContent + '; ' +
         'Profil: ' + document.getElementById('mixProfile').textContent + '; ' +
+        'Tahmini kalori: ~' + estimatedCalories + ' kcal/porsiyon; ' +
         'Neden: ' + document.getElementById('mixReason').textContent;
 
       mixResult.classList.add('show');
