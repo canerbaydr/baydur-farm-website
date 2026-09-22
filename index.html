@@ -141,18 +141,33 @@
     .mix-panel label { display:block; font-size:12px; font-weight:800; letter-spacing:.05em; text-transform:uppercase; margin-bottom:9px; }
     .mix-panel textarea { width:100%; min-height:128px; resize:vertical; border:1px solid #cfdbcf; border-radius:13px; padding:15px; color:var(--ink); background:#fff; }
     .mix-panel textarea:focus { outline:none; border-color:#54955d; box-shadow:0 0 0 3px #deebd4; }
-    .mix-presets { display:flex; flex-wrap:wrap; gap:8px; margin:13px 0 19px; }
-    .mix-chip { border:1px solid #c5d4c2; background:#f8faf4; color:#355842; border-radius:999px; padding:8px 11px; font-size:11px; font-weight:700; }
-    .mix-chip:hover { background:#e8f0d8; }
+    .mix-guide { margin:15px 0 20px; padding:17px; border:1px solid #d7e1d1; border-radius:15px; background:#fafcf6; }
+    .mix-guide-row + .mix-guide-row { margin-top:14px; }
+    .mix-guide-label { display:block; margin-bottom:8px; color:#65766a; font-size:10px; font-weight:800; letter-spacing:.11em; text-transform:uppercase; }
+    .mix-presets { display:flex; flex-wrap:wrap; gap:8px; margin:0; }
+    .mix-chip { border:1px solid #c5d4c2; background:#fff; color:#355842; border-radius:999px; padding:8px 11px; font-size:11px; font-weight:700; transition:background .18s,color .18s,border-color .18s,transform .18s; }
+    .mix-chip:hover { background:#e8f0d8; transform:translateY(-1px); }
+    .mix-chip.is-active { background:var(--forest); border-color:var(--forest); color:#fff; }
+    .mix-understood { margin:0 0 18px; padding:14px 15px; border-radius:13px; background:#f4f0e4; border:1px solid #e1d4b1; }
+    .mix-understood[hidden] { display:none; }
+    .mix-understood strong { display:block; margin-bottom:9px; color:#6f5a27; font-size:10px; letter-spacing:.1em; text-transform:uppercase; }
+    .mix-signal-list { display:flex; flex-wrap:wrap; gap:7px; }
+    .mix-signal { display:inline-flex; align-items:center; padding:6px 9px; border-radius:999px; background:#fffdf6; border:1px solid #e3d7b9; color:#4e593e; font-size:11px; font-weight:700; }
     .mix-result { display:none; margin-top:24px; padding:24px; border-radius:17px; background:#eef4e5; border:1px solid #d1dfc8; }
     .mix-result.show { display:block; }
     .mix-result h3 { font-family:Georgia,serif; font-size:29px; font-weight:400; margin-bottom:11px; }
     .mix-result-grid { display:grid; grid-template-columns:1fr 1fr; gap:15px; margin:18px 0; }
     .mix-result-card { background:#fff; border:1px solid #d7e1d1; border-radius:12px; padding:15px; }
+    .mix-result-card.mix-baydur-card { background:#f8fbf2; border-color:#b9cf9e; box-shadow:inset 0 0 0 1px rgba(185,207,158,.18); }
     .mix-result-card strong { display:block; margin-bottom:5px; font-size:12px; text-transform:uppercase; letter-spacing:.04em; color:#396148; }
     .mix-result-card span { font-size:14px; color:#53695c; }
     .mix-reason-card { grid-column:1 / -1; background:#f8fbf3; }
     .mix-health-note { font-size:12px; color:#65766a; border-top:1px solid #d4dfcf; padding-top:13px; margin-top:15px; }
+    .mix-tune { margin-top:17px; padding-top:15px; border-top:1px solid #d4dfcf; }
+    .mix-tune-label { display:block; margin-bottom:9px; color:#65766a; font-size:10px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; }
+    .mix-tune-buttons { display:flex; flex-wrap:wrap; gap:7px; }
+    .mix-tune-button { border:1px solid #bdccb9; background:#fff; color:#355842; border-radius:999px; padding:8px 11px; font-size:11px; font-weight:800; cursor:pointer; }
+    .mix-tune-button:hover { background:#e7efdc; }
     .mix-result-actions { display:flex; gap:9px; flex-wrap:wrap; margin-top:17px; }
     @media(max-width:900px) { .mix-shell { grid-template-columns:1fr; } }
     @media(max-width:700px) { .mix-copy,.mix-panel { padding:26px; } .mix-result-grid { grid-template-columns:1fr; } }
@@ -376,30 +391,61 @@
     </div></section>
     <section class="mix-lab section-space" id="salata-tasarla" aria-labelledby="mix-title"><div class="container">
       <div class="mix-shell">
-        <div class="mix-copy"><div><div class="eyebrow">Akıllı salata önerisi</div><h2 id="mix-title">Nasıl bir salata<br>istediğini anlat.</h2><p>Damaktan beklentini, sevmediğin malzemeleri ve istediğin tarzı kendi cümlelerinle yaz. Sistem sana dengeli bir karışım fikri oluştursun.</p></div><div class="mix-badges"><span>Az ekşi</span><span>Hafif</span><span>Tok tutan</span><span>Ferah</span><span>Malzeme eleme</span></div></div>
+        <div class="mix-copy"><div><div class="eyebrow">Baydur akıllı karışım</div><h2 id="mix-title">Damak profilini anlat,<br>karışımını oluşturalım.</h2><p>İstediğin lezzeti kendi cümlelerinle yaz veya hızlı profilden seçim yap. Sistem Baydur yeşilliklerini, microyeşillikleri, tamamlayıcıları ve sos karakterini birlikte dengeler.</p></div><div class="mix-badges"><span>Serbest metin</span><span>Hızlı profil</span><span>Malzeme eleme</span><span>Şef ayarı</span><span>Teklife aktar</span></div></div>
         <div class="mix-panel">
           <label for="mixPrompt">Nasıl bir salata istiyorsunuz?</label>
           <textarea id="mixPrompt" placeholder="Örn. Az ekşi olsun, hafif olsun, roka çok olmasın. Sağlıklı ve ferah bir şey istiyorum."></textarea>
-          <div class="mix-presets" aria-label="Hızlı tercihler">
-            <button class="mix-chip" type="button" data-mix-preset="az ekşi">Az ekşi</button>
-            <button class="mix-chip" type="button" data-mix-preset="hafif">Hafif</button>
-            <button class="mix-chip" type="button" data-mix-preset="tok tutsun">Tok tutsun</button>
-            <button class="mix-chip" type="button" data-mix-preset="ferah">Ferah</button>
-            <button class="mix-chip" type="button" data-mix-preset="acısız">Acısız</button>
+          <div class="mix-guide" aria-label="Hızlı damak profili">
+            <div class="mix-guide-row">
+              <span class="mix-guide-label">Lezzet</span>
+              <div class="mix-presets">
+                <button class="mix-chip" type="button" data-mix-preset="ferah" aria-pressed="false">Ferah</button>
+                <button class="mix-chip" type="button" data-mix-preset="tatlımsı" aria-pressed="false">Tatlımsı</button>
+                <button class="mix-chip" type="button" data-mix-preset="az ekşi" aria-pressed="false">Az ekşi</button>
+                <button class="mix-chip" type="button" data-mix-preset="acısız" aria-pressed="false">Acısız</button>
+                <button class="mix-chip" type="button" data-mix-preset="aromatik" aria-pressed="false">Aromatik</button>
+              </div>
+            </div>
+            <div class="mix-guide-row">
+              <span class="mix-guide-label">Doku & doyum</span>
+              <div class="mix-presets">
+                <button class="mix-chip" type="button" data-mix-preset="çıtır" aria-pressed="false">Çıtır</button>
+                <button class="mix-chip" type="button" data-mix-preset="hafif" aria-pressed="false">Hafif</button>
+                <button class="mix-chip" type="button" data-mix-preset="doyurucu" aria-pressed="false">Doyurucu</button>
+                <button class="mix-chip" type="button" data-mix-preset="proteinli" aria-pressed="false">Protein odaklı</button>
+              </div>
+            </div>
+            <div class="mix-guide-row">
+              <span class="mix-guide-label">Microyeşillik</span>
+              <div class="mix-presets">
+                <button class="mix-chip" type="button" data-mix-preset="microyeşillik olsun" aria-pressed="false">Olsun</button>
+                <button class="mix-chip" type="button" data-mix-preset="microyeşillik olmasın" aria-pressed="false">Olmasın</button>
+              </div>
+            </div>
           </div>
           <button class="button button-primary" type="button" id="mixGenerate">Karışımımı oluştur ✦</button>
           <div class="mix-result" id="mixResult" aria-live="polite">
+            <div class="mix-understood" id="mixUnderstood" hidden><strong>Anladığım profil</strong><div class="mix-signal-list" id="mixSignals"></div></div>
             <h3 id="mixName">Baydur dengeli karışım</h3>
             <p id="mixSummary"></p>
             <div class="mix-result-grid">
-              <div class="mix-result-card"><strong>Yeşillik tabanı</strong><span id="mixGreens"></span></div>
+              <div class="mix-result-card mix-baydur-card"><strong>Baydur yeşillik tabanı</strong><span id="mixGreens"></span></div>
               <div class="mix-result-card"><strong>Tamamlayıcılar</strong><span id="mixExtras"></span></div>
-              <div class="mix-result-card"><strong>Microyeşillik dokunuşu</strong><span id="mixMicrogreens"></span></div>
+              <div class="mix-result-card mix-baydur-card"><strong>Baydur microyeşillik dokunuşu</strong><span id="mixMicrogreens"></span></div>
               <div class="mix-result-card"><strong>Sos profili</strong><span id="mixDressing"></span></div>
               <div class="mix-result-card"><strong>Lezzet profili</strong><span id="mixProfile"></span></div>
               <div class="mix-result-card mix-reason-card"><strong>Neden bu karışım?</strong><span id="mixReason"></span></div>
             </div>
             <p class="mix-health-note" id="mixHealthNote">Bu araç genel yemek önerisi üretir; tıbbi tanı veya tedavi önerisi vermez. Sağlık durumunuza özel beslenme için sağlık profesyoneline danışın.</p>
+            <div class="mix-tune">
+              <span class="mix-tune-label">Sonucu anında ayarla</span>
+              <div class="mix-tune-buttons">
+                <button class="mix-tune-button" type="button" data-mix-adjust="daha ferah">Daha ferah</button>
+                <button class="mix-tune-button" type="button" data-mix-adjust="daha çıtır">Daha çıtır</button>
+                <button class="mix-tune-button" type="button" data-mix-adjust="daha doyurucu">Daha doyurucu</button>
+                <button class="mix-tune-button" type="button" data-mix-adjust="daha hafif">Daha hafif</button>
+              </div>
+            </div>
             <div class="mix-result-actions"><button class="button button-primary" type="button" id="mixToQuote">Bu karışım için teklif iste ↗</button><button class="button button-secondary" type="button" id="mixAgain">Başka öneri oluştur</button></div>
           </div>
           <p class="form-note">Öneriler örnek mutfak kombinasyonlarıdır. Baydur Farm ürün/stok durumu teklif aşamasında teyit edilir.</p>
@@ -450,12 +496,27 @@
     const mixGenerate = document.getElementById('mixGenerate');
     let lastMixText = '';
 
+    const activeMixPresets = new Set();
     document.querySelectorAll('[data-mix-preset]').forEach(button => {
       button.addEventListener('click', () => {
         const value = button.dataset.mixPreset;
-        const current = mixPrompt.value.trim();
-        mixPrompt.value = current ? current.replace(/[.,;\s]*$/, '') + ', ' + value : value;
-        mixPrompt.focus();
+        const opposite = value === 'microyeşillik olsun' ? 'microyeşillik olmasın'
+          : value === 'microyeşillik olmasın' ? 'microyeşillik olsun' : null;
+        if (opposite && activeMixPresets.has(opposite)) {
+          activeMixPresets.delete(opposite);
+          const oppositeButton = document.querySelector('[data-mix-preset="' + opposite + '"]');
+          oppositeButton?.classList.remove('is-active');
+          oppositeButton?.setAttribute('aria-pressed','false');
+        }
+        if (activeMixPresets.has(value)) {
+          activeMixPresets.delete(value);
+          button.classList.remove('is-active');
+          button.setAttribute('aria-pressed','false');
+        } else {
+          activeMixPresets.add(value);
+          button.classList.add('is-active');
+          button.setAttribute('aria-pressed','true');
+        }
       });
     });
 
@@ -534,9 +595,11 @@
     let mixVariation = 0;
 
     function generateMix() {
-      const raw = mixPrompt.value.trim();
+      const typed = mixPrompt.value.trim();
+      const selected = [...activeMixPresets];
+      const raw = [typed, ...selected].filter(Boolean).join(', ');
       if (!raw) {
-        mixPrompt.setCustomValidity('Nasıl bir salata istediğinizi yazın.');
+        mixPrompt.setCustomValidity('Bir tercih yazın veya hızlı profilden en az bir seçim yapın.');
         mixPrompt.reportValidity();
         mixPrompt.setCustomValidity('');
         return;
@@ -545,14 +608,16 @@
       const text = raw.toLocaleLowerCase('tr-TR');
       const pref = ingredientPreferences(text);
       const healthContext = hasAny(text, ['karaciğer','karaciger','diyabet','şeker','seker','tansiyon','böbrek','bobrek','kolesterol','hastalık','hastalik','sağlık','saglik','alerji','alerjim']);
+      const isVegan = hasAny(text, ['vegan','hayvansal olmasın','hayvansal olmasin']);
+      if (isVegan && !pref.excluded.includes('bal')) pref.excluded.push('bal');
 
       const taste = {
-        sweet: scoreTaste(text, ['tatlı','tatli','şekerli','sekerli','meyvemsi']),
+        sweet: scoreTaste(text, ['tatlı','tatli','tatlımsı','tatlimsi','şekerli','sekerli','meyvemsi']),
         sour: scoreTaste(text, ['ekşi','eksi','limonlu','asidik']),
         spicy: scoreTaste(text, ['acı','aci','baharatlı','baharatli']),
         fresh: scoreTaste(text, ['ferah','taze','fresh','serin']),
         light: scoreTaste(text, ['hafif','light','az kalorili']),
-        filling: scoreTaste(text, ['tok','doyurucu','proteinli','doysun']),
+        filling: scoreTaste(text, ['tok','doyurucu','proteinli','protein odaklı','doysun']),
         crunchy: scoreTaste(text, ['çıtır','citir','gevrek','kıtır','kitir']),
         herbal: scoreTaste(text, ['aromatik','otlu','fesleğenli','naneli'])
       };
@@ -676,12 +741,14 @@
 
       let microgreens = [];
       const noMicro = hasAny(text, ['microyeşillik olmasın','microyesillik olmasin','mikroyeşillik olmasın','mikro yesillik olmasin']);
+      const wantsMicro = hasAny(text, ['microyeşillik olsun','microyesillik olsun','mikroyeşillik olsun','mikro yesillik olsun']);
       if (!noMicro) {
         if (taste.sweet >= 2) microgreens = ['Bezelye microyeşilliği'];
         else if (taste.spicy >= 2) microgreens = ['Turp microyeşilliği','Hardal microyeşilliği'];
         else if (taste.crunchy >= 2) microgreens = ['Ayçiçeği microyeşilliği'];
         else if (taste.fresh >= 2 || taste.light >= 2) microgreens = ['Brokoli microyeşilliği'];
         else if (hasAny(text,['renkli','mor','gösterişli','sunum'])) microgreens = ['Mor lahana microyeşilliği'];
+        else if (wantsMicro) microgreens = variant === 0 ? ['Brokoli microyeşilliği'] : variant === 1 ? ['Bezelye microyeşilliği'] : ['Mor lahana microyeşilliği'];
         else microgreens = variant === 0 ? ['Brokoli microyeşilliği'] : variant === 1 ? ['Bezelye microyeşilliği'] : ['Roka microyeşilliği'];
       }
 
@@ -729,6 +796,26 @@
       if (pref.wanted.length) reasonParts.push('özellikle istediğiniz malzemeleri mümkün olduğunca öne çıkardım');
       if (!reasonParts.length) reasonParts.push('ana yeşillik, doku ve sosu birbirini bastırmayacak şekilde dengeledim');
 
+      const signals = [];
+      if (taste.fresh >= 2) signals.push('Ferah');
+      if (taste.sweet >= 2) signals.push('Tatlımsı');
+      if (taste.sour <= -2) signals.push('Düşük ekşilik');
+      else if (taste.sour >= 3) signals.push('Canlı ekşilik');
+      if (taste.spicy <= -2) signals.push('Acısız');
+      else if (taste.spicy >= 2) signals.push('Acı');
+      if (taste.crunchy >= 2) signals.push('Çıtır');
+      if (taste.light >= 2) signals.push('Hafif');
+      if (taste.filling >= 2) signals.push('Doyurucu');
+      if (taste.herbal >= 2) signals.push('Aromatik');
+      if (isVegan) signals.push('Vegan');
+      if (noMicro) signals.push('Microyeşillik yok');
+      else if (wantsMicro) signals.push('Microyeşillik tercihli');
+      pref.excluded.filter(x => x !== 'bal' || !isVegan).forEach(x => signals.push(x + ' yok'));
+      pref.limited.forEach(x => signals.push(x + ' az'));
+      const signalBox = document.getElementById('mixSignals');
+      signalBox.innerHTML = (signals.length ? signals : ['Dengeli profil']).map(x => '<span class="mix-signal">' + x + '</span>').join('');
+      document.getElementById('mixUnderstood').hidden = false;
+
       document.getElementById('mixName').textContent = pick(namePools, text, 7 + mixVariation * 13);
       document.getElementById('mixSummary').textContent = summaryParts.join(' ');
       document.getElementById('mixGreens').textContent = greens.join(' + ');
@@ -760,6 +847,18 @@
     document.getElementById('mixAgain').addEventListener('click', () => {
       mixVariation++;
       generateMix();
+    });
+
+    document.querySelectorAll('[data-mix-adjust]').forEach(button => {
+      button.addEventListener('click', () => {
+        const adjustment = button.dataset.mixAdjust;
+        const current = mixPrompt.value.trim();
+        if (!current.toLocaleLowerCase('tr-TR').includes(adjustment)) {
+          mixPrompt.value = current ? current.replace(/[.,;\s]*$/, '') + ', ' + adjustment : adjustment;
+        }
+        mixVariation++;
+        generateMix();
+      });
     });
 
     document.getElementById('mixToQuote').addEventListener('click', () => {
