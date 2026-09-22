@@ -424,6 +424,7 @@
             </div>
           </div>
           <button class="button button-primary" type="button" id="mixGenerate">Karışımımı oluştur ✦</button>
+          <p class="form-note" id="mixStatus" role="status" aria-live="polite">Bir tercih yazabilir, hızlı profilden seçim yapabilir veya doğrudan dengeli bir karışım oluşturabilirsiniz.</p>
           <div class="mix-result" id="mixResult" aria-live="polite">
             <div class="mix-understood" id="mixUnderstood" hidden><strong>Anladığım profil</strong><div class="mix-signal-list" id="mixSignals"></div></div>
             <h3 id="mixName">Baydur dengeli karışım</h3>
@@ -597,14 +598,7 @@
     function generateMix() {
       const typed = mixPrompt.value.trim();
       const selected = [...activeMixPresets];
-      const raw = [typed, ...selected].filter(Boolean).join(', ');
-      if (!raw) {
-        mixPrompt.setCustomValidity('Bir tercih yazın veya hızlı profilden en az bir seçim yapın.');
-        mixPrompt.reportValidity();
-        mixPrompt.setCustomValidity('');
-        return;
-      }
-
+      const raw = [typed, ...selected].filter(Boolean).join(', ') || 'dengeli, ferah, hafif çıtır';
       const text = raw.toLocaleLowerCase('tr-TR');
       const pref = ingredientPreferences(text);
       const healthContext = hasAny(text, ['karaciğer','karaciger','diyabet','şeker','seker','tansiyon','böbrek','bobrek','kolesterol','hastalık','hastalik','sağlık','saglik','alerji','alerjim']);
@@ -836,17 +830,30 @@
         'Neden: ' + document.getElementById('mixReason').textContent;
 
       mixResult.classList.add('show');
+      const mixStatus = document.getElementById('mixStatus');
+      if (mixStatus) mixStatus.textContent = 'Karışım hazır. Aşağıdaki ayarlarla sonucu istediğiniz yönde değiştirebilirsiniz.';
       mixResult.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function safeGenerateMix() {
+      try {
+        generateMix();
+      } catch (error) {
+        console.error('Baydur mix generator error:', error);
+        const mixStatus = document.getElementById('mixStatus');
+        if (mixStatus) mixStatus.textContent = 'Karışım oluşturulurken bir hata oluştu. Lütfen tekrar deneyin.';
+        mixResult.classList.remove('show');
+      }
     }
 
     mixGenerate.addEventListener('click', () => {
       mixVariation = 0;
-      generateMix();
+      safeGenerateMix();
     });
 
     document.getElementById('mixAgain').addEventListener('click', () => {
       mixVariation++;
-      generateMix();
+      safeGenerateMix();
     });
 
     document.querySelectorAll('[data-mix-adjust]').forEach(button => {
@@ -857,7 +864,7 @@
           mixPrompt.value = current ? current.replace(/[.,;\s]*$/, '') + ', ' + adjustment : adjustment;
         }
         mixVariation++;
-        generateMix();
+        safeGenerateMix();
       });
     });
 
