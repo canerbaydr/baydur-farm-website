@@ -520,6 +520,17 @@
       return label.toLocaleLowerCase('tr-TR').includes(item);
     }
 
+    function pick(items, seedText = '', salt = 0) {
+      if (!Array.isArray(items) || items.length === 0) return '';
+      const seed = String(seedText) + '|' + String(salt);
+      let hash = 2166136261;
+      for (let i = 0; i < seed.length; i++) {
+        hash ^= seed.charCodeAt(i);
+        hash = Math.imul(hash, 16777619);
+      }
+      return items[(hash >>> 0) % items.length];
+    }
+
     let mixVariation = 0;
 
     function generateMix() {
