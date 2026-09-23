@@ -452,7 +452,7 @@
             <h3 id="mixName">Baydur Ausgewogener Mix</h3>
             <p id="mixSummary"></p>
             <div class="mix-result-grid">
-              <div class="mix-result-card mix-baydur-card"><strong>Baydur-Blattbasis</strong><span id="mixBlattgemüse"></span></div>
+              <div class="mix-result-card mix-baydur-card"><strong>Baydur-Blattbasis</strong><span id="mixGreens"></span></div>
               <div class="mix-result-card"><strong>Ergänzende Zutaten</strong><span id="mixExtras"></span></div>
               <div class="mix-result-card mix-baydur-card"><strong>Baydur-Microgreen-Finish</strong><span id="mixMicrogreens"></span></div>
               <div class="mix-result-card"><strong>Dressingprofil</strong><span id="mixDressing"></span></div>
@@ -463,11 +463,11 @@
                 <div class="mix-calorie-list" id="mixCaloriesList"></div>
                 <p class="mix-calorie-note">Die Werte sind Schätzungen pro Portion auf Basis ungefährer Zutatenmengen und üblicher Nährwertreferenzen. Die tatsächlichen Kalorien können je nach Sorte, Portionsgröße, Dressingmenge und Zubereitung variieren.</p>
               </div>
-              <div class="mix-nutrition" id="mixNährwerte">
+              <div class="mix-nutrition" id="mixNutrition">
                 <div class="mix-nutrition-head"><div><h4>Nährstoffprofil</h4><p>Wichtige Nährstoffe auf Grundlage der natürlichen Zusammensetzung der ausgewählten Zutaten.</p></div></div>
                 <div class="mix-nutrient-groups">
-                  <div class="mix-nutrient-group"><strong>Vitamine</strong><div class="mix-nutrient-tags" id="mixVitamine"></div></div>
-                  <div class="mix-nutrient-group"><strong>Mineralstoffe</strong><div class="mix-nutrient-tags" id="mixMineralstoffe"></div></div>
+                  <div class="mix-nutrient-group"><strong>Vitamine</strong><div class="mix-nutrient-tags" id="mixVitamins"></div></div>
+                  <div class="mix-nutrient-group"><strong>Mineralstoffe</strong><div class="mix-nutrient-tags" id="mixMinerals"></div></div>
                   <div class="mix-nutrient-group"><strong>Antioxidantien & Pflanzenstoffe</strong><div class="mix-nutrient-tags" id="mixAntioxidants"></div></div>
                   <div class="mix-nutrient-group"><strong>Weitere wichtige Nährstoffe</strong><div class="mix-nutrient-tags" id="mixOtherNutrients"></div></div>
                 </div>
@@ -575,35 +575,37 @@
     function addUnique(arr, value){ if(!arr.includes(value)) arr.push(value); }
 
     const calorieReference = [
-      {keys:['butterhead'],kcal100:13,grams:30},{keys:['romaine'],kcal100:17,grams:30},
-      {keys:['lollo bionda','oak leaf','curly lettuce','mixed leafy greens'],kcal100:15,grams:30},
-      {keys:['arugula'],kcal100:25,grams:15},{keys:['parsley'],kcal100:36,grams:6},
-      {keys:['dill'],kcal100:43,grams:5},{keys:['cress'],kcal100:32,grams:15},
-      {keys:['mint'],kcal100:44,grams:5},{keys:['basil'],kcal100:23,grams:6},
-      {keys:['baby spinach'],kcal100:23,grams:20},{keys:['mizuna'],kcal100:27,grams:20},
-      {keys:['cilantro'],kcal100:23,grams:6},{keys:['cucumber'],kcal100:15,grams:50},
-      {keys:['carrot'],kcal100:41,grams:30},{keys:['sweet corn'],kcal100:86,grams:30},
-      {keys:['pomegranate'],kcal100:83,grams:30},{keys:['walnut'],kcal100:654,grams:15},
-      {keys:['chickpea'],kcal100:164,grams:60},{keys:['avocado'],kcal100:160,grams:50},
-      {keys:['microgreen'],kcal100:35,grams:10}
+      {keys:["butterhead"],kcal100:13,grams:30},
+      {keys:["romana"],kcal100:17,grams:30},
+      {keys:["lollo bionda","oak leaf","kraussalat"],kcal100:15,grams:30},
+      {keys:["rucola"],kcal100:25,grams:15},
+      {keys:["minze"],kcal100:44,grams:5},
+      {keys:["basilikum"],kcal100:23,grams:6},
+      {keys:["gurke"],kcal100:15,grams:50},
+      {keys:["karotten"],kcal100:41,grams:30},
+      {keys:["zuckermais"],kcal100:86,grams:30},
+      {keys:["walnüsse"],kcal100:654,grams:15},
+      {keys:["kichererbsen"],kcal100:164,grams:60},
+      {keys:["avocado"],kcal100:160,grams:50},
+      {keys:["microgreens"],kcal100:35,grams:10}
     ];
     function calorieInfo(label){
-      const n=label.toLowerCase();
+      const n=label.toLocaleLowerCase(document.documentElement.lang);
       const found=calorieReference.find(item=>item.keys.some(k=>n.includes(k)));
       if(found) return {...found,label};
-      if(n.includes('lettuce')) return {label,kcal100:15,grams:30};
+      if(n.includes('lollo')||n.includes('oak leaf')||n.includes('lettuce')||n.includes('salat')||n.includes('laitue')||n.includes('lechuga')) return {label,kcal100:15,grams:30};
       return {label,kcal100:25,grams:20};
     }
     function dressingRows(dressing){
-      const t=dressing.toLowerCase(), rows=[];
+      const t=dressing.toLocaleLowerCase(document.documentElement.lang), rows=[];
       const add=(label,grams,kcal100)=>rows.push({label,grams,kcal100});
-      if(t.includes('olive oil')) add('Olivenöl',10,884);
-      if(t.includes('orange')) add('Orange',20,47);
-      if(t.includes('honey')) add('Honig',5,304);
-      if(t.includes('lemon')) add('Zitrone',15,29);
-      if(t.includes('pomegranate molasses')) add('Granatapfelmelasse',5,250);
-      if(t.includes('fresh herbs')) add('Frisch herbs',3,30);
-      if(t.includes('chili')) add('Chili',2,40);
+      if(t.includes("olivenöl")) add("Olivenöl",10,884);
+      if(t.includes("orange")) add("Orange",20,47);
+      if(t.includes("honig")) add("Honig",5,304);
+      if(t.includes("zitrone")) add("Zitrone",15,29);
+      if(t.includes("granatapfelmelasse")) add("Granatapfelmelasse",5,250);
+      if(t.includes("frische kräuter")) add("Frische Kräuter",3,30);
+      if(t.includes("chili")) add("Chili",2,40);
       return rows;
     }
     function buildCalories(greens, extras, micros, dressing){
@@ -615,44 +617,41 @@
       dressingRows(dressing).forEach(i=>rows.push({label:i.label,grams:i.grams,kcal:Math.round(i.kcal100*i.grams/100)}));
       const total=rows.reduce((s,x)=>s+x.kcal,0);
       document.getElementById('mixCaloriesList').innerHTML=rows.map(i=>'<div class="mix-calorie-row"><span>'+i.label+' · '+i.grams+' g</span><b>~'+i.kcal+' kcal</b></div>').join('');
-      document.getElementById('mixCaloriesTotal').textContent='~'+total+' kcal / serving';
+      document.getElementById('mixCaloriesTotal').textContent='~'+total+' kcal / Portion';
       return total;
     }
 
     const nutrientProfiles=[
-      {keys:['lettuce','romaine','butterhead','lollo','oak leaf','mixed leafy greens'],v:['Vitamin K','Folat (B9)','Provitamin A (Beta-Carotin)','Vitamin C'],m:['Kalium','Mangan'],a:['Lutein + Zeaxanthin','Beta-Carotin','Polyphenole'],o:['Ballaststoffe']},
-      {keys:['arugula'],v:['Vitamin K','Vitamin C','Folat (B9)','Provitamin A (Beta-Carotin)'],m:['Calcium','Kalium'],a:['Glucosinolate','Carotinoide','Polyphenole'],o:['Ballaststoffe']},
-      {keys:['mint','basil','parsley','dill','cilantro'],v:['Vitamin K','Vitamin C','Provitamin A (Beta-Carotin)','Folat (B9)'],m:['Kalium','Mangan','Eisen'],a:['Flavonoide','Polyphenole','Carotinoide'],o:['Ballaststoffe']},
-      {keys:['cucumber'],v:['Vitamin K'],m:['Kalium'],a:['Flavonoide'],o:['Wassergehalt','Ballaststoffe']},
-      {keys:['carrot'],v:['Provitamin A (Beta-Carotin)','Vitamin K'],m:['Kalium'],a:['Beta-Carotin','Carotinoide'],o:['Ballaststoffe']},
-      {keys:['sweet corn'],v:['Folat (B9)','Vitamin B1'],m:['Magnesium','Phosphor'],a:['Lutein + Zeaxanthin'],o:['Ballaststoffe','Komplexe Kohlenhydrate']},
-      {keys:['pomegranate'],v:['Vitamin C','Vitamin K','Folat (B9)'],m:['Kalium'],a:['Polyphenole','Anthocyane'],o:['Ballaststoffe']},
-      {keys:['walnut'],v:['Vitamin B6'],m:['Kupfer','Mangan','Magnesium'],a:['Polyphenole'],o:['ALA Omega-3','Ballaststoffe','Pflanzliches Protein']},
-      {keys:['chickpea'],v:['Folat (B9)','Vitamin B6'],m:['Eisen','Magnesium','Kalium','Mangan','Zink'],a:['Polyphenole'],o:['Ballaststoffe','Pflanzliches Protein','Komplexe Kohlenhydrate']},
-      {keys:['avocado'],v:['Vitamin K','Vitamin E','Folat (B9)','Vitamin B6'],m:['Kalium','Kupfer','Magnesium'],a:['Lutein + Zeaxanthin','Carotinoide'],o:['Einfach ungesättigte Fettsäuren','Ballaststoffe']},
-      {keys:['broccoli micro'],v:['Vitamin C','Vitamin K','Folat (B9)'],m:['Kalium'],a:['Glucosinolate','Sulforaphan-Vorstufen','Carotinoide'],o:['Ballaststoffe']},
-      {keys:['radish micro','mustard micro','purple cabbage micro','arugula micro'],v:['Vitamin C','Vitamin K','Folat (B9)'],m:['Kalium'],a:['Glucosinolate','Anthocyane','Polyphenole'],o:['Ballaststoffe']},
-      {keys:['pea micro'],v:['Vitamin C','Vitamin K','Provitamin A (Beta-Carotin)'],m:['Kalium','Mangan'],a:['Carotinoide','Polyphenole'],o:['Ballaststoffe','Pflanzliches Protein']},
-      {keys:['olive oil'],v:['Vitamin E','Vitamin K'],m:[],a:['Polyphenole'],o:['Einfach ungesättigte Fettsäuren']},
-      {keys:['lemon','orange'],v:['Vitamin C'],m:['Kalium'],a:['Flavanone','Polyphenole'],o:[]}
+      {keys:["butterhead","romana","lollo bionda","oak leaf","kraussalat"],v:["Vitamin K","Folat (B9)","Provitamin A (Beta-Carotin)","Vitamin C"],m:["Kalium","Mangan"],a:["Lutein + Zeaxanthin","Beta-Carotin","Polyphenole"],o:["Ballaststoffe"]},
+      {keys:["rucola"],v:["Vitamin K","Vitamin C","Folat (B9)"],m:["Calcium","Kalium"],a:["Glucosinolate","Carotinoide","Polyphenole"],o:["Ballaststoffe"]},
+      {keys:["minze","basilikum"],v:["Vitamin K","Vitamin C","Folat (B9)"],m:["Kalium","Mangan","Eisen"],a:["Flavonoide","Polyphenole","Carotinoide"],o:["Ballaststoffe"]},
+      {keys:["gurke"],v:["Vitamin K"],m:["Kalium"],a:["Flavonoide"],o:["Wassergehalt","Ballaststoffe"]},
+      {keys:["karotten"],v:["Provitamin A (Beta-Carotin)","Vitamin K"],m:["Kalium"],a:["Beta-Carotin","Carotinoide"],o:["Ballaststoffe"]},
+      {keys:["zuckermais"],v:["Folat (B9)","Vitamin B1"],m:["Magnesium","Phosphor"],a:["Lutein + Zeaxanthin"],o:["Ballaststoffe","Komplexe Kohlenhydrate"]},
+      {keys:["walnüsse"],v:["Vitamin B6"],m:["Kupfer","Mangan","Magnesium"],a:["Polyphenole"],o:["ALA Omega-3","Ballaststoffe","Pflanzliches Protein"]},
+      {keys:["kichererbsen"],v:["Folat (B9)","Vitamin B6"],m:["Eisen","Magnesium","Kalium","Mangan","Zink"],a:["Polyphenole"],o:["Ballaststoffe","Pflanzliches Protein","Komplexe Kohlenhydrate"]},
+      {keys:["avocado"],v:["Vitamin K","Vitamin E","Folat (B9)","Vitamin B6"],m:["Kalium","Kupfer","Magnesium"],a:["Lutein + Zeaxanthin","Carotinoide"],o:["Einfach ungesättigte Fettsäuren","Ballaststoffe"]},
+      {keys:["microgreens"],v:["Vitamin C","Vitamin K","Folat (B9)"],m:["Kalium"],a:["Glucosinolate","Carotinoide","Polyphenole"],o:["Ballaststoffe"]},
+      {keys:["olivenöl"],v:["Vitamin E","Vitamin K"],m:[],a:["Polyphenole"],o:["Einfach ungesättigte Fettsäuren"]},
+      {keys:["orange","zitrone"],v:["Vitamin C"],m:["Kalium"],a:["Flavanone","Polyphenole"],o:[]}
     ];
     function renderTags(id, items){
-      document.getElementById(id).innerHTML=(items.length?items:['Kein wesentlicher Eintrag erkannt']).map(x=>'<span class="mix-nutrient-tag">'+x+'</span>').join('');
+      document.getElementById(id).innerHTML=(items.length?items:["Kein wesentlicher Eintrag erkannt"]).map(x=>'<span class="mix-nutrient-tag">'+x+'</span>').join('');
     }
     function buildNutrients(greens,extras,micros,dressing){
       const scores={v:new Map(),m:new Map(),a:new Map(),o:new Map()}, sources=[];
       const all=[...greens,...extras,...micros];
-      ['olive oil','lemon','orange','honey','pomegranate molasses'].forEach(x=>{if(dressing.toLowerCase().includes(x))all.push(x)});
+      ["olivenöl","orange","honig","zitrone","granatapfelmelasse","frische kräuter","chili"].forEach(x=>{if(dressing.toLocaleLowerCase(document.documentElement.lang).includes(x))all.push(x)});
       all.forEach(label=>{
-        const n=label.toLowerCase();
-        const p=nutrientProfiles.find(x=>x.keys.some(k=>n.includes(k)));
+        const lower=label.toLocaleLowerCase(document.documentElement.lang);
+        const p=nutrientProfiles.find(x=>x.keys.some(k=>lower.includes(k)));
         if(!p)return;
         sources.push(label);
         for(const key of ['v','m','a','o']) p[key].forEach(item=>scores[key].set(item,(scores[key].get(item)||0)+1));
       });
-      const top=(map,n=7)=>[...map.entries()].sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0])).slice(0,n).map(x=>x[0]);
-      renderTags('mixVitamine',top(scores.v));renderTags('mixMineralstoffe',top(scores.m));renderTags('mixAntioxidants',top(scores.a));renderTags('mixOtherNutrients',top(scores.o));
-      document.getElementById('mixNutrientSources').textContent=sources.length?'Wichtigste Quellen: '+[...new Set(sources)].join(', ')+'.':'Nährstoffprofil is generated from the selected ingredients.';
+      const top=(map,n=7)=>[...map.entries()].sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0],document.documentElement.lang)).slice(0,n).map(x=>x[0]);
+      renderTags('mixVitamins',top(scores.v));renderTags('mixMinerals',top(scores.m));renderTags('mixAntioxidants',top(scores.a));renderTags('mixOtherNutrients',top(scores.o));
+      document.getElementById('mixNutrientSources').textContent=sources.length?"Wichtigste Quellen: "+[...new Set(sources)].join(', ')+'.':"Das Nährstoffprofil wird aus den ausgewählten Zutaten erstellt.";
     }
 
     function generateMix(){
@@ -722,7 +721,7 @@
 
       document.getElementById('mixName').textContent=name;
       document.getElementById('mixSummary').textContent='Ein ausgewogener Vorschlag auf Basis Ihrer Geschmackspräferenzen.';
-      document.getElementById('mixBlattgemüse').textContent=greens.join(' + ');
+      document.getElementById('mixGreens').textContent=greens.join(' + ');
       document.getElementById('mixExtras').textContent=extras.join(' + ')||'Keine zusätzlichen Zutaten';
       document.getElementById('mixMicrogreens').textContent=micros.length?micros.join(' + '):'Keine Microgreens hinzugefügt';
       document.getElementById('mixDressing').textContent=dressing;
