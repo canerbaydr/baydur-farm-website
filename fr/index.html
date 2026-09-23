@@ -1,0 +1,905 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#123328">
+  <meta name="description" content="Baydur Farm grows lettuce, fresh greens and microgreens in Izmir using soilless farming methods, with supply solutions for professional kitchens across Türkiye.">
+  <meta name="author" content="Baydur Farm">
+  <meta name="application-name" content="Baydur Farm">
+  <title>Baydur Farm | Fraîche Lettuce, Verdure & Restaurant Supply</title>
+  
+  <style>
+    :root { --forest:#123328; --dark:#0c241c; --leaf:#bdd98a; --cream:#f6f5ed; --paper:#fffef9; --ink:#1b3026; --muted:#607368; --line:#dbe4d9; --accent:#dcebb4; --radius:22px; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; color:var(--ink); background:var(--cream); font-family:Arial, Helvetica, sans-serif; line-height:1.6; }
+    button,input,textarea,select { font:inherit; }
+    a { color:inherit; text-decoration:none; }
+    button { cursor:pointer; }
+    img { max-width:100%; display:block; }
+    :focus-visible { outline:3px solid #a1c86f; outline-offset:3px; }
+    .container { width:min(1180px, calc(100% - 44px)); margin-inline:auto; }
+    .eyebrow { display:inline-flex; align-items:center; gap:9px; color:#4f7950; text-transform:uppercase; letter-spacing:.16em; font-size:11px; font-weight:800; }
+    .eyebrow::before { content:""; width:21px; height:1px; background:currentColor; }
+    h1,h2,h3,p { margin-top:0; }
+    h1,h2,h3 { letter-spacing:-.045em; line-height:1.07; }
+    h1,h2 { font-family:Georgia, 'Times New Roman', serif; font-weight:400; }
+    h2 { font-size:clamp(2.5rem, 5vw, 4.5rem); }
+    .site-header { position:relative; z-index:20; background:var(--paper); border-bottom:1px solid #eef0e7; }
+    .header-inner { height:78px; display:flex; align-items:center; justify-content:space-between; gap:22px; }
+    .brand { display:inline-flex; align-items:center; gap:12px; white-space:nowrap; font-size:19px; font-weight:800; letter-spacing:-.045em; }
+    .brand-mark { width:35px; height:35px; display:grid; place-items:center; border-radius:50%; color:var(--forest); background:#e8f0d8; }
+    .brand-mark svg { width:23px; height:23px; }
+    .nav { display:flex; align-items:center; gap:31px; font-size:13px; font-weight:700; }
+    .nav a:not(.nav-cta):hover { color:#63914f; }
+    .nav-cta,.button { display:inline-flex; align-items:center; justify-content:center; gap:10px; border-radius:999px; border:1px solid transparent; font-weight:800; font-size:13px; transition:transform .2s,background .2s,border-color .2s; }
+    .nav-cta { padding:11px 18px; color:#fff; background:var(--forest); }
+    .nav-cta:hover,.button:hover { transform:translateY(-2px); }
+    .menu-button { display:none; background:transparent; border:0; padding:8px; color:var(--forest); }
+    .menu-button svg { width:25px; height:25px; display:block; }
+    .hero { background:var(--forest); color:var(--paper); overflow:hidden; }
+    .hero-grid { display:grid; grid-template-columns:1fr 1fr; min-height:640px; }
+    .hero-copy { padding:85px min(5vw,65px) 83px max(22px,calc((100vw - 1180px)/2)); align-self:center; }
+    .hero .eyebrow { color:var(--leaf); }
+    .hero h1 { font-size:clamp(3.7rem,6.15vw,6.45rem); max-width:650px; margin:27px 0 25px; }
+    .hero h1 em { color:var(--leaf); font-style:normal; }
+    .hero-lead { max-width:480px; color:#d2ded1; font-size:17px; margin-bottom:34px; }
+    .hero-actions { display:flex; align-items:center; flex-wrap:wrap; gap:15px; }
+    .button { padding:16px 24px; }
+    .button-primary { background:var(--leaf); color:var(--dark); }
+    .button-primary:hover { background:#cde9a0; }
+    .button-outline { border-color:#698579; color:#fff; }
+    .button-outline:hover { border-color:#fff; }
+    .hero-note { margin-top:52px; display:flex; align-items:center; gap:13px; color:#b6cab9; font-size:12px; letter-spacing:.04em; }
+    .hero-note .line { width:34px; height:1px; background:#819b88; }
+    .hero-art { min-height:640px; position:relative; background:#49683b; }
+    .hero-art img { width:100%; height:100%; object-fit:cover; object-position:55% center; position:absolute; inset:0; }
+    .hero-art::after { content:""; position:absolute; inset:0; background:linear-gradient(90deg,rgba(18,51,40,.2),transparent 40%); }
+    .photo-label { position:absolute; z-index:1; bottom:30px; left:30px; padding:12px 17px; color:white; background:rgba(12,36,28,.75); border:1px solid rgba(255,255,255,.25); border-radius:999px; font-size:12px; backdrop-filter:blur(8px); }
+    .photo-label span { display:inline-block; width:7px; height:7px; margin-right:8px; border-radius:50%; background:var(--leaf); }
+    .intro-strip { background:#e9efdc; }
+    .intro-strip .container { min-height:104px; display:flex; align-items:center; justify-content:space-between; gap:25px; }
+    .intro-strip p { margin:0; font-family:Georgia,serif; font-size:clamp(18px,2vw,25px); line-height:1.35; }
+    .strip-tags { display:flex; flex-wrap:wrap; justify-content:flex-end; gap:9px; }
+    .strip-tags span { padding:7px 12px; border:1px solid #c3d3b1; border-radius:999px; color:#456649; font-size:11px; font-weight:700; white-space:nowrap; }
+    section { scroll-margin-top:30px; }
+    .section-space { padding:105px 0; }
+    .section-head { display:flex; justify-content:space-between; align-items:end; gap:40px; margin-bottom:40px; }
+    .section-head h2 { max-width:630px; margin:13px 0 0; }
+    .section-head p { max-width:325px; color:var(--muted); margin:0 0 5px; }
+    .products { background:var(--cream); }
+    .product-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:19px; }
+    .product-card { min-height:350px; background:var(--paper); border:1px solid var(--line); border-radius:var(--radius); padding:27px; display:flex; flex-direction:column; overflow:hidden; transition:transform .2s,box-shadow .2s; }
+    .product-card:hover { transform:translateY(-5px); box-shadow:0 17px 35px rgba(24,57,37,.08); }
+    .product-top { display:flex; justify-content:space-between; align-items:start; }
+    .number { color:#789276; font-size:12px; font-weight:700; }
+    .product-icon { width:57px; height:57px; border-radius:50%; display:grid; place-items:center; background:#e9f1da; font-size:31px; }
+    .product-card h3 { font-family:Georgia,serif; font-weight:400; font-size:31px; margin:auto 0 12px; }
+    .product-card p { color:var(--muted); font-size:14px; max-width:260px; min-height:66px; margin-bottom:20px; }
+    .product-link { border-top:1px solid var(--line); padding-top:17px; font-size:12px; font-weight:800; color:#2c663d; display:flex; justify-content:space-between; }
+    .feature { background:var(--paper); }
+    .feature-grid { display:grid; grid-template-columns:.9fr 1.1fr; align-items:center; gap:9%; }
+    .feature-visual { border-radius:var(--radius); overflow:hidden; height:470px; background:#d6e8ba; position:relative; }
+    .feature-visual img { height:100%; width:100%; object-fit:cover; object-position:center; }
+    .feature-visual .visual-badge { position:absolute; right:17px; bottom:17px; padding:12px 15px; background:var(--paper); color:var(--forest); border-radius:11px; font-size:12px; font-weight:700; }
+    .feature-copy h2 { margin:15px 0 23px; }
+    .feature-copy>p { max-width:520px; color:var(--muted); font-size:16px; }
+    .feature-list { list-style:none; padding:0; margin:30px 0 0; }
+    .feature-list li { display:flex; gap:15px; padding:18px 0; border-top:1px solid var(--line); }
+    .check { flex:none; width:25px; height:25px; display:grid; place-items:center; border-radius:50%; background:#e7f0d9; color:#346a3e; font-weight:bold; }
+    .feature-list strong { display:block; font-size:14px; margin-bottom:2px; }
+    .feature-list span { color:var(--muted); font-size:13px; }
+    .process { background:#e8eedf; }
+    .process h2 { margin:14px 0 39px; }
+    .steps { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+    .step { border-top:1px solid #afc8a6; padding:26px 0 0; }
+    .step-num { color:#3b7447; font-weight:800; font-size:12px; letter-spacing:.1em; }
+    .step h3 { font-family:Georgia,serif; font-weight:400; font-size:28px; margin:27px 0 12px; }
+    .step p { color:#54705a; font-size:14px; max-width:290px; }
+    .contact { background:var(--forest); color:#fff; }
+    .contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:8%; align-items:start; }
+    .contact .eyebrow { color:var(--leaf); }
+    .contact h2 { margin:15px 0 19px; }
+    .contact-copy>p { color:#c4d4c5; max-width:440px; }
+    .contact-links { display:grid; gap:12px; margin-top:40px; }
+    .contact-links a { display:flex; align-items:center; gap:12px; font-size:15px; font-weight:700; }
+    .contact-links a:hover { color:var(--leaf); }
+    .contact-links span { width:33px; height:33px; border:1px solid #668374; border-radius:50%; display:grid; place-items:center; font-size:15px; }
+    .contact-form { background:var(--paper); color:var(--ink); border-radius:var(--radius); padding:32px; }
+    .contact-form h3 { font-family:Georgia,serif; font-size:28px; font-weight:400; margin-bottom:5px; }
+    .form-intro { color:var(--muted); font-size:13px; margin-bottom:24px; }
+    .field-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+    .field { display:grid; gap:6px; margin-bottom:14px; }
+    .field label { font-size:11px; font-weight:800; letter-spacing:.05em; text-transform:uppercase; }
+    .field input,.field textarea,.field select { width:100%; padding:12px 13px; border:1px solid #cfdbcf; border-radius:9px; outline:none; background:#fff; color:var(--ink); font-size:14px; }
+    .field input:focus,.field textarea:focus,.field select:focus { border-color:#54955d; box-shadow:0 0 0 3px #deebd4; }
+    .field textarea { min-height:94px; resize:vertical; }
+    .form-actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:6px; }
+    .form-actions .button { flex:1; padding:12px; }
+    .form-actions .button-primary { background:var(--forest); color:white; }
+    .form-actions .button-primary:hover { background:#275744; }
+    .button-secondary { background:white; color:var(--forest); border-color:#a7bda9; }
+    .form-note { color:#637569; font-size:11px; margin:14px 0 0; }
+    footer { background:var(--dark); color:#b6cab9; padding:27px 0; }
+    .footer-inner { display:flex; justify-content:space-between; gap:20px; align-items:center; font-size:12px; }
+    footer a:hover { color:white; }
+    @media(max-width:1100px) { .product-grid { grid-template-columns:repeat(2,1fr); } }
+    @media(max-width:900px) { .hero-grid { grid-template-columns:1fr; } .hero-copy { padding:75px max(22px,6vw); } .hero-art { min-height:410px; } .hero h1 { font-size:clamp(3.5rem,9vw,5.5rem); } .feature-grid { gap:5%; } .contact-grid { gap:5%; } }
+    @media(max-width:700px) { .header-inner { height:68px; } .menu-button { display:block; } .nav { display:none; position:absolute; top:68px; left:0; right:0; padding:18px 22px 24px; background:var(--paper); box-shadow:0 15px 25px rgba(12,36,28,.12); flex-direction:column; align-items:stretch; gap:0; } .nav.open { display:flex; } .nav a { padding:11px 0; } .nav .nav-cta { margin-top:8px; text-align:center; } .hero-art { min-height:320px; } .hero-copy { padding-block:70px; } .hero-note { margin-top:34px; } .intro-strip .container { padding-block:23px; align-items:start; flex-direction:column; gap:12px; } .strip-tags { justify-content:flex-start; } .section-space { padding:72px 0; } .section-head { display:block; } .section-head p { margin-top:20px; } .product-grid,.steps,.feature-grid,.contact-grid { grid-template-columns:1fr; } .product-card { min-height:310px; } .feature-visual { height:340px; } .feature-copy { margin-top:35px; } .contact-form { margin-top:33px; } .footer-inner { align-items:start; flex-direction:column; } }
+    @media(max-width:460px) { .container { width:min(100% - 32px,1180px); } .hero-copy { padding-inline:16px; } .hero h1 { font-size:3.35rem; } .hero-lead { font-size:15px; } .field-grid { grid-template-columns:1fr; gap:0; } .contact-form { padding:23px; } .form-actions .button { flex-basis:100%; } }
+    .mix-lab { background:#f1f4e8; }
+    .mix-shell { display:grid; grid-template-columns:.9fr 1.1fr; gap:28px; align-items:stretch; }
+    .mix-copy,.mix-panel { border-radius:var(--radius); }
+    .mix-copy { padding:44px; background:var(--dark); color:#fff; display:flex; flex-direction:column; justify-content:space-between; }
+    .mix-copy .eyebrow { color:var(--leaf); }
+    .mix-copy h2 { margin:18px 0 20px; font-size:clamp(2.5rem,4.8vw,4.6rem); }
+    .mix-copy p { color:#c7d6cb; max-width:490px; }
+    .mix-badges { display:flex; flex-wrap:wrap; gap:8px; margin-top:28px; }
+    .mix-badges span { padding:7px 11px; border:1px solid #5a776b; border-radius:999px; color:#dce9dd; font-size:11px; }
+    .mix-panel { padding:34px; background:var(--paper); border:1px solid var(--line); }
+    .mix-panel label { display:block; font-size:12px; font-weight:800; letter-spacing:.05em; text-transform:uppercase; margin-bottom:9px; }
+    .mix-panel textarea { width:100%; min-height:128px; resize:vertical; border:1px solid #cfdbcf; border-radius:13px; padding:15px; color:var(--ink); background:#fff; }
+    .mix-panel textarea:focus { outline:none; border-color:#54955d; box-shadow:0 0 0 3px #deebd4; }
+    .mix-guide { margin:15px 0 20px; padding:17px; border:1px solid #d7e1d1; border-radius:15px; background:#fafcf6; }
+    .mix-guide-row + .mix-guide-row { margin-top:14px; }
+    .mix-guide-label { display:block; margin-bottom:8px; color:#65766a; font-size:10px; font-weight:800; letter-spacing:.11em; text-transform:uppercase; }
+    .mix-presets { display:flex; flex-wrap:wrap; gap:8px; margin:0; }
+    .mix-chip { border:1px solid #c5d4c2; background:#fff; color:#355842; border-radius:999px; padding:8px 11px; font-size:11px; font-weight:700; transition:background .18s,color .18s,border-color .18s,transform .18s; }
+    .mix-chip:hover { background:#e8f0d8; transform:translateY(-1px); }
+    .mix-chip.is-active { background:var(--forest); border-color:var(--forest); color:#fff; }
+    .mix-understood { margin:0 0 18px; padding:14px 15px; border-radius:13px; background:#f4f0e4; border:1px solid #e1d4b1; }
+    .mix-understood[hidden] { display:none; }
+    .mix-understood strong { display:block; margin-bottom:9px; color:#6f5a27; font-size:10px; letter-spacing:.1em; text-transform:uppercase; }
+    .mix-signal-list { display:flex; flex-wrap:wrap; gap:7px; }
+    .mix-signal { display:inline-flex; align-items:center; padding:6px 9px; border-radius:999px; background:#fffdf6; border:1px solid #e3d7b9; color:#4e593e; font-size:11px; font-weight:700; }
+    .mix-result { display:none; margin-top:24px; padding:24px; border-radius:17px; background:#eef4e5; border:1px solid #d1dfc8; }
+    .mix-result.show { display:block; }
+    .mix-result h3 { font-family:Georgia,serif; font-size:29px; font-weight:400; margin-bottom:11px; }
+    .mix-result-grid { display:grid; grid-template-columns:1fr 1fr; gap:15px; margin:18px 0; }
+    .mix-result-card { background:#fff; border:1px solid #d7e1d1; border-radius:12px; padding:15px; }
+    .mix-result-card.mix-baydur-card { background:#f8fbf2; border-color:#b9cf9e; box-shadow:inset 0 0 0 1px rgba(185,207,158,.18); }
+    .mix-result-card strong { display:block; margin-bottom:5px; font-size:12px; text-transform:uppercase; letter-spacing:.04em; color:#396148; }
+    .mix-result-card span { font-size:14px; color:#53695c; }
+    .mix-reason-card { grid-column:1 / -1; background:#f8fbf3; }
+    .mix-health-note { font-size:12px; color:#65766a; border-top:1px solid #d4dfcf; padding-top:13px; margin-top:15px; }
+    .mix-calorie-card { grid-column:1 / -1; padding:18px; border-radius:14px; background:#fffdf7; border:1px solid #e3d7b9; }
+    .mix-calorie-head { display:flex; align-items:end; justify-content:space-between; gap:14px; margin-bottom:12px; }
+    .mix-calorie-head strong { color:#6f5a27; font-size:12px; letter-spacing:.04em; text-transform:uppercase; }
+    .mix-calorie-total { font-family:Georgia,serif; color:var(--forest); font-size:24px; white-space:nowrap; }
+    .mix-calorie-list { display:grid; gap:7px; }
+    .mix-calorie-row { display:flex; justify-content:space-between; gap:16px; padding:7px 0; border-top:1px dashed #e4dcc7; font-size:12px; }
+    .mix-calorie-row:first-child { border-top:0; }
+    .mix-calorie-row span { color:#5c665e; }
+    .mix-calorie-row b { color:#243e31; white-space:nowrap; }
+    .mix-calorie-note { margin:11px 0 0; color:#7a7667; font-size:10px; line-height:1.45; }
+    .mix-nutrition { grid-column:1 / -1; margin-top:2px; padding:20px; border-radius:15px; background:#f4f8ef; border:1px solid #cbdabf; }
+    .mix-nutrition-head { display:flex; justify-content:space-between; gap:18px; align-items:start; margin-bottom:15px; }
+    .mix-nutrition-head h4 { margin:0; font-family:Georgia,serif; font-weight:400; font-size:25px; color:var(--forest); }
+    .mix-nutrition-head p { margin:4px 0 0; max-width:500px; color:#65766a; font-size:11px; }
+    .mix-nutrient-groups { display:grid; grid-template-columns:repeat(2,1fr); gap:11px; }
+    .mix-nutrient-group { padding:14px; border-radius:12px; background:#fff; border:1px solid #dce5d7; }
+    .mix-nutrient-group strong { display:block; margin-bottom:9px; color:#396148; font-size:10px; text-transform:uppercase; letter-spacing:.08em; }
+    .mix-nutrient-tags { display:flex; flex-wrap:wrap; gap:6px; }
+    .mix-nutrient-tag { display:inline-flex; align-items:center; padding:6px 9px; border-radius:999px; background:#eef4e7; color:#355842; font-size:11px; font-weight:700; }
+    .mix-nutrient-sources { margin:13px 0 0; color:#647367; font-size:11px; line-height:1.5; }
+    .mix-nutrition-note { margin:10px 0 0; color:#788076; font-size:10px; line-height:1.45; }
+    @media(max-width:700px){.mix-nutrient-groups{grid-template-columns:1fr}.mix-nutrition-head{display:block}}
+    .mix-tune { margin-top:17px; padding-top:15px; border-top:1px solid #d4dfcf; }
+    .mix-tune-label { display:block; margin-bottom:9px; color:#65766a; font-size:10px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; }
+    .mix-tune-buttons { display:flex; flex-wrap:wrap; gap:7px; }
+    .mix-tune-button { border:1px solid #bdccb9; background:#fff; color:#355842; border-radius:999px; padding:8px 11px; font-size:11px; font-weight:800; cursor:pointer; }
+    .mix-tune-button:hover { background:#e7efdc; }
+    .mix-result-actions { display:flex; gap:9px; flex-wrap:wrap; margin-top:17px; }
+    @media(max-width:900px) { .mix-shell { grid-template-columns:1fr; } }
+    @media(max-width:700px) { .mix-copy,.mix-panel { padding:26px; } .mix-result-grid { grid-template-columns:1fr; } }
+    .hero-art { overflow:hidden; background:#49683b; }
+    .hero-art::before { content:""; position:absolute; inset:-4%; background-image:url('/assets/marul/kivircik.jpg'); background-size:cover; background-position:center; background-repeat:no-repeat; animation:heroKenBurns 6s ease-in-out infinite alternate; will-change:transform; transform-origin:center; }
+    @keyframes heroKenBurns { from { transform:scale(1.015) translate3d(0,0,0); } to { transform:scale(1.13) translate3d(0,-10px,0); } }
+    @media(prefers-reduced-motion:reduce) { .hero-art::before { animation:none; transform:scale(1.02); } }
+    .hero-art img { display:none; }
+    .feature-visual { height:auto; aspect-ratio:5/3; background-image:linear-gradient(180deg,rgba(12,36,28,.02),rgba(12,36,28,.08)),url('/assets/marul/romaine.jpg'); background-size:cover; background-position:center; background-repeat:no-repeat; }
+    .feature-visual img { display:none; }
+    .product-card { padding:0; min-height:390px; }
+    .product-photo { height:210px; flex:none; background-size:cover; background-position:center; background-repeat:no-repeat; transition:filter .3s ease,transform .3s ease; } .product-card:hover .product-photo { filter:saturate(1.06) contrast(1.02); }
+    .category-photo-1 { background-image:url('/assets/marul/lollo-bionda.jpg'); }
+    .category-photo-2 { background-image:url('/assets/feslegen.jpg'); }
+    .category-photo-3 { background-image:url('/assets/micro/hero-micro.webp'); }
+    .category-photo-4 { background-image:url('/assets/salata.jpg'); }
+    .product-card-body { padding:22px 27px 25px; display:flex; flex-direction:column; flex:1; }
+    .product-card-body .product-top { margin-bottom:24px; }
+    .product-card-body h3 { margin:0 0 12px; }
+    .product-card-body p { margin-bottom:20px; }
+    .product-card-body .product-link { margin-top:auto; }
+    @media(max-width:700px) { .product-photo { height:205px; } }
+    @media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*::before,*::after { transition:none!important; } }
+  </style>
+  <link rel="canonical" href="https://baydurfarm.com/fr/">
+  <link rel="alternate" hreflang="fr" href="https://baydurfarm.com/fr/"><link rel="alternate" hreflang="tr-TR" href="https://baydurfarm.com/">
+  <link rel="alternate" hreflang="x-default" href="https://baydurfarm.com/">
+  <link rel="icon" type="image/webp" href="/assets/brand/baydur-logo.webp">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="Baydur Farm">
+  <meta property="og:title" content="Baydur Farm | Fraîche Lettuce, Verdure & Restaurant Supply">
+  <meta property="og:description" content="Fraîche lettuce, greens and microgreens grown in Izmir with supply solutions for restaurants and professional kitchens across Türkiye.">
+  <meta property="og:url" content="https://baydurfarm.com/fr/">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://baydurfarm.com/#organization","name":"Baydur Farm","alternateName":["BaydurFarm"],"url":"https://baydurfarm.com/","logo":{"@type":"ImageObject","url":"https://baydurfarm.com/assets/brand/baydur-logo.webp","width":400,"height":125},"description":"Baydur Farm grows lettuce, fresh greens and microgreens in Izmir using soilless farming methods and supplies professional kitchens across Türkiye.","address":{"@type":"PostalAddress","addressLocality":"Izmir","addressRegion":"Izmir","addressCountry":"TR"},"areaServed":{"@type":"Country","name":"Türkiye"}},{"@type":"WebSite","@id":"https://baydurfarm.com/#website","url":"https://baydurfarm.com/","name":"Baydur Farm","publisher":{"@id":"https://baydurfarm.com/#organization"}},{"@type":"WebPage","@id":"https://baydurfarm.com/fr/#webpage","url":"https://baydurfarm.com/fr/","name":"Baydur Farm | Fraîche Lettuce, Verdure & Restaurant Supply","description":"Fraîche lettuce, greens and microgreens grown in Izmir for restaurants and professional kitchens across Türkiye.","isPartOf":{"@id":"https://baydurfarm.com/#website"},"about":{"@id":"https://baydurfarm.com/#organization"},"inLanguage":"fr"}]}</script>
+
+  <style>
+    .discount-popup-backdrop{position:fixed;inset:0;background:rgba(12,36,28,.28);backdrop-filter:blur(2px);z-index:9998;opacity:0;visibility:hidden;transition:opacity .25s ease,visibility .25s ease}
+    .discount-popup{position:fixed;left:50%;top:50%;transform:translate(-50%,-46%) scale(.96);width:min(340px,calc(100vw - 34px));min-height:330px;background:#fffef9;border:1px solid #dbe4d9;border-radius:24px;z-index:9999;box-shadow:0 24px 70px rgba(12,36,28,.24);padding:30px 28px 26px;text-align:center;opacity:0;visibility:hidden;transition:opacity .25s ease,transform .25s ease,visibility .25s ease}
+    .discount-popup.is-open,.discount-popup-backdrop.is-open{opacity:1;visibility:visible}
+    .discount-popup.is-open{transform:translate(-50%,-50%) scale(1)}
+    .discount-close{position:absolute;right:14px;top:12px;width:34px;height:34px;border:0;border-radius:50%;background:#eef3e7;color:#123328;font-size:20px;cursor:pointer}
+    .discount-icon{width:56px;height:56px;margin:4px auto 17px;border-radius:50%;display:grid;place-items:center;background:#e9f1d8;color:#123328;font-size:25px}
+    .discount-kicker{font-size:11px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:#5d775f;margin-bottom:8px}
+    .discount-popup h2{font-family:Georgia,serif;font-size:32px;line-height:1.05;margin:0 0 10px;color:#123328}
+    .discount-popup p{font-size:14px;line-height:1.55;color:#607368;margin:0 auto 18px;max-width:260px}
+    .discount-code{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#f1f5e8;border:1px dashed #9fb987;border-radius:14px;padding:10px 11px 10px 16px;margin:0 0 14px}
+    .discount-code strong{font-size:19px;letter-spacing:.08em;color:#123328}
+    .discount-copy{border:0;border-radius:10px;background:#123328;color:white;padding:9px 12px;font-size:11px;font-weight:800;cursor:pointer}
+    .discount-use{display:block;width:100%;border:0;border-radius:999px;background:#bdd98a;color:#0c241c;padding:14px 18px;font-weight:800;cursor:pointer;text-decoration:none}
+    .discount-note{font-size:10px!important;margin:10px 0 0!important;color:#7b8b80!important}
+    @media(max-width:500px){.discount-popup{min-height:310px;padding:26px 22px 22px}.discount-popup h2{font-size:29px}}
+  </style>
+
+  <style id="luxury-home-v2">
+    :root{--gold:#c9ad62;--gold-soft:#e6d393}
+    .container{width:min(1440px,calc(100% - 64px))}
+    .site-header{border-top:1px solid #27392f;box-shadow:0 5px 24px rgba(12,36,28,.035)}
+    .header-inner{height:82px}
+    .header-brand-group{display:flex;align-items:center;gap:24px}
+    .brand{font-size:20px}
+    .brand-descriptor{padding-left:24px;border-left:1px solid #d9cfb7;color:#a28343;font-size:9px;font-weight:800;line-height:1.45;letter-spacing:.18em}
+    .nav{gap:27px;font-family:Georgia,'Times New Roman',serif;font-size:13px}
+    .nav-cta{font-family:Arial,Helvetica,sans-serif;border:1px solid var(--gold);box-shadow:0 6px 18px rgba(18,51,40,.08)}
+    .luxury-hero{position:relative;background:#0d3127}
+    .luxury-hero .hero-grid{grid-template-columns:42% 58%;min-height:675px}
+    .luxury-hero .hero-copy{padding:76px 54px 105px max(64px,calc((100vw - 1440px)/2));position:relative;z-index:2;background:
+      radial-gradient(circle at 80% 15%,rgba(189,217,138,.08),transparent 35%),
+      linear-gradient(115deg,#0b3026 0%,#123b2e 100%)}
+    .luxury-hero .hero-copy:after{content:"";position:absolute;right:-100px;top:0;width:170px;height:100%;background:linear-gradient(90deg,#123b2e 0%,rgba(18,59,46,.78) 35%,transparent 100%);z-index:-1;pointer-events:none}
+    .luxury-hero .eyebrow{color:var(--gold-soft);letter-spacing:.22em}
+    .luxury-hero h1{font-size:clamp(4.6rem,6.1vw,7.4rem);line-height:.84;letter-spacing:-.058em;margin:29px 0 31px;max-width:760px}
+    .luxury-hero h1 em{color:#c6e487}
+    .luxury-hero .hero-lead{font-size:16px;line-height:1.65;max-width:585px;color:#d7e1db;margin-bottom:31px}
+    .luxury-hero .button{padding:15px 28px}
+    .luxury-hero .button-primary{background:linear-gradient(135deg,#e2c96e,#d2b555);border:1px solid #f0df98;color:#173428;box-shadow:0 10px 28px rgba(0,0,0,.12)}
+    .luxury-hero .button-primary:hover{background:linear-gradient(135deg,#ead681,#d9bd62)}
+    .luxury-hero .button-outline{border-color:rgba(255,255,255,.52);background:rgba(5,25,19,.14);backdrop-filter:blur(6px)}
+    .luxury-hero .hero-art{min-height:675px;background:#b5c993}
+    .luxury-hero .hero-art::before{inset:-2%;background-position:center 44%;animation:heroKenBurns 8s ease-in-out infinite alternate}
+    .luxury-hero .hero-art::after{background:
+      linear-gradient(90deg,rgba(11,48,38,.3),transparent 24%),
+      linear-gradient(180deg,rgba(7,24,19,.02) 50%,rgba(7,24,19,.18) 100%)}
+    .hero-signature{position:absolute;z-index:3;right:8%;top:70px;color:#234637;font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:25px;line-height:1.12;transform:rotate(-5deg);text-align:center;text-shadow:0 1px 9px rgba(255,255,255,.65)}
+    .hero-seal{position:absolute;z-index:3;right:8%;bottom:135px;width:128px;height:128px;border-radius:50%;background:rgba(7,36,28,.92);border:1px solid var(--gold);box-shadow:0 8px 25px rgba(0,0,0,.2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:var(--gold-soft);text-align:center;letter-spacing:.11em}
+    .hero-seal strong{font-size:27px;line-height:1;color:#d9c275}
+    .hero-seal span{font-size:8px;font-weight:800}
+    .hero-location{position:absolute;z-index:3;right:3%;bottom:28px;border-left:1px solid rgba(69,81,63,.45);padding-left:15px;color:#40594d;font-size:9px;font-weight:800;line-height:1.5;letter-spacing:.13em}
+    .hero-trust{position:absolute;left:0;bottom:0;width:42%;z-index:4;background:rgba(8,40,31,.76);border-top:1px solid rgba(255,255,255,.11);backdrop-filter:blur(9px)}
+    .hero-trust .container{width:auto;margin:0;padding-left:max(64px,calc((100vw - 1440px)/2));padding-right:28px}
+    .hero-trust-inner{min-height:82px;display:grid;grid-template-columns:repeat(4,1fr);align-items:center;gap:10px}
+    .trust-item{display:flex;align-items:center;gap:10px;color:#dce6de;font-size:9px;font-weight:800;line-height:1.35;letter-spacing:.1em}
+    .trust-icon{flex:none;width:34px;height:34px;border:1px solid rgba(217,194,117,.7);border-radius:50%;display:grid;place-items:center;color:#ddc775;font-size:16px}
+    .luxury-products{background:#f8f4ea;padding:44px 0 58px;border-bottom:1px solid #e7dfce}
+    .luxury-product-layout{display:grid;grid-template-columns:275px 1fr;gap:34px;align-items:stretch}
+    .luxury-product-heading{padding:10px 0}
+    .luxury-product-heading .eyebrow{color:#9b7b3f}
+    .luxury-product-heading h2{font-size:clamp(2.5rem,3.4vw,4rem);line-height:1.02;margin:20px 0 14px}
+    .luxury-product-heading h2 em{font-style:normal;color:#a68b49}
+    .luxury-product-heading p{color:#68746c;font-size:13px;max-width:240px}
+    .luxury-cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px}
+    .luxury-card{position:relative;min-height:270px;border:1px solid #dfdacd;border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 8px 22px rgba(45,55,44,.045);transition:transform .25s ease,box-shadow .25s ease}
+    .luxury-card:hover{transform:translateY(-5px);box-shadow:0 16px 34px rgba(45,55,44,.11)}
+    .luxury-card-photo{height:158px;background-size:cover;background-position:center}
+    .luxury-card-body{position:relative;padding:16px 18px 17px}
+    .luxury-card-body h3{font-family:Georgia,'Times New Roman',serif;font-size:22px;font-weight:400;margin:0 28px 5px 0}
+    .luxury-card-body p{margin:0;color:#66746c;font-size:11px}
+    .luxury-card-body>span{position:absolute;right:17px;top:18px;color:#335445}
+    .luxury-chef{min-height:270px;color:#fff}
+    .luxury-chef .luxury-card-photo{position:absolute;inset:0;height:100%;filter:saturate(.9)}
+    .luxury-card-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(14,39,30,.88) 0%,rgba(14,39,30,.65) 50%,rgba(14,39,30,.13) 100%)}
+    .luxury-chef-copy{position:absolute;z-index:2;left:20px;top:22px;max-width:160px}
+    .luxury-chef-copy small{font-size:8px;letter-spacing:.15em;color:#e5d49d;font-weight:800}
+    .luxury-chef-copy h3{font-family:Georgia,'Times New Roman',serif;font-size:30px;font-weight:400;line-height:.95;margin:12px 0 10px}
+    .luxury-chef-copy p{font-size:11px;line-height:1.5;color:#e6ece8}
+    .luxury-chef-copy span{display:inline-block;margin-top:10px;color:#ecd98f;font-size:9px;font-weight:800;letter-spacing:.12em}
+    @media(max-width:1200px){
+      .brand-descriptor{display:none}
+      .luxury-hero .hero-grid{grid-template-columns:48% 52%}
+      .hero-trust{width:48%}
+      .luxury-product-layout{grid-template-columns:1fr}
+      .luxury-product-heading{display:flex;align-items:end;justify-content:space-between;gap:30px}
+      .luxury-product-heading p{max-width:360px}
+    }
+    @media(max-width:900px){
+      .container{width:min(100% - 38px,1440px)}
+      .luxury-hero .hero-grid{grid-template-columns:1fr}
+      .luxury-hero .hero-copy{padding:68px 28px 64px}
+      .luxury-hero .hero-copy:after{display:none}
+      .luxury-hero h1{font-size:clamp(4rem,12vw,6rem)}
+      .luxury-hero .hero-art{min-height:520px}
+      .hero-trust{position:relative;width:100%}
+      .hero-trust .container{padding:0 28px}
+      .hero-trust-inner{min-height:88px}
+      .luxury-cards{grid-template-columns:repeat(2,1fr)}
+      .hero-signature{font-size:22px}
+    }
+    @media(max-width:700px){
+      .header-inner{height:70px}
+      .luxury-hero .hero-copy{padding:56px 18px 48px}
+      .luxury-hero h1{font-size:3.65rem;margin:24px 0 25px}
+      .luxury-hero .hero-lead{font-size:14px}
+      .luxury-hero .hero-art{min-height:410px}
+      .hero-signature{right:6%;top:38px;font-size:18px}
+      .hero-seal{width:96px;height:96px;right:7%;bottom:72px}
+      .hero-seal span{font-size:6.5px}
+      .hero-seal strong{font-size:21px}
+      .hero-location{font-size:7px}
+      .hero-trust-inner{grid-template-columns:repeat(2,1fr);padding:15px 0}
+      .luxury-product-heading{display:block}
+      .luxury-product-heading p{margin-top:8px}
+      .luxury-cards{grid-template-columns:1fr 1fr;gap:10px}
+      .luxury-card{min-height:235px}
+      .luxury-card-photo{height:132px}
+      .luxury-card-body{padding:13px}
+      .luxury-card-body h3{font-size:18px}
+      .luxury-chef{min-height:235px}
+      .luxury-chef-copy{left:15px;top:17px}
+      .luxury-chef-copy h3{font-size:25px}
+    }
+    @media(max-width:460px){
+      .container{width:min(100% - 28px,1440px)}
+      .luxury-cards{grid-template-columns:1fr}
+      .luxury-card-photo{height:180px}
+      .luxury-chef{min-height:260px}
+      .hero-trust .container{padding:0 18px}
+    }
+  </style>
+
+
+  <style id="baydur-brand-logo">
+    .brand-image-link{display:inline-flex;align-items:center;line-height:1;flex:none}
+    .brand-logo{display:block;width:180px;max-width:none;height:auto;object-fit:contain}
+    .footer-brand .brand-logo{width:158px}
+    @media(max-width:1100px){.brand-descriptor{display:none}.brand-logo{width:168px}}
+    @media(max-width:700px){.brand-logo{width:150px}.footer-brand .brand-logo{width:145px}}
+  </style>
+
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="header-brand-group"><a class="brand brand-image-link" href="#ust" aria-label="Baydur Farm home"><img class="brand-logo" src="/assets/brand/baydur-logo.webp" alt="Baydur Farm"></a><span class="brand-descriptor">CULTURE HORS-SOL<br>POUR CUISINES PROFESSIONNELLES</span></div>
+      <button class="menu-button" id="menuButton" aria-label="Open menu" aria-controls="nav" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 7h18M3 12h18M3 17h18"/></svg></button>
+      <nav class="nav" id="nav" aria-label="Main menu"><a href="#urunler">Produits</a><a href="/fr/nutrition.html">Nutrition</a><a href="#salata-tasarla">Composez votre salade</a><a href="#hakkimizda">Our growing</a><a href="#nasil-calisir">How it works</a><a class="lang-link" href="/" title="Türkçe">TR</a><a class="lang-link" href="/en/" title="English">EN</a><a class="lang-link" href="/es/" title="Español">ES</a><a class="lang-link" href="/de/" title="Deutsch">DE</a><a class="lang-link" href="/fr/" title="Français" aria-current="page">FR</a><a href="#iletisim" class="nav-cta">Demander un devis de fourniture <span aria-hidden="true">↗</span></a></nav>
+    </div>
+  </header>
+  <main id="ust">
+    <section class="hero luxury-hero" aria-labelledby="hero-title">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">D’Izmir à toute la Türkiye</div>
+          <h1 id="hero-title">La fraîcheur<br><em>commence dans</em><br>votre cuisine.</h1>
+          <p class="hero-lead">Baydur Farm cultive à Izmir des laitues et de la verdure fraîche grâce à des méthodes hors-sol. Nous proposons des solutions d’approvisionnement fiables pour les cuisines professionnelles, avec des livraisons planifiées dans toute la Türkiye.</p>
+          <div class="hero-actions"><a class="button button-primary" href="#iletisim">Demander un devis de fourniture <span aria-hidden="true">→</span></a><a class="button button-outline" href="#urunler">Découvrir les produits <span aria-hidden="true">↓</span></a></div>
+        </div>
+        <div class="hero-art" role="img" aria-label="Culture hors-sol sisteminde yetişen taze Baydur Farm marulları">
+          <div class="hero-signature">Une alimentation plus propre<br>pour un avenir<br>meilleur.</div>
+          <div class="hero-seal"><span>INSPIRÉS PAR LA NATURE</span><strong>♧</strong><span>FRAÎCHEUR POUR LES CUISINES</span></div>
+          <div class="hero-location">CULTIVÉ À<br>IZMIR<br>LIVRAISON DANS TOUTE<br>LA TÜRKİYE</div>
+        </div>
+      </div>
+      <div class="hero-trust"><div class="container hero-trust-inner">
+        <div class="trust-item"><span class="trust-icon">⌁</span><span>CULTURE<br>HORS-SOL</span></div>
+        <div class="trust-item"><span class="trust-icon">♧</span><span>CULTURE<br>CONTRÔLÉE</span></div>
+        <div class="trust-item"><span class="trust-icon">▣</span><span>LIVRAISON DANS TOUTE<br>LA TÜRKİYE</span></div>
+        <div class="trust-item"><span class="trust-icon">♜</span><span>FOURNITURE POUR<br>RESTAURANTS</span></div>
+      </div></div>
+    </section>
+    <section class="products luxury-products" id="urunler" aria-labelledby="products-title"><div class="container">
+      <div class="luxury-product-layout">
+        <div class="luxury-product-heading"><div class="eyebrow">Our Produits</div><h2 id="products-title">De la culture à l’assiette,<br><em>qualité premium.</em></h2><p>Des gammes de produits frais cultivés avec soin pour les cuisines professionnelles.</p></div>
+        <div class="luxury-cards">
+          <a class="luxury-card" href="/fr/lettuce.html"><div class="luxury-card-photo category-photo-1"></div><div class="luxury-card-body"><h3>Variétés de laitue</h3><p>Laitue frisée, Romaine, Lollo et plus</p><span>→</span></div></a>
+          <a class="luxury-card" href="/fr/greens.html"><div class="luxury-card-photo category-photo-2"></div><div class="luxury-card-body"><h3>Verdure fraîche</h3><p>Roquette, jeunes pousses et herbes fraîches</p><span>→</span></div></a>
+          <a class="luxury-card" href="/fr/microgreens.html"><div class="luxury-card-photo category-photo-3"></div><div class="luxury-card-body"><h3>Microgreens</h3><p>Petites feuilles, grand caractère</p><span>→</span></div></a>
+          <a class="luxury-card luxury-chef" href="#iletisim"><div class="luxury-card-photo category-photo-4"></div><div class="luxury-card-overlay"></div><div class="luxury-chef-copy"><small>CUISINES PROFESSIONNELLES</small><h3>Le choix<br>des chefs</h3><p>Un partenaire d’approvisionnement fiable et régulier.</p><span>DEMANDER UN DEVIS →</span></div></a>
+        </div>
+      </div>
+    </div></section>
+    <section class="mix-lab section-space" id="salata-tasarla" aria-labelledby="mix-title"><div class="container">
+      <div class="mix-shell">
+        <div class="mix-copy"><div><div class="eyebrow">Mélange intelligent Baydur</div><h2 id="mix-title">Décrivez votre profil gustatif,<br>nous créons votre mélange.</h2><p>Décrivez le goût souhaité avec vos propres mots ou utilisez le profil rapide. Le système équilibre la verdure Baydur, les micro-pousses, les ingrédients complémentaires et le style de sauce.</p></div><div class="mix-badges"><span>Texte libre</span><span>Profil rapide</span><span>Exclure des ingrédients</span><span>Réglage chef</span><span>Ajouter au devis</span></div></div>
+        <div class="mix-panel">
+          <label for="mixPrompt">Quel type de salade souhaitez-vous ?</label>
+          <textarea id="mixPrompt" placeholder="e.g. Fraîche and light, not too sour, less arugula, with a crisp texture."></textarea>
+          <div class="mix-guide" aria-label="Quick taste profile">
+            <div class="mix-guide-row">
+              <span class="mix-guide-label">Saveur</span>
+              <div class="mix-presets">
+                <button class="mix-chip" type="button" data-mix-preset="fresh" aria-pressed="false">Fraîche</button>
+                <button class="mix-chip" type="button" data-mix-preset="slightly sweet" aria-pressed="false">Légèrement sucrée</button>
+                <button class="mix-chip" type="button" data-mix-preset="low acidity" aria-pressed="false">Peu acide</button>
+                <button class="mix-chip" type="button" data-mix-preset="not spicy" aria-pressed="false">Non épicée</button>
+                <button class="mix-chip" type="button" data-mix-preset="aromatic" aria-pressed="false">Aromatique</button>
+              </div>
+            </div>
+            <div class="mix-guide-row">
+              <span class="mix-guide-label">Texture & satiété</span>
+              <div class="mix-presets">
+                <button class="mix-chip" type="button" data-mix-preset="crisp" aria-pressed="false">Croquante</button>
+                <button class="mix-chip" type="button" data-mix-preset="light" aria-pressed="false">Légère</button>
+                <button class="mix-chip" type="button" data-mix-preset="filling" aria-pressed="false">Rassasiante</button>
+                <button class="mix-chip" type="button" data-mix-preset="protein focused" aria-pressed="false">Riche en protéines</button>
+              </div>
+            </div>
+            <div class="mix-guide-row">
+              <span class="mix-guide-label">Microgreens</span>
+              <div class="mix-presets">
+                <button class="mix-chip" type="button" data-mix-preset="include microgreens" aria-pressed="false">Inclure</button>
+                <button class="mix-chip" type="button" data-mix-preset="no microgreens" aria-pressed="false">Sans</button>
+              </div>
+            </div>
+          </div>
+          <button class="button button-primary" type="button" id="mixGenerate">Créer mon mélange ✦</button>
+          <p class="form-note" id="mixStatus" role="status" aria-live="polite">Saisissez une préférence, choisissez dans le profil rapide ou générez directement un mélange équilibré.</p>
+          <div class="mix-result" id="mixResult" aria-live="polite">
+            <div class="mix-understood" id="mixUnderstood" hidden><strong>Profil compris</strong><div class="mix-signal-list" id="mixSignals"></div></div>
+            <h3 id="mixName">Mélange équilibré Baydur</h3>
+            <p id="mixSummary"></p>
+            <div class="mix-result-grid">
+              <div class="mix-result-card mix-baydur-card"><strong>Base de verdure Baydur</strong><span id="mixVerdure"></span></div>
+              <div class="mix-result-card"><strong>Ingrédients complémentaires</strong><span id="mixExtras"></span></div>
+              <div class="mix-result-card mix-baydur-card"><strong>Finition micro-pousses Baydur</strong><span id="mixMicrogreens"></span></div>
+              <div class="mix-result-card"><strong>Profil de sauce</strong><span id="mixDressing"></span></div>
+              <div class="mix-result-card"><strong>Saveur profile</strong><span id="mixProfile"></span></div>
+              <div class="mix-result-card mix-reason-card"><strong>Pourquoi ce mélange ?</strong><span id="mixReason"></span></div>
+              <div class="mix-calorie-card">
+                <div class="mix-calorie-head"><strong>Calories estimées</strong><span class="mix-calorie-total" id="mixCaloriesTotal">~0 kcal / portion</span></div>
+                <div class="mix-calorie-list" id="mixCaloriesList"></div>
+                <p class="mix-calorie-note">Les valeurs sont estimées pour une portion à partir de poids approximatifs et de références nutritionnelles standard. Les calories réelles peuvent varier selon la variété, la taille de la portion, la quantité de sauce et la préparation.</p>
+              </div>
+              <div class="mix-nutrition" id="mixNutrition">
+                <div class="mix-nutrition-head"><div><h4>Profil nutritionnel</h4><p>Nutriments principaux selon la composition naturelle des ingrédients sélectionnés.</p></div></div>
+                <div class="mix-nutrient-groups">
+                  <div class="mix-nutrient-group"><strong>Vitamines</strong><div class="mix-nutrient-tags" id="mixVitamines"></div></div>
+                  <div class="mix-nutrient-group"><strong>Minéraux</strong><div class="mix-nutrient-tags" id="mixMinéraux"></div></div>
+                  <div class="mix-nutrient-group"><strong>Antioxydants & composés végétaux</strong><div class="mix-nutrient-tags" id="mixAntioxidants"></div></div>
+                  <div class="mix-nutrient-group"><strong>Autres nutriments importants</strong><div class="mix-nutrient-tags" id="mixOtherNutrients"></div></div>
+                </div>
+                <p class="mix-nutrient-sources" id="mixNutrientSources"></p>
+                <p class="mix-nutrition-note">Cette section présente la composition nutritionnelle générale ; il ne s’agit ni d’une analyse de laboratoire ni d’une évaluation médicale. Les quantités peuvent varier selon la variété, les conditions de culture et la portion.</p>
+              </div>
+            </div>
+            <p class="mix-health-note" id="mixHealthNote">Cet outil fournit des suggestions alimentaires générales et ne constitue pas un avis médical. Pour une alimentation adaptée à une condition de santé, consultez un professionnel qualifié.</p>
+            <div class="mix-tune">
+              <span class="mix-tune-label">Ajuster le résultat</span>
+              <div class="mix-tune-buttons">
+                <button class="mix-tune-button" type="button" data-mix-adjust="more fresh">Plus fraîche</button>
+                <button class="mix-tune-button" type="button" data-mix-adjust="more crisp">Plus croquante</button>
+                <button class="mix-tune-button" type="button" data-mix-adjust="more filling">Plus rassasiante</button>
+                <button class="mix-tune-button" type="button" data-mix-adjust="lighter">Légèreer</button>
+              </div>
+            </div>
+            <div class="mix-result-actions"><button class="button button-primary" type="button" id="mixToQuote">Demander un devis pour ce mélange ↗</button><button class="button button-secondary" type="button" id="mixAgain">Créer une autre suggestion</button></div>
+          </div>
+          <p class="form-note">Les suggestions sont des exemples de combinaisons culinaires. La disponibilité des produits et des stocks Baydur Farm est confirmée lors du devis.</p>
+        </div>
+      </div>
+    </div></section>
+    <section class="feature section-space" id="hakkimizda" aria-labelledby="feature-title"><div class="container feature-grid">
+      <div class="feature-visual" role="img" aria-label="Baydur Farm topraksız tarım üretim alanında taze marullar"><div class="visual-badge">Cultivé hors-sol</div></div>
+      <div class="feature-copy"><div class="eyebrow">L’approche Baydur Farm</div><h2 id="feature-title">Verdure made<br>for professional kitchens.</h2><p>Chez Baydur Farm, nous cultivons à Izmir des laitues et de la verdure fraîche grâce à des méthodes hors-sol. Nous nous concentrons sur les produits frais et l’approvisionnement des restaurants, avec des livraisons planifiées dans toute la Türkiye selon vos besoins en produits et en quantités.</p><ul class="feature-list"><li><span class="check" aria-hidden="true">✓</span><div><strong>Culture hors-sol</strong><span>Fraîche greens grown under controlled conditions.</span></div></li><li><span class="check" aria-hidden="true">✓</span><div><strong>Service orienté restauration</strong><span>Indiquez directement vos besoins en produits, quantités et livraison.</span></div></li><li><span class="check" aria-hidden="true">✓</span><div><strong>Devis personnalisé</strong><span>Construisons un plan de produits et de fourniture adapté à vos besoins.</span></div></li></ul></div>
+    </div></section>
+    <section class="process section-space" id="nasil-calisir" aria-labelledby="process-title"><div class="container"><div class="eyebrow">Travaillons ensemble</div><h2 id="process-title">Le processus de fourniture,<br>en trois étapes simples.</h2><div class="steps"><div class="step"><div class="step-num">01 / BESOINS</div><h3>Dites-nous ce qu’il vous faut</h3><p>Présentez-nous votre restaurant, les produits recherchés et votre quantité hebdomadaire approximative.</p></div><div class="step"><div class="step-num">02 / PLANIFICATION</div><h3>Planifions ensemble</h3><p>Nous examinerons les produits disponibles et les conditions de fourniture adaptées à votre activité.</p></div><div class="step"><div class="step-num">03 / DEVIS</div><h3>Recevez votre devis</h3><p>Nous préparerons un devis selon vos besoins en produits, quantités et livraison.</p></div></div></div></section>
+    <section class="contact section-space" id="iletisim" aria-labelledby="contact-title"><div class="container contact-grid"><div class="contact-copy"><div class="eyebrow">Contact</div><h2 id="contact-title">Rencontrez le nouveau fournisseur<br>de produits frais de votre cuisine.</h2><p>Dites-nous ce qu’il vous faut and we’ll discuss lettuce and fresh-green supply for your business.</p></div>
+      <form class="contact-form" id="quoteForm" action="https://formsubmit.co/canerrbaydur@gmail.com" method="POST"><h3>Préparez votre demande de devis</h3><p class="form-intro" id="formIntro">Les champs marqués d’un * sont obligatoires. Ajoutez votre code de réduction si vous en avez un.</p><input type="hidden" name="_subject" value="Baydur Farm - New website quote request"><input type="hidden" name="_template" value="table"><input type="hidden" name="_next" value="https://baydurfarm.com/fr/?sent=1#iletisim"><input type="text" name="_honey" tabindex="-1" autocomplete="off" style="display:none"><div class="field-grid"><div class="field"><label for="business">Restaurant / entreprise *</label><input id="business" name="business" required autocomplete="organization" placeholder="Your business name"></div><div class="field"><label for="person">Personne de contact *</label><input id="person" name="person" required autocomplete="name" placeholder="Full name"></div></div><div class="field-grid"><div class="field"><label for="email">Adresse e-mail *</label><input id="email" name="email" type="email" required autocomplete="email" placeholder="ornek@firma.com"></div><div class="field"><label for="phone">Téléphone *</label><input id="phone" name="phone" type="tel" required autocomplete="tel" inputmode="tel" placeholder="05xx xxx xx xx"></div></div><div class="field-grid"><div class="field"><label for="product">Produit recherché *</label><select id="product" name="product" required><option value="">Sélectionnez un produit</option><option>Variétés de laitue</option><option>Verdure</option><option>Microgreens</option><option>Approvisionnement restauration</option></select></div><div class="field"><label for="quantity">Besoin hebdomadaire estimé *</label><input id="quantity" name="quantity" required placeholder="e.g. 50 units / week"></div></div><div class="field-grid"><div class="field"><label for="city">Province de livraison *</label><select id="city" name="city" required autocomplete="address-level1"><option value="">Sélectionnez une province</option><optgroup label="Provinces principales"><option value="İstanbul">İstanbul</option><option value="İzmir">İzmir</option><option value="Ankara">Ankara</option><option value="Antalya">Antalya</option><option value="Bursa">Bursa</option></optgroup><optgroup label="Autres provinces"><option value="Adana">Adana</option><option value="Adıyaman">Adıyaman</option><option value="Afyonkarahisar">Afyonkarahisar</option><option value="Ağrı">Ağrı</option><option value="Aksaray">Aksaray</option><option value="Amasya">Amasya</option><option value="Ardahan">Ardahan</option><option value="Artvin">Artvin</option><option value="Aydın">Aydın</option><option value="Balıkesir">Balıkesir</option><option value="Bartın">Bartın</option><option value="Batman">Batman</option><option value="Bayburt">Bayburt</option><option value="Bilecik">Bilecik</option><option value="Bingöl">Bingöl</option><option value="Bitlis">Bitlis</option><option value="Bolu">Bolu</option><option value="Burdur">Burdur</option><option value="Çanakkale">Çanakkale</option><option value="Çankırı">Çankırı</option><option value="Çorum">Çorum</option><option value="Denizli">Denizli</option><option value="Diyarbakır">Diyarbakır</option><option value="Düzce">Düzce</option><option value="Edirne">Edirne</option><option value="Elazığ">Elazığ</option><option value="Erzincan">Erzincan</option><option value="Erzurum">Erzurum</option><option value="Eskişehir">Eskişehir</option><option value="Gaziantep">Gaziantep</option><option value="Giresun">Giresun</option><option value="Gümüşhane">Gümüşhane</option><option value="Hakkari">Hakkari</option><option value="Hatay">Hatay</option><option value="Iğdır">Iğdır</option><option value="Isparta">Isparta</option><option value="Kahramanmaraş">Kahramanmaraş</option><option value="Karabük">Karabük</option><option value="Karaman">Karaman</option><option value="Kars">Kars</option><option value="Kastamonu">Kastamonu</option><option value="Kayseri">Kayseri</option><option value="Kırıkkale">Kırıkkale</option><option value="Kırklareli">Kırklareli</option><option value="Kırşehir">Kırşehir</option><option value="Kilis">Kilis</option><option value="Kocaeli">Kocaeli</option><option value="Konya">Konya</option><option value="Kütahya">Kütahya</option><option value="Malatya">Malatya</option><option value="Manisa">Manisa</option><option value="Mardin">Mardin</option><option value="Mersin">Mersin</option><option value="Muğla">Muğla</option><option value="Muş">Muş</option><option value="Nevşehir">Nevşehir</option><option value="Niğde">Niğde</option><option value="Ordu">Ordu</option><option value="Osmaniye">Osmaniye</option><option value="Rize">Rize</option><option value="Sakarya">Sakarya</option><option value="Samsun">Samsun</option><option value="Siirt">Siirt</option><option value="Sinop">Sinop</option><option value="Sivas">Sivas</option><option value="Şanlıurfa">Şanlıurfa</option><option value="Şırnak">Şırnak</option><option value="Tekirdağ">Tekirdağ</option><option value="Tokat">Tokat</option><option value="Trabzon">Trabzon</option><option value="Tunceli">Tunceli</option><option value="Uşak">Uşak</option><option value="Van">Van</option><option value="Yalova">Yalova</option><option value="Yozgat">Yozgat</option><option value="Zonguldak">Zonguldak</option></optgroup></select></div><div class="field"><label for="district">District de livraison *</label><select id="district" name="district" required autocomplete="address-level2" disabled><option value="">Sélectionnez une province first</option></select></div></div><div class="field"><label for="address">Adresse complète de livraison *</label><textarea id="address" name="address" required minlength="10" autocomplete="street-address" placeholder="Neighborhood, street, building number and delivery details"></textarea></div><div class="field"><label for="discountCode">Code de réduction <span style="font-weight:400;opacity:.72">(facultatif)</span></label><input id="discountCode" name="discount_code" autocomplete="off" inputmode="text" maxlength="24" placeholder=""></div><div class="field"><label for="message">Notes complémentaires *</label><textarea id="message" name="message" required minlength="3" placeholder="Tell us your product, quantity or delivery expectations"></textarea></div><div class="form-actions"><button class="button button-primary" type="submit">Envoyer la demande de devis ↗</button><button class="button button-secondary" type="button" id="whatsappButton">Écrire sur WhatsApp ↗</button></div><p class="form-note">Les champs marqués d’un * sont obligatoires. Le code de réduction est facultatif.</p></form>
+    </div></section>
+  </main>
+  <footer><div class="container footer-inner"><a class="brand brand-image-link footer-brand" href="#ust" aria-label="Baydur Farm home"><img class="brand-logo" src="/assets/brand/baydur-logo.webp" alt="Baydur Farm"></a><span>© <span id="year"></span> Baydur Farm. Culture hors-sol and restaurant supply.</span></div></footer>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const menuButton = document.getElementById('menuButton');
+    const nav = document.getElementById('nav');
+    menuButton.addEventListener('click', () => {
+      const open = nav.classList.toggle('open');
+      menuButton.setAttribute('aria-expanded', String(open));
+      menuButton.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    });
+    nav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      nav.classList.remove('open');
+      menuButton.setAttribute('aria-expanded', 'false');
+      menuButton.setAttribute('aria-label', 'Open menu');
+    }));
+    document.querySelectorAll('[data-product]').forEach(link => link.addEventListener('click', () => {
+      document.getElementById('product').value = link.dataset.product;
+    }));
+    const catalogParams = new URLSearchParams(window.location.search);
+    const catalogRequest = catalogParams.get('request');
+    const catalogCategory = catalogParams.get('category');
+    if (catalogRequest) {
+      const productField = document.getElementById('product');
+      const messageField = document.getElementById('message');
+      if (catalogCategory === 'salata') productField.value = 'Variétés de laitue';
+      else if (catalogCategory === 'yesillikler') productField.value = 'Verdure';
+      else if (catalogCategory === 'microyesillikler') productField.value = 'Microgreens';
+      const requestText = 'Requested product: ' + catalogRequest;
+      messageField.value = messageField.value ? messageField.value + '\n' + requestText : requestText;
+    }
+    const mixPrompt = document.getElementById('mixPrompt');
+    const mixResult = document.getElementById('mixResult');
+    const mixGenerate = document.getElementById('mixGenerate');
+    let lastMixText = '';
+    let mixVariation = 0;
+
+    const activeMixPresets = new Set();
+    document.querySelectorAll('[data-mix-preset]').forEach(button => {
+      button.addEventListener('click', () => {
+        const value = button.dataset.mixPreset;
+        const opposite = value === 'avec micro-pousses' ? 'sans micro-pousses'
+          : value === 'sans micro-pousses' ? 'avec micro-pousses' : null;
+        if (opposite && activeMixPresets.has(opposite)) {
+          activeMixPresets.delete(opposite);
+          const oppositeButton = document.querySelector('[data-mix-preset="' + opposite + '"]');
+          oppositeButton?.classList.remove('is-active');
+          oppositeButton?.setAttribute('aria-pressed','false');
+        }
+        if (activeMixPresets.has(value)) {
+          activeMixPresets.delete(value);
+          button.classList.remove('is-active');
+          button.setAttribute('aria-pressed','false');
+        } else {
+          activeMixPresets.add(value);
+          button.classList.add('is-active');
+          button.setAttribute('aria-pressed','true');
+        }
+      });
+    });
+
+    const hasAny = (text, words) => words.some(word => text.includes(word));
+    function pick(items, seedText='', salt=0) {
+      const seed=String(seedText)+'|'+String(salt);
+      let hash=2166136261;
+      for(let i=0;i<seed.length;i++){hash^=seed.charCodeAt(i);hash=Math.imul(hash,16777619);}
+      return items[(hash>>>0)%items.length];
+    }
+    function excluded(text, name) {
+      const n=name.toLowerCase();
+      return text.includes('no '+n) || text.includes('without '+n) || text.includes('exclude '+n) ||
+        text.includes("don't want "+n) || text.includes('do not want '+n);
+    }
+    function addUnique(arr, value){ if(!arr.includes(value)) arr.push(value); }
+
+    const calorieReference = [
+      {keys:['butterhead'],kcal100:13,grams:30},{keys:['romaine'],kcal100:17,grams:30},
+      {keys:['lollo bionda','oak leaf','curly lettuce','mixed leafy greens'],kcal100:15,grams:30},
+      {keys:['arugula'],kcal100:25,grams:15},{keys:['parsley'],kcal100:36,grams:6},
+      {keys:['dill'],kcal100:43,grams:5},{keys:['cress'],kcal100:32,grams:15},
+      {keys:['mint'],kcal100:44,grams:5},{keys:['basil'],kcal100:23,grams:6},
+      {keys:['baby spinach'],kcal100:23,grams:20},{keys:['mizuna'],kcal100:27,grams:20},
+      {keys:['cilantro'],kcal100:23,grams:6},{keys:['cucumber'],kcal100:15,grams:50},
+      {keys:['carrot'],kcal100:41,grams:30},{keys:['sweet corn'],kcal100:86,grams:30},
+      {keys:['pomegranate'],kcal100:83,grams:30},{keys:['walnut'],kcal100:654,grams:15},
+      {keys:['chickpea'],kcal100:164,grams:60},{keys:['avocado'],kcal100:160,grams:50},
+      {keys:['microgreen'],kcal100:35,grams:10}
+    ];
+    function calorieInfo(label){
+      const n=label.toLowerCase();
+      const found=calorieReference.find(item=>item.keys.some(k=>n.includes(k)));
+      if(found) return {...found,label};
+      if(n.includes('lettuce')) return {label,kcal100:15,grams:30};
+      return {label,kcal100:25,grams:20};
+    }
+    function dressingRows(dressing){
+      const t=dressing.toLowerCase(), rows=[];
+      const add=(label,grams,kcal100)=>rows.push({label,grams,kcal100});
+      if(t.includes('olive oil')) add('Huile d’olive',10,884);
+      if(t.includes('orange')) add('Orange',20,47);
+      if(t.includes('honey')) add('Miel',5,304);
+      if(t.includes('lemon')) add('Citron',15,29);
+      if(t.includes('pomegranate molasses')) add('Mélasse de grenade',5,250);
+      if(t.includes('fresh herbs')) add('Fraîche herbs',3,30);
+      if(t.includes('chili')) add('Piment',2,40);
+      return rows;
+    }
+    function buildCalories(greens, extras, micros, dressing){
+      const rows=[];
+      [...greens,...extras,...micros].forEach(label=>{
+        const i=calorieInfo(label);
+        rows.push({label,grams:i.grams,kcal:Math.round(i.kcal100*i.grams/100)});
+      });
+      dressingRows(dressing).forEach(i=>rows.push({label:i.label,grams:i.grams,kcal:Math.round(i.kcal100*i.grams/100)}));
+      const total=rows.reduce((s,x)=>s+x.kcal,0);
+      document.getElementById('mixCaloriesList').innerHTML=rows.map(i=>'<div class="mix-calorie-row"><span>'+i.label+' · '+i.grams+' g</span><b>~'+i.kcal+' kcal</b></div>').join('');
+      document.getElementById('mixCaloriesTotal').textContent='~'+total+' kcal / serving';
+      return total;
+    }
+
+    const nutrientProfiles=[
+      {keys:['lettuce','romaine','butterhead','lollo','oak leaf','mixed leafy greens'],v:['Vitamine K','Folate (B9)','Provitamine A (bêta-carotène)','Vitamine C'],m:['Potassium','Manganèse'],a:['Lutéine + zéaxanthine','Bêta-carotène','Polyphénols'],o:['Fibres']},
+      {keys:['arugula'],v:['Vitamine K','Vitamine C','Folate (B9)','Provitamine A (bêta-carotène)'],m:['Calcium','Potassium'],a:['Glucosinolates','Caroténoïdes','Polyphénols'],o:['Fibres']},
+      {keys:['mint','basil','parsley','dill','cilantro'],v:['Vitamine K','Vitamine C','Provitamine A (bêta-carotène)','Folate (B9)'],m:['Potassium','Manganèse','Fer'],a:['Flavonoïdes','Polyphénols','Caroténoïdes'],o:['Fibres']},
+      {keys:['cucumber'],v:['Vitamine K'],m:['Potassium'],a:['Flavonoïdes'],o:['Teneur en eau','Fibres']},
+      {keys:['carrot'],v:['Provitamine A (bêta-carotène)','Vitamine K'],m:['Potassium'],a:['Bêta-carotène','Caroténoïdes'],o:['Fibres']},
+      {keys:['sweet corn'],v:['Folate (B9)','Vitamine B1'],m:['Magnésium','Phosphore'],a:['Lutéine + zéaxanthine'],o:['Fibres','Glucides complexes']},
+      {keys:['pomegranate'],v:['Vitamine C','Vitamine K','Folate (B9)'],m:['Potassium'],a:['Polyphénols','Anthocyanes'],o:['Fibres']},
+      {keys:['walnut'],v:['Vitamine B6'],m:['Cuivre','Manganèse','Magnésium'],a:['Polyphénols'],o:['Oméga-3 ALA','Fibres','Protéines végétales']},
+      {keys:['chickpea'],v:['Folate (B9)','Vitamine B6'],m:['Fer','Magnésium','Potassium','Manganèse','Zinc'],a:['Polyphénols'],o:['Fibres','Protéines végétales','Glucides complexes']},
+      {keys:['avocado'],v:['Vitamine K','Vitamine E','Folate (B9)','Vitamine B6'],m:['Potassium','Cuivre','Magnésium'],a:['Lutéine + zéaxanthine','Caroténoïdes'],o:['Graisses mono-insaturées','Fibres']},
+      {keys:['broccoli micro'],v:['Vitamine C','Vitamine K','Folate (B9)'],m:['Potassium'],a:['Glucosinolates','Précurseurs du sulforaphane','Caroténoïdes'],o:['Fibres']},
+      {keys:['radish micro','mustard micro','purple cabbage micro','arugula micro'],v:['Vitamine C','Vitamine K','Folate (B9)'],m:['Potassium'],a:['Glucosinolates','Anthocyanes','Polyphénols'],o:['Fibres']},
+      {keys:['pea micro'],v:['Vitamine C','Vitamine K','Provitamine A (bêta-carotène)'],m:['Potassium','Manganèse'],a:['Caroténoïdes','Polyphénols'],o:['Fibres','Protéines végétales']},
+      {keys:['olive oil'],v:['Vitamine E','Vitamine K'],m:[],a:['Polyphénols'],o:['Graisses mono-insaturées']},
+      {keys:['lemon','orange'],v:['Vitamine C'],m:['Potassium'],a:['Flavanones','Polyphénols'],o:[]}
+    ];
+    function renderTags(id, items){
+      document.getElementById(id).innerHTML=(items.length?items:['Aucun élément majeur identifié']).map(x=>'<span class="mix-nutrient-tag">'+x+'</span>').join('');
+    }
+    function buildNutrients(greens,extras,micros,dressing){
+      const scores={v:new Map(),m:new Map(),a:new Map(),o:new Map()}, sources=[];
+      const all=[...greens,...extras,...micros];
+      ['olive oil','lemon','orange','honey','pomegranate molasses'].forEach(x=>{if(dressing.toLowerCase().includes(x))all.push(x)});
+      all.forEach(label=>{
+        const n=label.toLowerCase();
+        const p=nutrientProfiles.find(x=>x.keys.some(k=>n.includes(k)));
+        if(!p)return;
+        sources.push(label);
+        for(const key of ['v','m','a','o']) p[key].forEach(item=>scores[key].set(item,(scores[key].get(item)||0)+1));
+      });
+      const top=(map,n=7)=>[...map.entries()].sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0])).slice(0,n).map(x=>x[0]);
+      renderTags('mixVitamines',top(scores.v));renderTags('mixMinéraux',top(scores.m));renderTags('mixAntioxidants',top(scores.a));renderTags('mixOtherNutrients',top(scores.o));
+      document.getElementById('mixNutrientSources').textContent=sources.length?'Principaux ingrédients sources : '+[...new Set(sources)].join(', ')+'.':'Profil nutritionnel is generated from the selected ingredients.';
+    }
+
+    function generateMix(){
+      const typed=mixPrompt.value.trim();
+      const selected=[...activeMixPresets];
+      const raw=[typed,...selected].filter(Boolean).join(', ')||'balanced, fresh, slightly crisp';
+      const text=raw.toLowerCase();
+
+      const fresh=hasAny(text,['fraîche','rafraîchissante','fraîche','plus fraîche']);
+      const sweet=hasAny(text,['sucrée','légèrement sucrée','fruitée']);
+      const lowAcid=hasAny(text,['peu acide','non acide','moins acide','acidité douce']);
+      const spicy=hasAny(text,['épicée','poivrée','piquante'])&&!hasAny(text,['non épicée','sans épices']);
+      const crisp=hasAny(text,['croquante','croquante','plus croquante']);
+      const light=hasAny(text,['légère','plus légère','peu calorique']);
+      const filling=hasAny(text,['rassasiante','riche en protéines','protéines','plus rassasiante']);
+      const aromatic=hasAny(text,['aromatique','aux herbes','basil','mint']);
+
+      const variants=[
+        ['Laitue frisée','Lollo Bionda','Oak Leaf'],
+        ['Romaine','Laitue frisée','Butterhead'],
+        ['Oak Leaf','Romaine','Lollo Bionda']
+      ];
+      let greens=(filling?variants[(mixVariation+1)%3]:crisp?variants[(mixVariation+2)%3]:variants[mixVariation%3]).filter(x=>!excluded(text,x));
+      if(fresh&&!excluded(text,'mint')) addUnique(greens,'Menthe');
+      if(aromatic&&!excluded(text,'basil')) addUnique(greens,'Basilic');
+      if(spicy&&!excluded(text,'arugula')) addUnique(greens,'Roquette');
+      greens=greens.slice(0,light?3:4);
+
+      let extras=[];
+      if(filling){['Pois chiches','Avocat','Noix'].forEach(x=>!excluded(text,x)&&addUnique(extras,x));}
+      else if(crisp){['Concombre','Rubans de carotte','Maïs doux'].forEach(x=>!excluded(text,x)&&addUnique(extras,x));}
+      else if(sweet){['Rubans de carotte','Pomegranate arils','Concombre'].forEach(x=>!excluded(text,x)&&addUnique(extras,x));}
+      else {['Concombre','Rubans de carotte'].forEach(x=>!excluded(text,x)&&addUnique(extras,x));}
+      if(light) extras=extras.filter(x=>!['Noix','Avocat','Pois chiches'].includes(x)).slice(0,2);
+
+      const noMicro=hasAny(text,['sans micro-pousses','sans micro-pousses']);
+      let micros=[];
+      if(!noMicro){
+        if(spicy) micros=['Micro-pousses de radis'];
+        else if(sweet) micros=['Micro-pousses de pois'];
+        else if(crisp) micros=['Micro-pousses de brocoli'];
+        else micros=[pick(['Micro-pousses de brocoli','Micro-pousses de pois','Micro-pousses de chou rouge'],text,mixVariation)];
+      }
+
+      let dressing='huile d’olive + citron + herbes fraîches';
+      if(lowAcid) dressing='huile d’olive + herbes fraîches, très peu de citron';
+      else if(sweet) dressing='huile d’olive + orange + une touche de miel';
+      else if(spicy) dressing='huile d’olive + citron + une légère touche de piment';
+
+      const signals=[];
+      if(fresh)signals.push('Fraîche');if(sweet)signals.push('Légèrement sucrée');if(lowAcid)signals.push('Peu acide');
+      if(spicy)signals.push('Épicée');if(crisp)signals.push('Croquante');if(light)signals.push('Légère');if(filling)signals.push('Rassasiante');if(aromatic)signals.push('Aromatique');
+      if(noMicro)signals.push('Sans micro-pousses'); else if(hasAny(text,['avec micro-pousses']))signals.push('Micro-pousses incluses');
+      document.getElementById('mixSignals').innerHTML=(signals.length?signals:['Profil équilibré']).map(x=>'<span class="mix-signal">'+x+'</span>').join('');
+      document.getElementById('mixUnderstood').hidden=false;
+
+      const names=filling?['Baydur Power Bowl','Baydur Vert Rassasiant','Baydur Chef Energy']:fresh?['Baydur Fraîche Garden','Baydur Brise Verte','Baydur Croquante Garden']:['Mélange Signature Baydur','Baydur Jardin Équilibré','Mélange Chef Baydur'];
+      const name=pick(names,text,7+mixVariation*13);
+      const profile=[fresh?'fraîche':null,crisp?'croquante':null,light?'légère':null,filling?'rassasiante':null,sweet?'légèrement sucrée':null,lowAcid?'peu acide':null,spicy?'épicée':null].filter(Boolean).join(' · ')||'balanced';
+      const reason=[];
+      if(fresh)reason.push('les herbes fraîches et les saveurs légères dynamisent le mélange');
+      if(crisp)reason.push('les feuilles et légumes croquants apportent de la texture');
+      if(filling)reason.push('les pois chiches, l’avocat ou les noix renforcent la satiété');
+      if(light)reason.push('le mélange reste centré sur les feuilles et plus léger');
+      if(lowAcid)reason.push('la sauce maintient une acidité modérée');
+      if(!reason.length)reason.push('les ingrédients sont équilibrés pour une saveur et une texture agréables');
+
+      document.getElementById('mixName').textContent=name;
+      document.getElementById('mixSummary').textContent='Une proposition équilibrée basée sur vos préférences gustatives.';
+      document.getElementById('mixVerdure').textContent=greens.join(' + ');
+      document.getElementById('mixExtras').textContent=extras.join(' + ')||'Aucun ingrédient supplémentaire';
+      document.getElementById('mixMicrogreens').textContent=micros.length?micros.join(' + '):'Aucune micro-pousse ajoutée';
+      document.getElementById('mixDressing').textContent=dressing;
+      document.getElementById('mixProfile').textContent=profile;
+      document.getElementById('mixReason').textContent=reason.join('; ')+'.';
+
+      const healthContext=hasAny(text,['diabetes','allergy','medical','kidney','blood pressure','cholesterol','health condition']);
+      document.getElementById('mixHealthNote').style.display=healthContext?'block':'none';
+      const calories=buildCalories(greens,extras,micros,dressing);
+      buildNutrients(greens,extras,micros,dressing);
+
+      lastMixText=name+' — Verdure: '+greens.join(' + ')+'; Extras: '+(extras.join(' + ')||'none')+
+        '; Microgreens: '+(micros.join(' + ')||'none')+'; Dressing: '+dressing+'; Profile: '+profile+
+        '; Calories estimées: ~'+calories+' kcal/portion.';
+
+      mixResult.classList.add('show');
+      const status=document.getElementById('mixStatus');
+      if(status)status.textContent='Votre mélange est prêt. Utilisez les options ci-dessous pour l’ajuster.';
+      mixResult.scrollIntoView({behavior:'smooth',block:'nearest'});
+    }
+    function safeGenerateMix(){
+      try{generateMix();}
+      catch(error){
+        console.error('Baydur mix generator error:',error);
+        const status=document.getElementById('mixStatus');
+        if(status)status.textContent='Une erreur s’est produite lors de la création du mélange. Veuillez réessayer.';
+        mixResult.classList.remove('show');
+      }
+    }
+    mixGenerate.addEventListener('click',()=>{mixVariation=0;safeGenerateMix();});
+    document.getElementById('mixAgain').addEventListener('click',()=>{mixVariation++;safeGenerateMix();});
+    document.querySelectorAll('[data-mix-adjust]').forEach(button=>button.addEventListener('click',()=>{
+      const adjustment=button.dataset.mixAdjust;
+      const current=mixPrompt.value.trim();
+      if(!current.toLowerCase().includes(adjustment)) mixPrompt.value=current?current.replace(/[.,;\s]*$/,'')+', '+adjustment:adjustment;
+      mixVariation++;safeGenerateMix();
+    }));
+    document.getElementById('mixToQuote').addEventListener('click',()=>{
+      document.getElementById('product').value='Verdure';
+      const message=document.getElementById('message');
+      const note='Suggestion de salade intelligente : '+lastMixText;
+      message.value=message.value.trim()?message.value.trim()+'\n\n'+note:note;
+      document.getElementById('iletisim').scrollIntoView({behavior:'smooth'});
+      setTimeout(()=>document.getElementById('business').focus(),500);
+    });
+
+    const provinceDistricts = {"Adana":["Aladağ","Ceyhan","Çukurova","Feke","İmamoğlu","Karaisalı","Karataş","Kozan","Pozantı","Saimbeyli","Sarıçam","Seyhan","Tufanbeyli","Yumurtalık","Yüreğir"],"Adıyaman":["Besni","Çelikhan","Gerger","Gölbaşı","Kahta","Merkez","Samsat","Sincik","Tut"],"Afyonkarahisar":["Başmakçı","Bayat","Bolvadin","Çay","Çobanlar","Dazkırı","Dinar","Emirdağ","Evciler","Hocalar","İhsaniye","İscehisar","Kızılören","Merkez","Sandıklı","Sinanpaşa","Sultandağı","Şuhut"],"Ağrı":["Diyadin","Doğubayazıt","Eleşkirt","Hamur","Merkez","Patnos","Taşlıçay","Tutak"],"Aksaray":["Ağaçören","Eskil","Gülağaç","Güzelyurt","Merkez","Ortaköy","Sarıyahşi","Sultanhanı"],"Amasya":["Göynücek","Gümüşhacıköy","Hamamözü","Merkez","Merzifon","Suluova","Taşova"],"Ankara":["Akyurt","Altındağ","Ayaş","Bala","Beypazarı","Çamlıdere","Çankaya","Çubuk","Elmadağ","Etimesgut","Evren","Gölbaşı","Güdül","Haymana","Kahramankazan","Kalecik","Keçiören","Kızılcahamam","Mamak","Nallıhan","Polatlı","Pursaklar","Sincan","Şereflikoçhisar","Yenimahalle"],"Antalya":["Akseki","Aksu","Alanya","Demre","Döşemealtı","Elmalı","Finike","Gazipaşa","Gündoğmuş","İbradı","Kaş","Kemer","Kepez","Konyaaltı","Korkuteli","Kumluca","Manavgat","Muratpaşa","Serik"],"Ardahan":["Çıldır","Damal","Göle","Hanak","Merkez","Posof"],"Artvin":["Ardanuç","Arhavi","Borçka","Hopa","Kemalpaşa","Merkez","Murgul","Şavşat","Yusufeli"],"Aydın":["Bozdoğan","Buharkent","Çine","Didim","Efeler","Germencik","İncirliova","Karacasu","Karpuzlu","Koçarlı","Köşk","Kuşadası","Kuyucak","Nazilli","Söke","Sultanhisar","Yenipazar"],"Balıkesir":["Altıeylül","Ayvalık","Balya","Bandırma","Bigadiç","Burhaniye","Dursunbey","Edremit","Erdek","Gömeç","Gönen","Havran","İvrindi","Karesi","Kepsut","Manyas","Marmara","Savaştepe","Sındırgı","Susurluk"],"Bartın":["Amasra","Kurucaşile","Merkez","Ulus"],"Batman":["Beşiri","Gercüş","Hasankeyf","Kozluk","Merkez","Sason"],"Bayburt":["Aydıntepe","Demirözü","Merkez"],"Bilecik":["Bozüyük","Gölpazarı","İnhisar","Merkez","Osmaneli","Pazaryeri","Söğüt","Yenipazar"],"Bingöl":["Adaklı","Genç","Karlıova","Kiğı","Merkez","Solhan","Yayladere","Yedisu"],"Bitlis":["Adilcevaz","Ahlat","Güroymak","Hizan","Merkez","Mutki","Tatvan"],"Bolu":["Dörtdivan","Gerede","Göynük","Kıbrıscık","Mengen","Merkez","Mudurnu","Seben","Yeniçağa"],"Burdur":["Ağlasun","Altınyayla","Bucak","Çavdır","Çeltikçi","Gölhisar","Karamanlı","Kemer","Merkez","Tefenni","Yeşilova"],"Bursa":["Büyükorhan","Gemlik","Gürsu","Harmancık","İnegöl","İznik","Karacabey","Keles","Kestel","Mudanya","Mustafakemalpaşa","Nilüfer","Orhaneli","Orhangazi","Osmangazi","Yenişehir","Yıldırım"],"Çanakkale":["Ayvacık","Bayramiç","Biga","Bozcaada","Çan","Eceabat","Ezine","Gelibolu","Gökçeada","Lapseki","Merkez","Yenice"],"Çankırı":["Atkaracalar","Bayramören","Çerkeş","Eldivan","Ilgaz","Kızılırmak","Korgun","Kurşunlu","Merkez","Orta","Şabanözü","Yapraklı"],"Çorum":["Alaca","Bayat","Boğazkale","Dodurga","İskilip","Kargı","Laçin","Mecitözü","Merkez","Oğuzlar","Ortaköy","Osmancık","Sungurlu","Uğurludağ"],"Denizli":["Acıpayam","Babadağ","Baklan","Bekilli","Beyağaç","Bozkurt","Buldan","Çal","Çameli","Çardak","Çivril","Güney","Honaz","Kale","Merkezefendi","Pamukkale","Sarayköy","Serinhisar","Tavas"],"Diyarbakır":["Bağlar","Bismil","Çermik","Çınar","Çüngüş","Dicle","Eğil","Ergani","Hani","Hazro","Kayapınar","Kocaköy","Kulp","Lice","Silvan","Sur","Yenişehir"],"Düzce":["Akçakoca","Cumayeri","Çilimli","Gölyaka","Gümüşova","Kaynaşlı","Merkez","Yığılca"],"Edirne":["Enez","Havsa","İpsala","Keşan","Lalapaşa","Meriç","Merkez","Süloğlu","Uzunköprü"],"Elazığ":["Ağın","Alacakaya","Arıcak","Baskil","Karakoçan","Keban","Kovancılar","Maden","Merkez","Palu","Sivrice"],"Erzincan":["Çayırlı","İliç","Kemah","Kemaliye","Merkez","Otlukbeli","Refahiye","Tercan","Üzümlü"],"Erzurum":["Aşkale","Aziziye","Çat","Hınıs","Horasan","İspir","Karaçoban","Karayazı","Köprüköy","Narman","Oltu","Olur","Palandöken","Pasinler","Pazaryolu","Şenkaya","Tekman","Tortum","Uzundere","Yakutiye"],"Eskişehir":["Alpu","Beylikova","Çifteler","Günyüzü","Han","İnönü","Mahmudiye","Mihalgazi","Mihalıççık","Odunpazarı","Sarıcakaya","Seyitgazi","Sivrihisar","Tepebaşı"],"Gaziantep":["Araban","İslahiye","Karkamış","Nizip","Nurdağı","Oğuzeli","Şahinbey","Şehitkamil","Yavuzeli"],"Giresun":["Alucra","Bulancak","Çamoluk","Çanakçı","Dereli","Doğankent","Espiye","Eynesil","Görele","Güce","Keşap","Merkez","Piraziz","Şebinkarahisar","Tirebolu","Yağlıdere"],"Gümüşhane":["Kelkit","Köse","Kürtün","Merkez","Şiran","Torul"],"Hakkari":["Çukurca","Derecik","Merkez","Şemdinli","Yüksekova"],"Hatay":["Altınözü","Antakya","Arsuz","Belen","Defne","Dörtyol","Erzin","Hassa","İskenderun","Kırıkhan","Kumlu","Payas","Reyhanlı","Samandağ","Yayladağı"],"Iğdır":["Aralık","Karakoyunlu","Merkez","Tuzluca"],"Isparta":["Aksu","Atabey","Eğirdir","Gelendost","Gönen","Keçiborlu","Merkez","Senirkent","Sütçüler","Şarkikaraağaç","Uluborlu","Yalvaç","Yenişarbademli"],"İstanbul":["Adalar","Arnavutköy","Ataşehir","Avcılar","Bağcılar","Bahçelievler","Bakırköy","Başakşehir","Bayrampaşa","Beşiktaş","Beykoz","Beylikdüzü","Beyoğlu","Büyükçekmece","Çatalca","Çekmeköy","Esenler","Esenyurt","Eyüpsultan","Fatih","Gaziosmanpaşa","Güngören","Kadıköy","Kağıthane","Kartal","Küçükçekmece","Maltepe","Pendik","Sancaktepe","Sarıyer","Silivri","Sultanbeyli","Sultangazi","Şile","Şişli","Tuzla","Ümraniye","Üsküdar","Zeytinburnu"],"İzmir":["Aliağa","Balçova","Bayındır","Bayraklı","Bergama","Beydağ","Bornova","Buca","Çeşme","Çiğli","Dikili","Foça","Gaziemir","Güzelbahçe","Karabağlar","Karaburun","Karşıyaka","Kemalpaşa","Kınık","Kiraz","Konak","Menderes","Menemen","Narlıdere","Ödemiş","Seferihisar","Selçuk","Tire","Torbalı","Urla"],"Kahramanmaraş":["Afşin","Andırın","Çağlayancerit","Dulkadiroğlu","Ekinözü","Elbistan","Göksun","Nurhak","Onikişubat","Pazarcık","Türkoğlu"],"Karabük":["Eflani","Eskipazar","Merkez","Ovacık","Safranbolu","Yenice"],"Karaman":["Ayrancı","Başyayla","Ermenek","Kazımkarabekir","Merkez","Sarıveliler"],"Kars":["Akyaka","Arpaçay","Digor","Kağızman","Merkez","Sarıkamış","Selim","Susuz"],"Kastamonu":["Abana","Ağlı","Araç","Azdavay","Bozkurt","Cide","Çatalzeytin","Daday","Devrekani","Doğanyurt","Hanönü","İhsangazi","İnebolu","Küre","Merkez","Pınarbaşı","Seydiler","Şenpazar","Taşköprü","Tosya"],"Kayseri":["Akkışla","Bünyan","Develi","Felahiye","Hacılar","İncesu","Kocasinan","Melikgazi","Özvatan","Pınarbaşı","Sarıoğlan","Sarız","Talas","Tomarza","Yahyalı","Yeşilhisar"],"Kırıkkale":["Bahşılı","Balışeyh","Çelebi","Delice","Karakeçili","Keskin","Merkez","Sulakyurt","Yahşihan"],"Kırklareli":["Babaeski","Demirköy","Kofçaz","Lüleburgaz","Merkez","Pehlivanköy","Pınarhisar","Vize"],"Kırşehir":["Akçakent","Akpınar","Boztepe","Çiçekdağı","Kaman","Merkez","Mucur"],"Kilis":["Elbeyli","Merkez","Musabeyli","Polateli"],"Kocaeli":["Başiskele","Çayırova","Darıca","Derince","Dilovası","Gebze","Gölcük","İzmit","Kandıra","Karamürsel","Kartepe","Körfez"],"Konya":["Ahırlı","Akören","Akşehir","Altınekin","Beyşehir","Bozkır","Cihanbeyli","Çeltik","Çumra","Derbent","Derebucak","Doğanhisar","Emirgazi","Ereğli","Güneysınır","Hadim","Halkapınar","Hüyük","Ilgın","Kadınhanı","Karapınar","Karatay","Kulu","Meram","Sarayönü","Selçuklu","Seydişehir","Taşkent","Tuzlukçu","Yalıhüyük","Yunak"],"Kütahya":["Altıntaş","Aslanapa","Çavdarhisar","Domaniç","Dumlupınar","Emet","Gediz","Hisarcık","Merkez","Pazarlar","Simav","Şaphane","Tavşanlı"],"Malatya":["Akçadağ","Arapgir","Arguvan","Battalgazi","Darende","Doğanşehir","Doğanyol","Hekimhan","Kale","Kuluncak","Pütürge","Yazıhan","Yeşilyurt"],"Manisa":["Ahmetli","Akhisar","Alaşehir","Demirci","Gölmarmara","Gördes","Kırkağaç","Köprübaşı","Kula","Salihli","Sarıgöl","Saruhanlı","Selendi","Soma","Şehzadeler","Turgutlu","Yunusemre"],"Mardin":["Artuklu","Dargeçit","Derik","Kızıltepe","Mazıdağı","Midyat","Nusaybin","Ömerli","Savur","Yeşilli"],"Mersin":["Akdeniz","Anamur","Aydıncık","Bozyazı","Çamlıyayla","Erdemli","Gülnar","Mezitli","Mut","Silifke","Tarsus","Toroslar","Yenişehir"],"Muğla":["Bodrum","Dalaman","Datça","Fethiye","Kavaklıdere","Köyceğiz","Marmaris","Menteşe","Milas","Ortaca","Seydikemer","Ula","Yatağan"],"Muş":["Bulanık","Hasköy","Korkut","Malazgirt","Merkez","Varto"],"Nevşehir":["Acıgöl","Avanos","Derinkuyu","Gülşehir","Hacıbektaş","Kozaklı","Merkez","Ürgüp"],"Niğde":["Altunhisar","Bor","Çamardı","Çiftlik","Merkez","Ulukışla"],"Ordu":["Akkuş","Altınordu","Aybastı","Çamaş","Çatalpınar","Çaybaşı","Fatsa","Gölköy","Gülyalı","Gürgentepe","İkizce","Kabadüz","Kabataş","Korgan","Kumru","Mesudiye","Perşembe","Ulubey","Ünye"],"Osmaniye":["Bahçe","Düziçi","Hasanbeyli","Kadirli","Merkez","Sumbas","Toprakkale"],"Rize":["Ardeşen","Çamlıhemşin","Çayeli","Derepazarı","Fındıklı","Güneysu","Hemşin","İkizdere","İyidere","Kalkandere","Merkez","Pazar"],"Sakarya":["Adapazarı","Akyazı","Arifiye","Erenler","Ferizli","Geyve","Hendek","Karapürçek","Karasu","Kaynarca","Kocaali","Pamukova","Sapanca","Serdivan","Söğütlü","Taraklı"],"Samsun":["19 Mayıs","Alaçam","Asarcık","Atakum","Ayvacık","Bafra","Canik","Çarşamba","Havza","İlkadım","Kavak","Ladik","Salıpazarı","Tekkeköy","Terme","Vezirköprü","Yakakent"],"Siirt":["Baykan","Eruh","Kurtalan","Merkez","Pervari","Şirvan","Tillo"],"Sinop":["Ayancık","Boyabat","Dikmen","Durağan","Erfelek","Gerze","Merkez","Saraydüzü","Türkeli"],"Sivas":["Akıncılar","Altınyayla","Divriği","Doğanşar","Gemerek","Gölova","Gürün","Hafik","İmranlı","Kangal","Koyulhisar","Merkez","Suşehri","Şarkışla","Ulaş","Yıldızeli","Zara"],"Şanlıurfa":["Akçakale","Birecik","Bozova","Ceylanpınar","Eyyübiye","Halfeti","Haliliye","Harran","Hilvan","Karaköprü","Siverek","Suruç","Viranşehir"],"Şırnak":["Beytüşşebap","Cizre","Güçlükonak","İdil","Merkez","Silopi","Uludere"],"Tekirdağ":["Çerkezköy","Çorlu","Ergene","Hayrabolu","Kapaklı","Malkara","Marmaraereğlisi","Muratlı","Saray","Süleymanpaşa","Şarköy"],"Tokat":["Almus","Artova","Başçiftlik","Erbaa","Merkez","Niksar","Pazar","Reşadiye","Sulusaray","Turhal","Yeşilyurt","Zile"],"Trabzon":["Akçaabat","Araklı","Arsin","Beşikdüzü","Çarşıbaşı","Çaykara","Dernekpazarı","Düzköy","Hayrat","Köprübaşı","Maçka","Of","Ortahisar","Sürmene","Şalpazarı","Tonya","Vakfıkebir","Yomra"],"Tunceli":["Çemişgezek","Hozat","Mazgirt","Merkez","Nazımiye","Ovacık","Pertek","Pülümür"],"Uşak":["Banaz","Eşme","Karahallı","Merkez","Sivaslı","Ulubey"],"Van":["Bahçesaray","Başkale","Çaldıran","Çatak","Edremit","Erciş","Gevaş","Gürpınar","İpekyolu","Muradiye","Özalp","Saray","Tuşba"],"Yalova":["Altınova","Armutlu","Çınarcık","Çiftlikköy","Merkez","Termal"],"Yozgat":["Akdağmadeni","Aydıncık","Boğazlıyan","Çandır","Çayıralan","Çekerek","Kadışehri","Merkez","Saraykent","Sarıkaya","Sorgun","Şefaatli","Yenifakılı","Yerköy"],"Zonguldak":["Alaplı","Çaycuma","Devrek","Ereğli","Gökçebey","Kilimli","Kozlu","Merkez"]};
+    const cityField = document.getElementById('city');
+    const districtField = document.getElementById('district');
+
+    function updateDistrictOptions() {
+      const selectedCity = cityField.value;
+      const districts = provinceDistricts[selectedCity] || [];
+      districtField.innerHTML = '';
+      const placeholder = document.createElement('option');
+      placeholder.value = '';
+      placeholder.textContent = selectedCity ? 'Select a district' : 'Sélectionnez une province first';
+      districtField.appendChild(placeholder);
+
+      districts.forEach(name => {
+        const option = document.createElement('option');
+        option.value = name;
+        option.textContent = name;
+        districtField.appendChild(option);
+      });
+
+      districtField.disabled = !selectedCity;
+      districtField.value = '';
+    }
+
+    cityField?.addEventListener('change', updateDistrictOptions);
+    const discountCodeField = document.getElementById('discountCode');
+    discountCodeField?.addEventListener('input', () => {
+      discountCodeField.value = discountCodeField.value.toUpperCase().replace(/\s+/g, '');
+    });
+    const form = document.getElementById('quoteForm');
+    document.getElementById('whatsappButton').addEventListener('click', () => {
+      if (!form.reportValidity()) return;
+      const data = new FormData(form);
+      const lines = [
+        'Hello Baydur Farm, I would like a restaurant supply quote.',
+        '',
+        'Business: ' + data.get('business'),
+        'Contact: ' + data.get('person'),
+        'Email: ' + data.get('email'),
+        'Phone: ' + data.get('phone'),
+        'Product: ' + data.get('product'),
+        'Weekly requirement: ' + data.get('quantity'),
+        'Delivery province: ' + data.get('city'),
+        'Delivery district: ' + data.get('district'),
+        'Address: ' + data.get('address'),
+        'Code de réduction: ' + (data.get('discount_code') || '-'),
+        'Notes: ' + data.get('message')
+      ];
+      window.open('https://wa.me/905436383228?text=' + encodeURIComponent(lines.join('\n')), '_blank', 'noopener,noreferrer');
+    });
+        if (new URLSearchParams(window.location.search).get('sent') === '1') {
+      const intro = document.getElementById('formIntro');
+      intro.textContent = 'Your request was sent successfully. We will contact you as soon as possible.';
+      intro.setAttribute('role', 'status');
+      history.replaceState({}, '', window.location.pathname + '#iletisim');
+    }
+  </script>
+
+  <div class="discount-popup-backdrop" id="discountBackdrop" aria-hidden="true"></div>
+  <aside class="discount-popup" id="discountPopup" role="dialog" aria-modal="true" aria-labelledby="discountTitle" aria-describedby="discountDesc">
+    <button class="discount-close" id="discountClose" type="button" aria-label="Fermer la fenêtre de réduction">×</button>
+    <div class="discount-icon" aria-hidden="true">%</div>
+    <div class="discount-kicker">Bienvenue chez Baydur Farm</div>
+    <h2 id="discountTitle">10 % de réduction<br>sur votre première commande</h2>
+    <p id="discountDesc">Utilisez le code ci-dessous dans votre demande de devis.</p>
+    <div class="discount-code"><strong>BAYDUR10</strong><button class="discount-copy" id="discountCopier" type="button">Copier</button></div>
+    <button class="discount-use" id="discountUse" type="button">Utiliser le code →</button>
+    <p class="discount-note">Valable pour la première commande. Confirmation lors du devis.</p>
+  </aside>
+
+  <script>
+  (() => {
+    const KEY='baydur_discount_seen_v1';
+    const DAYS=30;
+    const popup=document.getElementById('discountPopup');
+    const backdrop=document.getElementById('discountBackdrop');
+    const close=document.getElementById('discountClose');
+    const copy=document.getElementById('discountCopier');
+    const use=document.getElementById('discountUse');
+    if(!popup||!backdrop) return;
+
+    const now=Date.now();
+    const last=Number(localStorage.getItem(KEY)||0);
+    const shouldShow=!last || (now-last)>(DAYS*24*60*60*1000);
+
+    function openPopup(){
+      popup.classList.add('is-open');
+      backdrop.classList.add('is-open');
+      popup.setAttribute('aria-hidden','false');
+      setTimeout(()=>close && close.focus(),150);
+    }
+    function dismiss(){
+      popup.classList.remove('is-open');
+      backdrop.classList.remove('is-open');
+      popup.setAttribute('aria-hidden','true');
+      localStorage.setItem(KEY,String(Date.now()));
+    }
+    if(shouldShow) setTimeout(openPopup,650);
+
+    close?.addEventListener('click',dismiss);
+    backdrop.addEventListener('click',dismiss);
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'&&popup.classList.contains('is-open')) dismiss();});
+
+    copy?.addEventListener('click',async()=>{
+      try{
+        await navigator.clipboard.writeText('BAYDUR10');
+        copy.textContent='Copierndı ✓';
+      }catch(e){
+        copy.textContent='BAYDUR10';
+      }
+    });
+
+    use?.addEventListener('click',()=>{
+      try{navigator.clipboard.writeText('BAYDUR10');}catch(e){}
+      localStorage.setItem('baydur_discount_code','BAYDUR10');
+      dismiss();
+      const discountField=document.getElementById('discountCode');
+      if(discountField){
+        discountField.value='BAYDUR10';
+        document.getElementById('iletisim')?.scrollIntoView({behavior:'smooth'});
+        setTimeout(()=>discountField.focus(),450);
+      }else{
+        window.location.href='/en/?discount=BAYDUR10#iletisim';
+      }
+    });
+
+    if(new URLSearchParams(location.search).get('discount')==='BAYDUR10'){
+      const discountField=document.getElementById('discountCode');
+      if(discountField) discountField.value='BAYDUR10';
+    }
+  })();
+  </script>
+</body>
+</html>
