@@ -368,15 +368,17 @@
   </style>
 
 <style id="baydur-language-switch">
-.lang-switch{display:inline-flex;align-items:center;gap:5px;flex:none}.lang-link{font-family:Arial,Helvetica,sans-serif;font-size:10px;font-weight:800;line-height:1;letter-spacing:.04em;padding:6px 7px;border:1px solid #d9dfd5;border-radius:8px;color:#355842}.lang-link:hover{background:#eef3e7}.lang-link[aria-current="page"]{background:#123328;color:#fff;border-color:#123328}
-@media(max-width:800px){.lang-switch{gap:4px}.lang-link{padding:5px 6px;font-size:9px}}
+.lang-switch{display:inline-flex;align-items:center;flex:none}
+.lang-select{appearance:auto;-webkit-appearance:menulist;min-width:118px;max-width:138px;height:34px;padding:0 8px;border:1px solid #d5ded2;border-radius:9px;background:#fff;color:#244c3a;font-family:Arial,Helvetica,sans-serif;font-size:10px;font-weight:800;letter-spacing:.02em;cursor:pointer;outline:none}
+.lang-select:hover,.lang-select:focus{border-color:#78977d;box-shadow:0 0 0 3px rgba(36,76,58,.08)}
+@media(max-width:800px){.lang-select{min-width:110px;height:32px;font-size:10px}}
 </style></head>
 <body>
   <header class="site-header">
     <div class="container header-inner">
       <div class="header-brand-group"><a class="brand brand-image-link" href="#ust" aria-label="Baydur Farm home"><img class="brand-logo" src="/assets/brand/baydur-logo.webp" alt="Baydur Farm"></a><span class="brand-descriptor">SOILLESS FARMING<br>FOR PROFESSIONAL KITCHENS</span></div>
       <button class="menu-button" id="menuButton" aria-label="Open menu" aria-controls="nav" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 7h18M3 12h18M3 17h18"/></svg></button>
-      <nav class="nav" id="nav" aria-label="Main menu"><a href="#urunler">Products</a><a href="/en/nutrition.html">Nutrition</a><a href="#salata-tasarla">Build your salad</a><a href="#hakkimizda">Our growing</a><a href="#nasil-calisir">How it works</a><a href="#iletisim" class="nav-cta">Request a supply quote <span aria-hidden="true">↗</span></a><span class="lang-switch"><a class="lang-link" href="/" title="Türkçe">TR</a><a class="lang-link" href="/en/" title="English" aria-current="page">EN</a><a class="lang-link" href="/es/" title="Español">ES</a><a class="lang-link" href="/de/" title="Deutsch">DE</a><a class="lang-link" href="/fr/" title="Français">FR</a></span></nav>
+      <nav class="nav" id="nav" aria-label="Main menu"><a href="#urunler">Products</a><a href="/en/nutrition.html">Nutrition</a><a href="#salata-tasarla">Build your salad</a><a href="#hakkimizda">Our growing</a><a href="#nasil-calisir">How it works</a><a href="#iletisim" class="nav-cta">Request a supply quote <span aria-hidden="true">↗</span></a><span class="lang-switch"><select class="lang-select" aria-label="Select language" onchange="if(this.value) window.location.href=this.value"><option value="/">TR — Türkçe</option><option value="/en/" selected>EN — English</option><option value="/es/">ES — Español</option><option value="/de/">DE — Deutsch</option><option value="/fr/">FR — Français</option></select></span></nav>
     </div>
   </header>
   <main id="ust">
