@@ -1,13 +1,23 @@
-# Baydur Farm web sitesi
+# Baydur Farm
 
-Restoranlara marul ve yeşillik tedariki için hazırlanmış tek sayfalık, statik web sitesi.
+[Baydur Farm resmî web sitesi](https://baydurfarm.com/)
 
-## Düzenleme
+Baydur Farm, İzmir Menemen’de topraksız tarımla marul, salata yaprakları, taze yeşillik, aromatik ot ve mikroyeşillik üretir. Restoranlar ve profesyonel mutfaklar için ürün tedariği ve Türkiye geneline teslimat sunar. Güncel ürün, miktar ve teslimat koşulları teklif sırasında netleştirilir.
 
-Sayfanın tüm HTML, CSS, JavaScript ve görsel içeriği `index.html` dosyasındadır. Dosyayı düzenleyip `main` dalına kaydettiğinizde GitHub Pages yeni sürümü yayınlar.
+## Ürünler ve üretim
 
-İletişim formu sunucuya veri kaydetmez. Kullanıcının seçimine göre WhatsApp veya e-posta uygulamasında hazır bir teklif mesajı açar; son gönderimi kullanıcı yapar.
+- [Marul çeşitleri](https://baydurfarm.com/salata-yapraklari.html)
+- [Taze yeşillikler ve aromatik otlar](https://baydurfarm.com/yesillikler.html)
+- [Mikroyeşillikler](https://baydurfarm.com/microyesillikler.html)
+- [Topraksız tarım](https://baydurfarm.com/topraksiz-tarim.html)
+- [Baydur Farm hakkında](https://baydurfarm.com/baydur-farm.html)
+- [Restoranlara tedarik](https://baydurfarm.com/restoran-tedariki.html)
+- [Tedarik teklifi](https://baydurfarm.com/#iletisim)
 
-Ana sayfadaki görsel tanıtım amaçlı oluşturulmuştur. İşletmenin kendi fotoğrafı mevcut olduğunda değiştirilebilir.
+## Web sitesi
 
-`CNAME` dosyası `baydurfarm.com` özel alan adını GitHub Pages'e tanımlar. `.nojekyll` dosyası statik dosyaların olduğu gibi sunulmasını sağlar.
+Bu depo Baydur Farm web sitesinin kaynak dosyalarını içerir. Statik HTML, CSS ve JavaScript dosyaları GitHub Pages üzerinden yayımlanır. Türkçe ana sayfa `index.html` dosyasındadır; ürün ve bilgi sayfaları ayrı HTML dosyalarında, diğer dil sürümleri `en`, `de`, `es` ve `fr` dizinlerindedir.
+
+`main` dalına yapılan değişiklikler GitHub Pages yayınına aktarılır. `CNAME` özel alan adını, `robots.txt` tarama yönergelerini ve `sitemap.xml` sayfa listesini tanımlar.
+
+Tanıtım amacıyla oluşturulan temsili görseller işletmenin gerçek üretim fotoğrafları olarak değerlendirilmemelidir.
