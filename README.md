@@ -1,23 +1,43 @@
-# Baydur Farm
+# Albaş Oto Kaporta — Menemen
 
-[Baydur Farm resmî web sitesi](https://baydurfarm.com/)
+Bağımlılıksız, mobil uyumlu HTML/CSS/JavaScript tanıtım sitesi. İşletmenin Google Haritalar kaydındaki bilgiler ve işletme hesabının yüklediği gerçek fotoğraflar kullanıldı. Kaynak dosyaları `dist/` içinde. Fotoğraf kaynakları `photo-sources.json` dosyasında.
 
-Baydur Farm, İzmir Menemen’de topraksız tarımla marul, salata yaprakları, taze yeşillik, aromatik ot ve mikroyeşillik üretir. Restoranlar ve profesyonel mutfaklar için ürün tedariği ve Türkiye geneline teslimat sunar. Güncel ürün, miktar ve teslimat koşulları teklif sırasında netleştirilir.
+## İşletme bilgileri
 
-## Ürünler ve üretim
+- Telefon: +90 545 550 12 14
+- Adres: Mermerli Mahallesi, 1406. Sokak No:20, 35660 Menemen / İzmir
+- Çalışma saatleri: Pazartesi–Cumartesi 08.30–18.30; Pazar kapalı
+- Konum: 38.6159295, 27.0651482
+- Google Place ID: ChIJhyEsTQDTuxQRkRgataSC-r8
+- Bilgiler 3 Ekim 2026 tarihinde Google Haritalar'da kontrol edildi.
+- Google değerlendirme bilgisi bu tarihte 5,0/5 ve 2 değerlendirmeydi. Sayı ve puan değişirse `dist/index.html` içindeki `.rating` alanını güncelleyin.
 
-- [Marul çeşitleri](https://baydurfarm.com/salata-yapraklari.html)
-- [Taze yeşillikler ve aromatik otlar](https://baydurfarm.com/yesillikler.html)
-- [Mikroyeşillikler](https://baydurfarm.com/microyesillikler.html)
-- [Topraksız tarım](https://baydurfarm.com/topraksiz-tarim.html)
-- [Baydur Farm hakkında](https://baydurfarm.com/baydur-farm.html)
-- [Restoranlara tedarik](https://baydurfarm.com/restoran-tedariki.html)
-- [Tedarik teklifi](https://baydurfarm.com/#iletisim)
+## Cloudflare Pages ile ücretsiz yayın
 
-## Web sitesi
+1. Kaynak kodu `canerbaydr/baydur-farm-website` deposunun `albas-oto-kaporta` dalındadır. Dalın kök ağacı yalnızca bu siteye aittir.
+2. Cloudflare hesabında Workers & Pages → Create application → Pages → Connect to Git yolunu izleyin. Yalnızca bu depoya erişim verin.
+3. Production branch: `albas-oto-kaporta`. Framework: `None`. Build command: `node scripts/configure-seo.mjs`. Build output directory: `dist`.
+4. İlk yayın sonrası verilen gerçek adresi kontrol edin. İsim müsaitse `albas-oto-kaporta.pages.dev` olacaktır; müsait olduğu önceden varsayılmıyor.
+5. Projenin ortam değişkenlerine `SITE_URL` olarak gerçek ana yayın adresini ve `PRODUCTION_BRANCH` olarak `albas-oto-kaporta` değerini ekleyin ve yeniden yayınlayın. Cloudflare Pages ilk kurulumda `CF_PAGES_URL` adresini sağlar; script geçici önizleme adreslerini indekslemeye kapatır. Ana adres için `SITE_URL` kullanın.
+6. GitHub'da `albas-oto-kaporta` dalına yaptığınız her değişiklik otomatik yayınlanır. Tasarım değişikliklerini ayrı dalda inceleyip `albas-oto-kaporta` dalına birleştirebilirsiniz.
 
-Bu depo Baydur Farm web sitesinin kaynak dosyalarını içerir. Statik HTML, CSS ve JavaScript dosyaları GitHub Pages üzerinden yayımlanır. Türkçe ana sayfa `index.html` dosyasındadır; ürün ve bilgi sayfaları ayrı HTML dosyalarında, diğer dil sürümleri `en`, `de`, `es` ve `fr` dizinlerindedir.
+## Google ve Yandex
 
-`main` dalına yapılan değişiklikler GitHub Pages yayınına aktarılır. `CNAME` özel alan adını, `robots.txt` tarama yönergelerini ve `sitemap.xml` sayfa listesini tanımlar.
+- Nihai sitede canonical, Open Graph ve AutoBodyShop yapılandırılmış verileri bulunur. `sitemap.xml` ve `robots.txt` yayın adresine göre script tarafından üretilir.
+- Google Search Console'a nihai siteyi URL öneki mülkü olarak ekleyin. Verilen HTML doğrulama dosyasını `dist/` içine koyun veya doğrulama meta etiketini `dist/index.html` dosyasına ekleyin.
+- Siteyi doğruladıktan sonra `sitemap.xml` dosyasını gönderin; URL Denetimi ile ana sayfa için dizine eklenme isteyin.
+- Mevcut işletme kaydının web sitesi alanına nihai adresi ekleyin.
+- Yandex Webmaster'da aynı adresi doğrulayıp site haritasını gönderin.
+- Yayınlama ve site haritası gönderimi Google'a veya Yandex'e eklenme ya da sıralama garantisi vermez.
 
-Tanıtım amacıyla oluşturulan temsili görseller işletmenin gerçek üretim fotoğrafları olarak değerlendirilmemelidir.
+## Düzenleme
+
+Metinler, adres, telefon, saatler ve SEO verileri: `dist/index.html`. Tasarım: `dist/style.css`. Menü ve fotoğraf penceresi: `dist/app.js`. Görseller: `dist/assets/`.
+
+Siteyi başka adrese taşırken `SITE_URL` değerini yeni gerçek adres olarak değiştirin. Form/veritabanı veya ücretli üçüncü taraf servis bulunmuyor. Telefon ve WhatsApp bağlantıları ilgili uygulamayı açar; otomatik mesaj göndermez.
+
+## Canlı site
+
+[Albaş Oto Kaporta](https://albas-oto-kaporta.ceynir.chatgpt.site) herkese açık olarak yayınlanmıştır.
+
+GitHub kaynakları bu dalda kaydedilmiştir. Bu dalı Cloudflare Pages hesabınıza bağlayana kadar GitHub değişiklikleri mevcut ChatGPT Sites yayınına otomatik aktarılmaz. Revizyonlar GitHub kaynakları ve Sites yayını birlikte güncellenerek yapılabilir. Cloudflare Pages ve Google/Yandex kayıt adımları henüz tamamlanmamıştır.

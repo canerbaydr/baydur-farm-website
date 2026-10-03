@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://albas-oto-kaporta.ceynir.chatgpt.site/sitemap.xml
