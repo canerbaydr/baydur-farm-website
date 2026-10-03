@@ -36,8 +36,6 @@ Metinler, adres, telefon, saatler ve SEO verileri: `dist/index.html`. Tasarım: 
 
 Siteyi başka adrese taşırken `SITE_URL` değerini yeni gerçek adres olarak değiştirin. Form/veritabanı veya ücretli üçüncü taraf servis bulunmuyor. Telefon ve WhatsApp bağlantıları ilgili uygulamayı açar; otomatik mesaj göndermez.
 
-## Canlı site
+## Önizleme
 
-[Albaş Oto Kaporta](https://albas-oto-kaporta.ceynir.chatgpt.site) herkese açık olarak yayınlanmıştır.
-
-GitHub kaynakları bu dalda kaydedilmiştir. Bu dalı Cloudflare Pages hesabınıza bağlayana kadar GitHub değişiklikleri mevcut ChatGPT Sites yayınına otomatik aktarılmaz. Revizyonlar GitHub kaynakları ve Sites yayını birlikte güncellenerek yapılabilir. Cloudflare Pages ve Google/Yandex kayıt adımları henüz tamamlanmamıştır.
+ChatGPT Sites üzerinde hazırlanmış sürüm sahibiyle sınırlı önizlemedir. GitHub kaynakları kaydedilmiştir; Cloudflare Pages ve Google/Yandex kayıt adımları henüz tamamlanmamıştır. Google/Yandex kayıt işlemleri nihai herkese açık adresle yapılmalıdır.
