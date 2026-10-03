@@ -12,14 +12,17 @@ Bağımlılıksız, mobil uyumlu HTML/CSS/JavaScript tanıtım sitesi. İşletme
 - Bilgiler 3 Ekim 2026 tarihinde Google Haritalar'da kontrol edildi.
 - Google değerlendirme bilgisi bu tarihte 5,0/5 ve 2 değerlendirmeydi. Sayı ve puan değişirse `dist/index.html` içindeki `.rating` alanını güncelleyin.
 
-## Cloudflare Pages ile ücretsiz yayın
+## Cloudflare Pages ile otomatik yayın
 
-1. Kaynak kodu `canerbaydr/baydur-farm-website` deposunun `albas-oto-kaporta` dalındadır. Dalın kök ağacı yalnızca bu siteye aittir.
-2. Cloudflare hesabında Workers & Pages → Create application → Pages → Connect to Git yolunu izleyin. Yalnızca bu depoya erişim verin.
-3. Production branch: `albas-oto-kaporta`. Framework: `None`. Build command: `node scripts/configure-seo.mjs`. Build output directory: `dist`.
-4. İlk yayın sonrası verilen gerçek adresi kontrol edin. İsim müsaitse `albas-oto-kaporta.pages.dev` olacaktır; müsait olduğu önceden varsayılmıyor.
-5. Projenin ortam değişkenlerine `SITE_URL` olarak gerçek ana yayın adresini ve `PRODUCTION_BRANCH` olarak `albas-oto-kaporta` değerini ekleyin ve yeniden yayınlayın. Cloudflare Pages ilk kurulumda `CF_PAGES_URL` adresini sağlar; script geçici önizleme adreslerini indekslemeye kapatır. Ana adres için `SITE_URL` kullanın.
-6. GitHub'da `albas-oto-kaporta` dalına yaptığınız her değişiklik otomatik yayınlanır. Tasarım değişikliklerini ayrı dalda inceleyip `albas-oto-kaporta` dalına birleştirebilirsiniz.
+Canlı site: https://albasotokaporta.pages.dev
+
+Kaynak kodu `canerbaydr/baydur-farm-website` deposunun yalnızca `albas-oto-kaporta` dalındadır. Baydur Farm'ın `main` dalı ayrı tutulur.
+
+`.github/workflows/publish-albas.yml`, bu dalda `dist/`, SEO scripti veya yayın iş akışı değiştiğinde çalışır. SEO adreslerini düzenler ve Wrangler ile mevcut `albasotokaporta` Pages projesine yayınlar. GitHub Secrets içinde `CLOUDFLARE_API_TOKEN` ve `CLOUDFLARE_ACCOUNT_ID` kullanır; değerlerini kodda tutmayın.
+
+Cloudflare projesi Direct Upload yöntemiyle oluşturulmuştur. Yayındaki Pages üretim dalı etiketi `main` olduğundan deploy komutunda `--branch=main` kullanılır. Bu etiket GitHub'ın `main` dalını checkout etmez veya değiştirmez; kaynak her zaman `albas-oto-kaporta` dalıdır.
+
+Yayın sonucunu GitHub Actions sekmesindeki **Publish Albas to Cloudflare Pages** çalışmasından kontrol edin.
 
 ## Google ve Yandex
 
@@ -36,6 +39,6 @@ Metinler, adres, telefon, saatler ve SEO verileri: `dist/index.html`. Tasarım: 
 
 Siteyi başka adrese taşırken `SITE_URL` değerini yeni gerçek adres olarak değiştirin. Form/veritabanı veya ücretli üçüncü taraf servis bulunmuyor. Telefon ve WhatsApp bağlantıları ilgili uygulamayı açar; otomatik mesaj göndermez.
 
-## Önizleme
+## Yayın adresi
 
-ChatGPT Sites üzerinde hazırlanmış sürüm sahibiyle sınırlı önizlemedir. GitHub kaynakları kaydedilmiştir; Cloudflare Pages ve Google/Yandex kayıt adımları henüz tamamlanmamıştır. Google/Yandex kayıt işlemleri nihai herkese açık adresle yapılmalıdır.
+Herkese açık ana yayın adresi `https://albasotokaporta.pages.dev` olarak ayarlanmıştır. Google/Yandex doğrulama ve site haritası kayıtları bu adresle yapılmalıdır.

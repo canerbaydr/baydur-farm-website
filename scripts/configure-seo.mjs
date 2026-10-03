@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const rawUrl = process.env.SITE_URL || process.env.CF_PAGES_URL || 'https://albas-oto-kaporta.ceynir.chatgpt.site';
+const rawUrl = process.env.SITE_URL || process.env.CF_PAGES_URL || 'https://albasotokaporta.pages.dev';
 const url = new URL(rawUrl);
 if (!['https:', 'http:'].includes(url.protocol)) throw new Error('SITE_URL must be an HTTP(S) URL');
 url.search = ''; url.hash = ''; url.pathname = url.pathname.replace(/\/$/, '') + '/';
