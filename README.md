@@ -21,3 +21,21 @@ Bu depo Baydur Farm web sitesinin kaynak dosyalarını içerir. Statik HTML, CSS
 `main` dalına yapılan değişiklikler GitHub Pages yayınına aktarılır. `CNAME` özel alan adını, `robots.txt` tarama yönergelerini ve `sitemap.xml` sayfa listesini tanımlar.
 
 Tanıtım amacıyla oluşturulan temsili görseller işletmenin gerçek üretim fotoğrafları olarak değerlendirilmemelidir.
+
+## İşletme bilgileri (NAP)
+
+Web sitesindeki tüm dil sürümleri aynı işletme bilgilerini kullanır:
+
+- İşletme adı: **Baydur Farm**
+- Konum: **Göktepe, J595+24P, 35660 Menemen/İzmir, Türkiye** (Plus Code)
+- Telefon: **+90 543 638 32 28** (`tel:+905436383228`)
+- Web sitesi: **https://baydurfarm.com/**
+- Konum ve iletişim sayfası: **https://baydurfarm.com/konum.html**
+
+İşletme adı, konum ve telefon bilgileri değiştiğinde bütün HTML sayfalarının
+statik NAP alanları ve `#organization` yapılandırılmış verileri birlikte güncellenir.
+Google Haritalar’da mevcut Baydur Farm kaydı 30 Ekim 2026 tarihinde kontrol edildi.
+Adres, posta kodu ve koordinatlar bu kayıtla eşleştirildi. `hasMap` ve `sameAs`
+alanları mevcut işletme kaydına bağlanır; bu eşleştirme Google işletme sahipliği
+doğrulamasının tamamlandığı anlamına gelmez.
+Doğrulanmamış sokak, kapı numarası, çalışma saati veya sosyal profil eklenmez.
