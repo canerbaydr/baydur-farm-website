@@ -39,4 +39,6 @@ alanları mevcut işletme kaydına bağlanır; bu eşleştirme Google işletme s
 doğrulamasının tamamlandığı anlamına gelmez.
 Doğrulanmamış sokak, kapı numarası, çalışma saati veya sosyal profil eklenmez.
 
-Telefon numarası NAP alanlarında, yapılandırılmış verilerde veya yeni dizin kayıtlarında yayımlanmaz. İletişim için web sitesindeki teklif formu kullanılır.
+Kişisel telefon numarası yayımlanmaz. Web sayfaları ve yapılandırılmış verilerde yalnızca işletme için belirlenen örnek iletişim numarası **0543 000 00 00** yer alır; bu numara doğrulanmış bir arama/WhatsApp hattı olarak sunulmamalıdır. Doğrudan iletişim için **baydurfarm@gmail.com** ve sitedeki teklif formu kullanılır. İşletme adına izinsiz yeni dizin veya Google İşletme Profili kaydı oluşturulmaz.
+
+`konum.html` Google tarafından indekslenebilir tutulur ve `sitemap.xml` içinde listelenir. Eski telefon bilgisinin arama sonucu önbelleğinden kaldırılması ayrıca Google üzerinden talep edilmelidir.
