@@ -1,13 +1,6 @@
 .quote-feedback { margin:18px 0 0; padding:12px 14px; border-radius:10px; font-size:13px; line-height:1.65; background:#e8efe8; color:#244c36; }
 .quote-feedback[data-state="error"] { background:#fff1db; color:#69491c; }
 .quote-feedback[data-state="success"] { background:#e0efdf; color:#244c36; }
-.quote-email-options { margin-top:14px; }
-.quote-email-options > p { margin:0 0 10px; font-size:12px; line-height:1.6; color:#526457; }
-.quote-email-actions { display:flex; flex-wrap:wrap; gap:8px; }
-.quote-email-actions a,.quote-email-actions button { display:inline-flex; align-items:center; justify-content:center; padding:10px 13px; border:1px solid #b7c6b8; border-radius:8px; background:transparent; color:#244c36; font:inherit; font-size:12px; line-height:1.5; cursor:pointer; text-decoration:none; }
-.quote-email-actions a:hover,.quote-email-actions button:hover { background:#e8efe8; }
-.quote-email-actions a:focus-visible,.quote-email-actions button:focus-visible { outline:2px solid #244c36; outline-offset:3px; }
-.quote-email-options textarea { margin-top:12px; min-height:200px; width:100%; font-size:12px; }
-.quote-feedback[hidden],.quote-email-options[hidden],.quote-email-options textarea[hidden] { display:none!important; }
+.quote-feedback[hidden] { display:none!important; }
 #quoteForm button[type="submit"]:disabled { cursor:default; opacity:.7; }
 #quoteForm[aria-busy="true"] button[type="submit"] { cursor:wait; }

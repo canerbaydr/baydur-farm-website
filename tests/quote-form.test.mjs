@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {buildQuoteEmail, submitQuote} from '../assets/quote-form.js';
+import {submitQuote} from '../assets/quote-form.js';
 
 const values = {
   business: 'Test & Mutfak', person: 'Teknik test', email: 'test@example.com',
@@ -55,19 +55,4 @@ test('a populated honeypot is never submitted or reported as delivered', async (
   let called=false;
   await assert.rejects(submitQuote({...values,_honey:'spam'}, {fetchImpl:async()=>{called=true;return response({success:true})}}));
   assert.equal(called,false);
-});
-
-test('email alternatives preserve every quote field and Unicode in each language', () => {
-  for (const language of ['tr','en','de','es','fr']) {
-    const email=buildQuoteEmail(values,language);
-    const gmail=new URL(email.gmail);
-    assert.equal(gmail.searchParams.get('to'),'baydurfarm@gmail.com');
-    assert.equal(gmail.searchParams.get('su'),email.subject);
-    assert.equal(gmail.searchParams.get('body'),email.body);
-    for (const key of ['business','person','email','phone','product','quantity','city','district','address','discount_code','message']) {
-      assert.ok(email.body.includes(values[key]), key);
-    }
-    assert.equal(decodeURIComponent(email.mailto.split('&body=')[1]), email.body);
-    assert.ok(!email.body.includes('_next'));
-  }
 });
