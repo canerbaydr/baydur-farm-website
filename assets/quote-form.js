@@ -1,5 +1,5 @@
 const RECIPIENT = 'baydurfarm@gmail.com';
-const ENDPOINT = 'https://formsubmit.co/ajax/' + RECIPIENT;
+const ENDPOINT = 'https://baydurfarm-mail.canerbaydurr.workers.dev/quote';
 
 const messages = {
   tr: {
@@ -73,12 +73,10 @@ export function buildQuoteEmail(values, language = 'tr') {
   };
 }
 
-export async function submitQuote(values, {fetchImpl = globalThis.fetch, timeoutMs = 12000, sourceUrl = ''} = {}) {
+export async function submitQuote(values, {fetchImpl = globalThis.fetch, timeoutMs = 30000, requestId = globalThis.crypto.randomUUID()} = {}) {
   if (String(values._honey || '').trim()) throw new Error('delivery-unconfirmed');
   const controller = new AbortController();
-  const payload = {...values, _replyto: values.email};
-  delete payload._next;
-  if (sourceUrl) payload._url = sourceUrl;
+  const payload = {...Object.fromEntries(fieldNames.map(name => [name, String(values[name] ?? '')])), requestId};
   let timer;
   const timeout = new Promise((_, reject) => {
     timer = setTimeout(() => {
@@ -97,8 +95,7 @@ export async function submitQuote(values, {fetchImpl = globalThis.fetch, timeout
       });
       if (!response.ok) throw new Error('delivery-http-error');
       const result = await response.json();
-      const activationPending = /activat(?:e|ion)|confirm[^.]{0,30}(?:email|form)/i.test(String(result.message || ''));
-      if ((result.success !== true && result.success !== 'true') || activationPending) {
+      if (result.success !== true || result.requestId !== requestId) {
         throw new Error('delivery-unconfirmed');
       }
       return result;
@@ -117,6 +114,7 @@ function setupQuoteForm() {
   const text = messages[language] || messages.tr;
   const originalLabel = submit.textContent;
   let state = 'idle';
+  let previousAttempt = null;
 
   const feedback = document.createElement('p');
   feedback.id = 'quoteFeedback';
@@ -187,6 +185,7 @@ function setupQuoteForm() {
   function edited() {
     if (state === 'success') {
       state = 'idle';
+      previousAttempt = null;
       submit.disabled = false;
       feedback.hidden = true;
     }
@@ -198,6 +197,10 @@ function setupQuoteForm() {
     event.preventDefault();
     if (state === 'pending' || state === 'success' || !form.reportValidity()) return;
     const values = readValues();
+    const signature = JSON.stringify(values);
+    if (previousAttempt?.signature !== signature) {
+      previousAttempt = {signature, requestId:globalThis.crypto.randomUUID()};
+    }
     state = 'pending';
     submit.disabled = true;
     submit.textContent = text.pending;
@@ -205,7 +208,7 @@ function setupQuoteForm() {
     options.hidden = true;
     showFeedback(text.pending, 'pending');
     try {
-      await submitQuote(values, {sourceUrl: window.location.origin + window.location.pathname});
+      await submitQuote(values, {requestId:previousAttempt.requestId});
       state = JSON.stringify(readValues()) === JSON.stringify(values) ? 'success' : 'idle';
       showFeedback(text.success, 'success');
     } catch {

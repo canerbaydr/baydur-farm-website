@@ -1,0 +1,7 @@
+{
+  "name": "baydurfarm-mail",
+  "main": "mail-worker.mjs",
+  "compatibility_date": "2026-11-04",
+  "workers_dev": true,
+  "ratelimits": [{"name":"MAIL_RATE_LIMIT","namespace_id":"70503001","simple":{"limit":3,"period":60}}]
+}

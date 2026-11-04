@@ -12,17 +12,18 @@ const values = {
 };
 const response = result => ({ok: true, json: async () => result});
 
-test('accepts a confirmed response and sends reply and source information without redirect', async () => {
+test('accepts only a confirmed request ID and sends quote fields without provider redirect settings', async () => {
   let sent;
-  await submitQuote(values, {sourceUrl:'https://baydurfarm.com/', fetchImpl: async (url, options) => {
+  await submitQuote(values, {requestId:'c92dc73f-174c-416c-8b92-50d6c34b88b4', fetchImpl: async (url, options) => {
     sent = JSON.parse(options.body);
-    assert.equal(url, 'https://formsubmit.co/ajax/baydurfarm@gmail.com');
+    assert.equal(url, 'https://baydurfarm-mail.canerbaydurr.workers.dev/quote');
     assert.equal(options.method, 'POST');
     assert.equal(options.credentials, 'omit');
-    return response({success:'true', message:'The form was submitted successfully.'});
+    return response({success:true, requestId:sent.requestId});
   }});
-  assert.equal(sent._replyto, values.email);
-  assert.equal(sent._url, 'https://baydurfarm.com/');
+  assert.equal(sent.email, values.email);
+  assert.equal(sent.requestId, 'c92dc73f-174c-416c-8b92-50d6c34b88b4');
+  assert.equal(sent._subject, undefined);
   assert.equal(sent._next, undefined);
   assert.equal(sent.discount_code, 'BAYDUR10');
   assert.equal(sent.message, values.message);
